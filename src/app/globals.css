@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom animations for expandable services */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInBlock {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.animate-fade-in-up {
+  animation: slideInBlock 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Text shadow for better readability */
+.text-shadow-lg {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Glow button (used for +/-) */
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  padding: 2px; /* thickness of glow ring */
+  background: linear-gradient(120deg, #00c6ff, #0072ff, #4f46e5);
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity .25s ease, filter .4s ease;
+  filter: drop-shadow(0 0 6px rgba(0,114,255,.6));
+  pointer-events: none;
+}
+
+.btn-glow:focus-visible::after,
+.btn-glow:active::after {
+  opacity: 1;
+}
+
+.btn-glow:hover::after {
+  opacity: .65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-glow::after { transition: opacity .2s ease; filter:none; }
+}
+
+/* Blue glow effect for buttons */
+.btn-blue-glow {
+  transition: all 0.2s ease;
+}
+
+.btn-blue-glow:hover {
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+.btn-blue-glow:active,
+.btn-blue-glow:focus {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 0 3px rgba(59, 130, 246, 0.3);
+  outline: none;
+}
+
+/* Futuristic button effects */
+.btn-futuristic-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-futuristic-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #00d4ff, #0099cc, #0066ff, #00d4ff);
+  background-size: 300% 300%;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: futuristicGlow 2s linear infinite;
+  z-index: -1;
+}
+
+.btn-futuristic-glow:active::before,
+.btn-futuristic-glow:focus::before {
+  opacity: 1;
+}
+
+@keyframes futuristicGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Futuristic focus ring specifically for +/- toggle buttons */
+.futuristic-press:focus-visible:not(:active) {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.3), 0 0 0 4px rgba(59,130,246,0.6), 0 0 18px 4px rgba(59,130,246,0.5), 0 0 28px 10px rgba(99,102,241,0.35);
+  outline: none;
+}
+
+.futuristic-press:active {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.25), 0 0 0 4px rgba(59,130,246,0.5), 0 0 14px 3px rgba(59,130,246,0.55), inset 0 0 6px rgba(59,130,246,0.6);
+  transform: scale(0.94);
+}
+
+/* Estado activo persistente (cuando la tarjeta está expandida) */
+.futuristic-press.is-active,
+.futuristic-press.is-active:focus-visible {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.35), 0 0 0 5px rgba(59,130,246,0.65), 0 0 22px 6px rgba(59,130,246,0.55), 0 0 34px 14px rgba(99,102,241,0.4), inset 0 0 10px rgba(59,130,246,0.55);
+}
+
+/* Subtítulo fade-in con delay ligero */
+.subtitle-fade { opacity: 0; animation: subtitleFade .6s .12s cubic-bezier(.23,1,.32,1) forwards; }
+@keyframes subtitleFade { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .futuristic-press:active { transform: none; }
+}
