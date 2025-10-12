@@ -1,6 +1,8 @@
 ﻿'use client'
 
 import { ExpandableServicesSection } from "@/components/sections/ExpandableServicesSection";
+import { ClientLogosSection } from "@/components/sections/ClientLogosSection";
+import { Footer } from "@/components/Footer";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 
 export default function Home() {
@@ -62,6 +64,8 @@ export default function Home() {
           </div>
         </section>
 
+        <ClientLogosSection />
+
         <ExpandableServicesSection />
         
         <section className="min-h-screen bg-gradient-to-br from-purple-900 to-blue-900 py-20 px-6 flex items-center">
@@ -103,6 +107,8 @@ export default function Home() {
           </div>
         </section>
       </main>
+      
+      <Footer />
     </SmoothScrollProvider>
   );
 }
