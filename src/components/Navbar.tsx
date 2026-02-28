@@ -6,6 +6,47 @@ import Link from 'next/link'
 import { Mail } from 'lucide-react'
 import { navItems } from '@/config/navigation'
 
+/**
+ * Hidden SVG that defines the liquid-glass displacement filter.
+ * feTurbulence creates organic distortion; feDisplacementMap warps
+ * whatever is behind the element, producing the "liquid glass" look.
+ * feGaussianBlur adds the frosted-glass softness on top.
+ */
+function GlassSvgFilter() {
+  return (
+    <svg
+      aria-hidden="true"
+      style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}
+    >
+      <defs>
+        <filter id="navbar-glass" x="-10%" y="-10%" width="120%" height="120%">
+          {/* organic noise for the "liquid" distortion */}
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.012 0.018"
+            numOctaves={3}
+            seed={5}
+            result="noise"
+          />
+          {/* warp the backdrop through the noise */}
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale={8}
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="displaced"
+          />
+          {/* frosted blur */}
+          <feGaussianBlur in="displaced" stdDeviation="3" result="blurred" />
+          {/* composite with original to keep crisp content on top */}
+          <feComposite in="blurred" in2="SourceGraphic" operator="atop" />
+        </filter>
+      </defs>
+    </svg>
+  )
+}
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -20,123 +61,123 @@ export default function Navbar() {
   }, [])
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-24">
-          {/* Logo */}
-          <div className="flex-shrink-0 transition-all duration-300">
-            <Link href="/" className="block">
-              <Image
-                src={isScrolled ? '/wiger-logo-light.png' : '/wiger-logo.png'}
-                alt="Wiger AI Logo"
-                width={320}
-                height={90}
-                className="h-14 w-auto object-contain transition-opacity duration-300"
-                priority
-              />
-            </Link>
-          </div>
+    <>
+      <GlassSvgFilter />
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => {
-              const isPage = item.href.startsWith('/')
-              const linkClass = `text-base font-medium transition-all duration-200 hover:scale-105 ${
-                isScrolled
-                  ? 'text-[var(--color-text-primary)] hover:text-[var(--color-accent)]'
-                  : 'text-white/90 hover:text-white'
-              }`
-              return isPage ? (
-                <Link key={item.name} href={item.href} className={linkClass}>
-                  {item.name}
-                </Link>
-              ) : (
-                <a key={item.name} href={item.href} className={linkClass}>
-                  {item.name}
-                </a>
-              )
-            })}
-          </div>
+      {/* Outer wrapper: fixed, full-width, just for positioning */}
+      <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+        {/* Centering container — same max-w as page content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+          {/* The actual glass bar */}
+          <nav
+            className={`glass-navbar pointer-events-auto transition-colors duration-500 ${
+              isScrolled ? 'glass-navbar--scrolled' : 'glass-navbar--hero'
+            }`}
+          >
+            <div className="px-5 sm:px-8">
+              <div className="flex items-center justify-between h-20 relative z-10">
+                {/* Logo */}
+                <div className="flex-shrink-0">
+                  <Link href="/" className="block">
+                    <Image
+                      src="/wiger-logo.png"
+                      alt="Wiger AI Logo"
+                      width={320}
+                      height={90}
+                      className="h-14 w-auto object-contain"
+                      priority
+                    />
+                  </Link>
+                </div>
 
-          {/* CTA Button — desktop */}
-          <div className="hidden md:flex flex-shrink-0">
-            <button className="btn-accent inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm">
-              <Mail className="w-4 h-4" />
-              <span>Contacta a ventas</span>
-            </button>
-          </div>
+                {/* Navigation Links */}
+                <div className="hidden md:flex items-center gap-2">
+                  {navItems.map((item) => {
+                    const isPage = item.href.startsWith('/')
+                    const linkClass =
+                      'glass-nav-pill text-base font-medium text-white/90 hover:text-white transition-colors duration-200 border border-white/10 hover:border-white/25'
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-expanded={mobileOpen}
-              aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
-              className={`p-2 rounded-lg transition-colors ${
-                isScrolled
-                  ? 'text-[var(--color-text-primary)] hover:bg-gray-100'
-                  : 'text-white hover:bg-white/10'
-              }`}
-            >
-              {mobileOpen ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
-          </div>
+                    return isPage ? (
+                      <Link key={item.name} href={item.href} className={linkClass}>
+                        {item.name}
+                      </Link>
+                    ) : (
+                      <a key={item.name} href={item.href} className={linkClass}>
+                        {item.name}
+                      </a>
+                    )
+                  })}
+                </div>
+
+                {/* CTA Button — desktop */}
+                <div className="hidden md:flex flex-shrink-0">
+                  <button className="btn-accent inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm">
+                    <Mail className="w-4 h-4" />
+                    <span>Contacta a ventas</span>
+                  </button>
+                </div>
+
+                {/* Mobile Menu Button */}
+                <div className="md:hidden">
+                  <button
+                    onClick={() => setMobileOpen(!mobileOpen)}
+                    aria-expanded={mobileOpen}
+                    aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+                    className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+                  >
+                    {mobileOpen ? (
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    ) : (
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Menu Panel — inside the glass bar */}
+            {mobileOpen && (
+              <div className="md:hidden border-t border-white/15 px-5 sm:px-8 py-4 space-y-1 relative z-10">
+                {navItems.map((item) => {
+                  const isPage = item.href.startsWith('/')
+                  const mobileClass =
+                    'block text-base font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-lg px-3 py-2 transition-colors'
+
+                  return isPage ? (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={mobileClass}
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={mobileClass}
+                    >
+                      {item.name}
+                    </a>
+                  )
+                })}
+                <div className="pt-3">
+                  <button className="btn-accent w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm">
+                    <Mail className="w-4 h-4" />
+                    <span>Contacta a ventas</span>
+                  </button>
+                </div>
+              </div>
+            )}
+          </nav>
         </div>
       </div>
-
-      {/* Mobile Menu Panel */}
-      {mobileOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-[var(--color-border)] px-6 py-4 space-y-1">
-          {navItems.map((item) => {
-            const isPage = item.href.startsWith('/')
-            const mobileClass = "block text-base font-medium text-[var(--color-text-primary)] hover:text-[var(--color-accent)] py-2 transition-colors"
-            return isPage ? (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className={mobileClass}
-              >
-                {item.name}
-              </Link>
-            ) : (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className={mobileClass}
-              >
-                {item.name}
-              </a>
-            )
-          })}
-          <div className="pt-3">
-            <button className="btn-accent w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm">
-              <Mail className="w-4 h-4" />
-              <span>Contacta a ventas</span>
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Subtle bottom border when scrolled */}
-      {isScrolled && (
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-[var(--color-border)]" />
-      )}
-    </nav>
+    </>
   )
 }

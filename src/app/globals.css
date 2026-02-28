@@ -1,38 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  /* Backgrounds */
-  --color-surface-page:    #F9F7F4;
-  --color-surface-card:    #FFFFFF;
-  --color-surface-section: #F3F1EE;
+  /* Backgrounds — full dark theme */
+  --color-surface-page:    #0A1628;
+  --color-surface-card:    #12233A;
+  --color-surface-section: #0E1C2F;
   --color-surface-dark:    #0E1C2F;
+  --color-surface-elevated: #162B45;
 
-  /* Text */
-  --color-text-primary:       #0E1C2F;
-  --color-text-secondary:     #64748B;
-  --color-text-muted:         #94A3B8;
+  /* Text — optimised for dark backgrounds */
+  --color-text-primary:       #F1EEE9;
+  --color-text-secondary:     #8899AD;
+  --color-text-muted:         #5A6E84;
   --color-text-on-dark:       #F1EEE9;
-  --color-text-on-dark-muted: #94A3B8;
+  --color-text-on-dark-muted: #8899AD;
 
   /* Single accent — industrial amber */
   --color-accent:       #E8650A;
   --color-accent-hover: #C8520A;
-  --color-accent-light: #FEF3E8;
+  --color-accent-light: rgba(232, 101, 10, 0.12);
 
-  /* Borders */
-  --color-border:      #E2DDD8;
+  /* Borders — subtle on dark */
+  --color-border:      rgba(255, 255, 255, 0.08);
   --color-border-dark: #1E3252;
 
-  /* Shadows */
-  --shadow-card:       0 1px 3px rgba(14,28,47,0.06), 0 4px 12px rgba(14,28,47,0.08);
-  --shadow-card-hover: 0 4px 8px rgba(14,28,47,0.08), 0 12px 24px rgba(14,28,47,0.12);
+  /* Shadows — deeper for dark theme */
+  --shadow-card:       0 1px 3px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.15);
+  --shadow-card-hover: 0 4px 8px rgba(0,0,0,0.25), 0 12px 24px rgba(0,0,0,0.2);
 
   /* Fonts — Geist is injected by layout.tsx into these vars */
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
 
   /* Legacy shadcn mappings */
-  --background: #F9F7F4;
-  --foreground: #0E1C2F;
+  --background: #0A1628;
+  --foreground: #F1EEE9;
 }
 
 body {
@@ -132,4 +133,63 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .animate-on-scroll, .animate-fade-in-up, .toggle-btn { transition: none; animation: none; }
+}
+
+/* ── Liquid Glass Navbar ── */
+.glass-navbar {
+  position: relative;
+  border-radius: 20px;
+  overflow: visible;
+}
+
+.glass-navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.35),
+    inset 0 0 4px 1px rgba(255, 255, 255, 0.25),
+    0 8px 32px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+}
+
+.glass-navbar::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: 20px;
+  backdrop-filter: blur(0px);
+  filter: url(#navbar-glass);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* When over hero (transparent bg), use light text */
+.glass-navbar--hero {
+  background: transparent;
+}
+
+/* When scrolled past hero, give a tinted glass fill */
+.glass-navbar--scrolled {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.glass-navbar--scrolled .glass-navbar-link {
+  color: var(--color-text-on-dark);
+}
+
+/* Inner pill buttons for nav links on hover */
+.glass-nav-pill {
+  position: relative;
+  border-radius: 9999px;
+  padding: 6px 14px;
+  transition: background-color 0.2s ease;
+}
+
+.glass-nav-pill:hover {
+  background: rgba(255, 255, 255, 0.15);
 }

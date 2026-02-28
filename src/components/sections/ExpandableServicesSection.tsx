@@ -85,16 +85,16 @@ export function ExpandableServicesSection() {
   }
 
   return (
-    <section className="py-24 px-8 bg-[var(--color-surface-section)]">
+    <section className="py-24 px-8" style={{ backgroundColor: '#0A1628' }}>
       <div className="max-w-7xl mx-auto">
         {/* Sub-Hero */}
         <div className="text-center mb-16">
           <div className="relative">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text-primary)] tracking-tight mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4" style={{ color: '#F1EEE9' }}>
               Mientras el mundo avanza sin parar,
             </h2>
             <div className="relative">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-[var(--color-text-secondary)] italic">
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-light italic" style={{ color: '#8899AD' }}>
                 ¿puedes permitirte quedarte atrás?
               </h3>
               <div className="mt-6 w-12 h-[2px] bg-[var(--color-accent)] mx-auto" />
@@ -235,8 +235,8 @@ export function ExpandableServicesSection() {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16 pt-16 border-t border-[var(--color-border)]">
-          <p className="text-[var(--color-text-secondary)] mb-6 text-lg">
+        <div className="text-center mt-16 pt-16 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+          <p className="mb-6 text-lg" style={{ color: '#8899AD' }}>
             ¿Necesitas una solución personalizada?
           </p>
           <button className="btn-accent px-8 py-4 rounded-xl font-semibold text-lg">
