@@ -1,0 +1,169 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ── ENUMS ─────────────────────────────────────────────────────────────────────
+
+enum ContactStatus {
+  PENDING
+  REVIEWED
+  RESPONDED
+  ARCHIVED
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+}
+
+enum AdminAction {
+  LOGIN
+  LOGOUT
+  UPLOAD_MEDIA
+  DELETE_MEDIA
+  VIEW_CONTACT
+  UPDATE_CONTACT_STATUS
+  VIEW_ANALYTICS
+  CREATE_ADMIN
+  DEACTIVATE_ADMIN
+}
+
+enum AnalyticsEventType {
+  CTA_CLICK
+  VIDEO_PLAY
+  VIDEO_PAUSE
+  FORM_START
+  FORM_SUBMIT
+  SECTION_VIEW
+  NAV_CLICK
+  OUTBOUND_LINK
+}
+
+// ── DOMAIN 1 — ANALYTICS ──────────────────────────────────────────────────────
+
+model PageView {
+  id          String   @id @default(cuid())
+  path        String
+  referrer    String?
+  utmSource   String?  @map("utm_source")
+  utmMedium   String?  @map("utm_medium")
+  utmCampaign String?  @map("utm_campaign")
+  sessionId   String?  @map("session_id")
+  country     String?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([path])
+  @@index([createdAt])
+  @@index([sessionId])
+  @@map("page_views")
+}
+
+model VisitorSession {
+  id          String    @id @default(cuid())
+  ipHash      String    @map("ip_hash")
+  userAgent   String?   @map("user_agent")
+  device      String?
+  os          String?
+  browser     String?
+  country     String?
+  city        String?
+  pageCount   Int       @default(0) @map("page_count")
+  durationSec Int?      @map("duration_sec")
+  startedAt   DateTime  @default(now()) @map("started_at")
+  lastSeenAt  DateTime  @default(now()) @map("last_seen_at")
+  endedAt     DateTime? @map("ended_at")
+
+  events AnalyticsEvent[]
+
+  @@index([ipHash])
+  @@index([startedAt])
+  @@index([country])
+  @@map("visitor_sessions")
+}
+
+model AnalyticsEvent {
+  id        String             @id @default(cuid())
+  sessionId String             @map("session_id")
+  eventType AnalyticsEventType @map("event_type")
+  path      String
+  label     String?
+  metadata  Json?
+  createdAt DateTime           @default(now()) @map("created_at")
+
+  session VisitorSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([eventType])
+  @@index([sessionId])
+  @@index([createdAt])
+  @@map("analytics_events")
+}
+
+// ── DOMAIN 2 — CONTACT FORM ───────────────────────────────────────────────────
+
+model ContactSubmission {
+  id          String        @id @default(cuid())
+  name        String
+  email       String
+  company     String?
+  phone       String?
+  message     String        @db.Text
+  status      ContactStatus @default(PENDING)
+  source      String?
+  sessionId   String?       @map("session_id")
+  ipHash      String?       @map("ip_hash")
+  country     String?
+  notes       String?       @db.Text
+  respondedAt DateTime?     @map("responded_at")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@index([email])
+  @@index([createdAt])
+  @@map("contact_submissions")
+}
+
+// ── DOMAIN 3 — ADMIN ──────────────────────────────────────────────────────────
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  username     String    @unique
+  passwordHash String    @map("password_hash")
+  role         AdminRole @default(ADMIN)
+  isActive     Boolean   @default(true) @map("is_active")
+  lastLoginAt  DateTime? @map("last_login_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  activityLogs AdminActivityLog[]
+
+  @@index([email])
+  @@index([isActive])
+  @@map("admin_users")
+}
+
+model AdminActivityLog {
+  id         String      @id @default(cuid())
+  adminId    String      @map("admin_id")
+  action     AdminAction
+  targetType String?     @map("target_type")
+  targetId   String?     @map("target_id")
+  metadata   Json?
+  ipAddress  String?     @map("ip_address")
+  userAgent  String?     @map("user_agent")
+  createdAt  DateTime    @default(now()) @map("created_at")
+
+  admin AdminUser @relation(fields: [adminId], references: [id])
+
+  @@index([adminId])
+  @@index([action])
+  @@index([createdAt])
+  @@map("admin_activity_logs")
+}

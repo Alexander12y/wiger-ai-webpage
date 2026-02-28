@@ -3,6 +3,7 @@
 import { ExpandableServicesSection } from "@/components/sections/ExpandableServicesSection";
 import { ClientLogosSection } from "@/components/sections/ClientLogosSection";
 import { VideoTextSection } from "@/components/sections/VideoTextSection";
+import ContactSection from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 
@@ -54,6 +55,8 @@ export default function Home() {
         <ExpandableServicesSection />
 
         <VideoTextSection />
+
+        <ContactSection />
       </main>
 
       <Footer />

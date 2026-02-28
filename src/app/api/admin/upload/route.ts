@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'fs/promises'
 import path from 'path'
-
-const SESSION_TOKEN = process.env.ADMIN_TOKEN ?? 'wiger-admin-session-2025'
+import { getAdminFromRequest } from '@/lib/adminAuth'
+import { prisma } from '@/lib/prisma'
 
 // Max file size: 500 MB
 const MAX_SIZE_BYTES = 500 * 1024 * 1024
 
 export async function POST(request: NextRequest) {
-  // Auth check
-  const authHeader = request.headers.get('Authorization')
-  if (authHeader !== `Bearer ${SESSION_TOKEN}`) {
+  // Auth: verify admin session cookie
+  const admin = await getAdminFromRequest(request)
+  if (!admin) {
     return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
   }
 
@@ -29,7 +29,10 @@ export async function POST(request: NextRequest) {
   }
 
   if (file.size > MAX_SIZE_BYTES) {
-    return NextResponse.json({ error: 'El archivo excede el tamaño máximo permitido (500 MB)' }, { status: 413 })
+    return NextResponse.json(
+      { error: 'El archivo excede el tamaño máximo permitido (500 MB)' },
+      { status: 413 }
+    )
   }
 
   // Sanitize the target path — prevent directory traversal
@@ -47,11 +50,25 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    // Create intermediate directories if needed
     await mkdir(path.dirname(fullPath), { recursive: true })
 
     const bytes = await file.arrayBuffer()
     await writeFile(fullPath, Buffer.from(bytes))
+
+    // Log the upload action
+    prisma.adminActivityLog
+      .create({
+        data: {
+          adminId: admin.sub,
+          action: 'UPLOAD_MEDIA',
+          targetType: 'media_file',
+          targetId: normalized,
+          metadata: { filename: file.name, size: file.size, path: normalized },
+          ipAddress: request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? null,
+          userAgent: request.headers.get('user-agent'),
+        },
+      })
+      .catch(() => null)
 
     return NextResponse.json({
       success: true,
