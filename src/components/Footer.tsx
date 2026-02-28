@@ -5,61 +5,61 @@ import { Mail } from 'lucide-react'
 
 export function Footer() {
   const footerLinks = {
-    company: {
-      title: 'Company',
+    empresa: {
+      title: 'Empresa',
       links: [
         { label: 'Sobre Nosotros', href: '/about' },
-        { label: 'Careers', href: '/careers' },
-        { label: 'Press & Media', href: '/press' },
-        { label: 'Partners', href: '/partners' },
-        { label: 'Contact', href: '/contact' },
+        { label: 'Carreras', href: '/careers' },
+        { label: 'Prensa', href: '/press' },
+        { label: 'Socios', href: '/partners' },
+        { label: 'Contacto', href: '/contact' },
       ]
     },
-    products: {
-      title: 'Products',
+    productos: {
+      title: 'Productos',
       links: [
-        { label: 'AI Automation', href: '/products/ai-automation' },
-        { label: 'Analytics & BI', href: '/products/analytics' },
-        { label: 'PaaS Platform', href: '/products/paas' },
-        { label: 'Integrations', href: '/products/integrations' },
-        { label: 'Pricing', href: '/pricing' },
+        { label: 'ERP para Manufactura', href: '/productos/erp' },
+        { label: 'CRM Industrial', href: '/productos/crm' },
+        { label: 'Integraciones', href: '/productos/integraciones' },
+        { label: 'Módulos', href: '/productos/modulos' },
+        { label: 'Precios', href: '/precios' },
       ]
     },
-    resources: {
-      title: 'Resources',
+    recursos: {
+      title: 'Recursos',
       links: [
         { label: 'Blog', href: '/blog' },
-        { label: 'Documentation', href: '/docs' },
-        { label: 'Case Studies', href: '/case-studies' },
+        { label: 'Documentación', href: '/docs' },
+        { label: 'Casos de Éxito', href: '/casos-de-exito' },
         { label: 'Webinars', href: '/webinars' },
-        { label: 'Support', href: '/support' },
+        { label: 'Soporte', href: '/soporte' },
       ]
     },
     legal: {
       title: 'Legal',
       links: [
-        { label: 'Privacy Policy', href: '/privacy' },
-        { label: 'Terms of Service', href: '/terms' },
-        { label: 'Cookie Settings', href: '/cookies' },
-        { label: 'Security', href: '/security' },
-        { label: 'Compliance', href: '/compliance' },
+        { label: 'Política de Privacidad', href: '/privacidad' },
+        { label: 'Términos de Servicio', href: '/terminos' },
+        { label: 'Cookies', href: '/cookies' },
+        { label: 'Seguridad', href: '/seguridad' },
+        { label: 'Cumplimiento', href: '/cumplimiento' },
       ]
     },
-    community: {
-      title: 'Community',
+    comunidad: {
+      title: 'Comunidad',
       links: [
-        { label: 'Events', href: '/events' },
-        { label: 'Developer Portal', href: '/developers' },
-        { label: 'Forum', href: '/forum' },
-        { label: 'Newsletter', href: '/newsletter' },
-        { label: 'Partnerships', href: '/partnerships' },
+        { label: 'Eventos', href: '/eventos' },
+        { label: 'Portal de Desarrolladores', href: '/desarrolladores' },
+        { label: 'Foro', href: '/foro' },
+        { label: 'Boletín', href: '/boletin' },
+        { label: 'Alianzas', href: '/alianzas' },
       ]
     }
   }
 
   const socialLinks = [
-    { 
-      name: 'X (Twitter)', 
+    {
+      name: 'X (Twitter)',
       href: 'https://x.com/wiger_ai',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -67,26 +67,26 @@ export function Footer() {
         </svg>
       )
     },
-    { 
-      name: 'LinkedIn', 
+    {
+      name: 'LinkedIn',
       href: 'https://linkedin.com/company/wiger-ai',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
         </svg>
       )
     },
-    { 
-      name: 'YouTube', 
+    {
+      name: 'YouTube',
       href: 'https://youtube.com/@wiger_ai',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
         </svg>
       )
     },
-    { 
-      name: 'Instagram', 
+    {
+      name: 'Instagram',
       href: 'https://instagram.com/wigerai',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -97,32 +97,18 @@ export function Footer() {
   ]
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 via-blue-900 to-black relative">
-      {/* Elementos futurísticos de fondo para continuidad */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-32 w-1 h-1 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-        <div className="absolute bottom-32 left-1/3 w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '2.5s' }}></div>
-        <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-cyan-300 rounded-full animate-pulse" style={{ animationDelay: '0.8s' }}></div>
-      </div>
-      
-      {/* Grid pattern sutil */}
-      <div className="absolute inset-0 opacity-3" style={{
-        backgroundImage: `
-          linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
-        `,
-        backgroundSize: '60px 60px'
-      }}></div>
+    <footer className="bg-[#0E1C2F] relative">
+      {/* Amber top accent */}
+      <div className="h-[2px] bg-[var(--color-accent)]" />
 
       <div className="max-w-7xl mx-auto px-8 py-16 relative z-10">
         {/* Top Section - CTA */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">
             ¿Listo para hablar?<br />
             Contáctanos.
           </h2>
-          <button className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25 border border-cyan-500/20">
+          <button className="btn-accent inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-lg">
             <Mail className="w-5 h-5" />
             Contáctanos
           </button>
@@ -133,9 +119,9 @@ export function Footer() {
           {/* Logo Section */}
           <div className="md:col-span-1">
             <div className="flex items-start">
-              <div className="relative w-32 h-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
+              <div className="relative w-32 h-12">
                 <Image
-                  src="/wiger_light_logo[1].png"
+                  src="/wiger-logo-light.png"
                   alt="Wiger AI"
                   fill
                   className="object-contain"
@@ -144,15 +130,15 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Company */}
+          {/* Empresa */}
           <div>
-            <h3 className="font-semibold text-gray-200 mb-4">{footerLinks.company.title}</h3>
+            <h3 className="font-semibold text-white mb-4">{footerLinks.empresa.title}</h3>
             <ul className="space-y-3">
-              {footerLinks.company.links.map((link) => (
+              {footerLinks.empresa.links.map((link) => (
                 <li key={link.label}>
-                  <a 
+                  <a
                     href={link.href}
-                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-200 text-sm"
+                    className="text-gray-400 hover:text-[var(--color-accent)] transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -161,15 +147,15 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Products */}
+          {/* Productos */}
           <div>
-            <h3 className="font-semibold text-gray-200 mb-4">{footerLinks.products.title}</h3>
+            <h3 className="font-semibold text-white mb-4">{footerLinks.productos.title}</h3>
             <ul className="space-y-3">
-              {footerLinks.products.links.map((link) => (
+              {footerLinks.productos.links.map((link) => (
                 <li key={link.label}>
-                  <a 
+                  <a
                     href={link.href}
-                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-200 text-sm"
+                    className="text-gray-400 hover:text-[var(--color-accent)] transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -178,15 +164,15 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Recursos */}
           <div>
-            <h3 className="font-semibold text-gray-200 mb-4">{footerLinks.resources.title}</h3>
+            <h3 className="font-semibold text-white mb-4">{footerLinks.recursos.title}</h3>
             <ul className="space-y-3">
-              {footerLinks.resources.links.map((link) => (
+              {footerLinks.recursos.links.map((link) => (
                 <li key={link.label}>
-                  <a 
+                  <a
                     href={link.href}
-                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-200 text-sm"
+                    className="text-gray-400 hover:text-[var(--color-accent)] transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -197,13 +183,13 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="font-semibold text-gray-200 mb-4">{footerLinks.legal.title}</h3>
+            <h3 className="font-semibold text-white mb-4">{footerLinks.legal.title}</h3>
             <ul className="space-y-3">
               {footerLinks.legal.links.map((link) => (
                 <li key={link.label}>
-                  <a 
+                  <a
                     href={link.href}
-                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-200 text-sm"
+                    className="text-gray-400 hover:text-[var(--color-accent)] transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -212,15 +198,15 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Community */}
+          {/* Comunidad */}
           <div>
-            <h3 className="font-semibold text-gray-200 mb-4">{footerLinks.community.title}</h3>
+            <h3 className="font-semibold text-white mb-4">{footerLinks.comunidad.title}</h3>
             <ul className="space-y-3">
-              {footerLinks.community.links.map((link) => (
+              {footerLinks.comunidad.links.map((link) => (
                 <li key={link.label}>
-                  <a 
+                  <a
                     href={link.href}
-                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-200 text-sm"
+                    className="text-gray-400 hover:text-[var(--color-accent)] transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -231,7 +217,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Section - Social Links & Copyright */}
-        <div className="pt-8 border-t border-gray-700/50">
+        <div className="pt-8 border-t border-[var(--color-border-dark)]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Social Links */}
             <div className="flex items-center gap-6">
@@ -241,7 +227,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-cyan-400 transition-colors duration-200"
+                  className="text-gray-400 hover:text-[var(--color-accent)] transition-colors duration-200"
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -251,7 +237,7 @@ export function Footer() {
 
             {/* Copyright */}
             <div className="text-sm text-gray-400">
-              © {new Date().getFullYear()} Wiger AI. All rights reserved.
+              © {new Date().getFullYear()} Wiger AI. Todos los derechos reservados.
             </div>
           </div>
         </div>
