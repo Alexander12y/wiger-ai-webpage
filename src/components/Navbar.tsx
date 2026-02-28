@@ -28,16 +28,16 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
           <div className="flex-shrink-0 transition-all duration-300">
             <Link href="/" className="block">
               <Image
                 src={isScrolled ? '/wiger-logo-light.png' : '/wiger-logo.png'}
                 alt="Wiger AI Logo"
-                width={240}
-                height={70}
-                className="h-10 w-auto object-contain transition-opacity duration-300"
+                width={320}
+                height={90}
+                className="h-14 w-auto object-contain transition-opacity duration-300"
                 priority
               />
             </Link>
@@ -45,19 +45,23 @@ export default function Navbar() {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className={`text-base font-medium transition-all duration-200 hover:scale-105 ${
-                  isScrolled
-                    ? 'text-[var(--color-text-primary)] hover:text-[var(--color-accent)]'
-                    : 'text-white/90 hover:text-white'
-                }`}
-              >
-                {item.name}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isPage = item.href.startsWith('/')
+              const linkClass = `text-base font-medium transition-all duration-200 hover:scale-105 ${
+                isScrolled
+                  ? 'text-[var(--color-text-primary)] hover:text-[var(--color-accent)]'
+                  : 'text-white/90 hover:text-white'
+              }`
+              return isPage ? (
+                <Link key={item.name} href={item.href} className={linkClass}>
+                  {item.name}
+                </Link>
+              ) : (
+                <a key={item.name} href={item.href} className={linkClass}>
+                  {item.name}
+                </a>
+              )
+            })}
           </div>
 
           {/* CTA Button — desktop */}
@@ -97,16 +101,29 @@ export default function Navbar() {
       {/* Mobile Menu Panel */}
       {mobileOpen && (
         <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-[var(--color-border)] px-6 py-4 space-y-1">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              onClick={() => setMobileOpen(false)}
-              className="block text-base font-medium text-[var(--color-text-primary)] hover:text-[var(--color-accent)] py-2 transition-colors"
-            >
-              {item.name}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const isPage = item.href.startsWith('/')
+            const mobileClass = "block text-base font-medium text-[var(--color-text-primary)] hover:text-[var(--color-accent)] py-2 transition-colors"
+            return isPage ? (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className={mobileClass}
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className={mobileClass}
+              >
+                {item.name}
+              </a>
+            )
+          })}
           <div className="pt-3">
             <button className="btn-accent w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm">
               <Mail className="w-4 h-4" />
