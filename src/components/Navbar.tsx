@@ -3,14 +3,15 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Mail } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 import { navItems } from '@/config/navigation'
 
 /**
- * Hidden SVG that defines the liquid-glass displacement filter.
- * feTurbulence creates organic distortion; feDisplacementMap warps
- * whatever is behind the element, producing the "liquid glass" look.
- * feGaussianBlur adds the frosted-glass softness on top.
+ * Hidden SVG defining the liquid-glass displacement filter.
+ * feTurbulence → organic noise texture
+ * feDisplacementMap → warps the element edges through the noise
+ * feGaussianBlur → frosted softness
+ * feComposite → keeps crisp content on top of the distortion
  */
 function GlassSvgFilter() {
   return (
@@ -20,26 +21,22 @@ function GlassSvgFilter() {
     >
       <defs>
         <filter id="navbar-glass" x="-10%" y="-10%" width="120%" height="120%">
-          {/* organic noise for the "liquid" distortion */}
           <feTurbulence
             type="fractalNoise"
-            baseFrequency="0.012 0.018"
+            baseFrequency="0.015 0.02"
             numOctaves={3}
-            seed={5}
+            seed={7}
             result="noise"
           />
-          {/* warp the backdrop through the noise */}
           <feDisplacementMap
             in="SourceGraphic"
             in2="noise"
-            scale={8}
+            scale={6}
             xChannelSelector="R"
             yChannelSelector="G"
             result="displaced"
           />
-          {/* frosted blur */}
-          <feGaussianBlur in="displaced" stdDeviation="3" result="blurred" />
-          {/* composite with original to keep crisp content on top */}
+          <feGaussianBlur in="displaced" stdDeviation="2.5" result="blurred" />
           <feComposite in="blurred" in2="SourceGraphic" operator="atop" />
         </filter>
       </defs>
@@ -50,109 +47,127 @@ function GlassSvgFilter() {
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const pathname = usePathname()
+  const isAdmin = pathname.startsWith('/admin')
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
-
+    if (isAdmin) return
+    const handleScroll = () => setIsScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isAdmin])
+
+  if (isAdmin) return null
 
   return (
     <>
       <GlassSvgFilter />
 
-      {/* Outer wrapper: fixed, full-width, just for positioning */}
+      {/* Outer fixed positioning wrapper */}
       <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
-        {/* Centering container — same max-w as page content */}
+        {/* Centering container with padding */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-          {/* The actual glass bar */}
+          {/* The liquid glass bar */}
           <nav
-            className={`glass-navbar pointer-events-auto transition-colors duration-500 ${
+            className={`glass-navbar pointer-events-auto ${
               isScrolled ? 'glass-navbar--scrolled' : 'glass-navbar--hero'
             }`}
           >
-            <div className="px-5 sm:px-8">
-              <div className="flex items-center justify-between h-20 relative z-10">
+            <div className="px-5 sm:px-7">
+              <div className="flex items-center justify-between h-16 md:h-[72px] relative z-10">
                 {/* Logo */}
-                <div className="flex-shrink-0">
-                  <Link href="/" className="block">
-                    <Image
-                      src="/wiger-logo.png"
-                      alt="Wiger AI Logo"
-                      width={320}
-                      height={90}
-                      className="h-14 w-auto object-contain"
-                      priority
-                    />
-                  </Link>
-                </div>
+                <Link href="/" className="flex-shrink-0">
+                  <Image
+                    src="/wiger-logo.png"
+                    alt="Wiger AI"
+                    width={300}
+                    height={80}
+                    className="h-9 md:h-11 w-auto object-contain"
+                    priority
+                  />
+                </Link>
 
-                {/* Navigation Links */}
-                <div className="hidden md:flex items-center gap-2">
+                {/* Nav links — desktop */}
+                <div className="hidden md:flex items-center gap-1">
                   {navItems.map((item) => {
                     const isPage = item.href.startsWith('/')
-                    const linkClass =
-                      'glass-nav-pill text-base font-medium text-white/90 hover:text-white transition-colors duration-200 border border-white/10 hover:border-white/25'
-
                     return isPage ? (
-                      <Link key={item.name} href={item.href} className={linkClass}>
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="glass-nav-link"
+                      >
                         {item.name}
                       </Link>
                     ) : (
-                      <a key={item.name} href={item.href} className={linkClass}>
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className="glass-nav-link"
+                      >
                         {item.name}
                       </a>
                     )
                   })}
                 </div>
 
-                {/* CTA Button — desktop */}
-                <div className="hidden md:flex flex-shrink-0">
-                  <button className="btn-accent inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm">
-                    <Mail className="w-4 h-4" />
-                    <span>Contacta a ventas</span>
+                {/* CTA — desktop */}
+                <div className="hidden md:block flex-shrink-0">
+                  <button className="btn-accent px-5 py-2.5 rounded-full text-sm font-bold tracking-tight">
+                    Contacta a ventas
                   </button>
                 </div>
 
-                {/* Mobile Menu Button */}
-                <div className="md:hidden">
-                  <button
-                    onClick={() => setMobileOpen(!mobileOpen)}
-                    aria-expanded={mobileOpen}
-                    aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
-                    className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
-                  >
-                    {mobileOpen ? (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    ) : (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                      </svg>
-                    )}
-                  </button>
-                </div>
+                {/* Mobile hamburger */}
+                <button
+                  className="md:hidden p-2 rounded-lg transition-colors"
+                  onClick={() => setMobileOpen(!mobileOpen)}
+                  aria-expanded={mobileOpen}
+                  aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+                >
+                  {mobileOpen ? (
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke={isScrolled ? '#1A1A1A' : '#FFFFFF'}
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  ) : (
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke={isScrolled ? '#1A1A1A' : '#FFFFFF'}
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                  )}
+                </button>
               </div>
             </div>
 
-            {/* Mobile Menu Panel — inside the glass bar */}
+            {/* Mobile menu panel — inside the glass bar */}
             {mobileOpen && (
-              <div className="md:hidden border-t border-white/15 px-5 sm:px-8 py-4 space-y-1 relative z-10">
+              <div className="md:hidden glass-mobile-menu px-5 sm:px-7 py-4 space-y-1 relative z-10">
                 {navItems.map((item) => {
                   const isPage = item.href.startsWith('/')
-                  const mobileClass =
-                    'block text-base font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-lg px-3 py-2 transition-colors'
+                  const mobileCls =
+                    'block text-base font-bold rounded-xl px-4 py-3 transition-colors'
+
+                  const mobileStyle = {
+                    color: '#1A1A1A',
+                    fontFamily: 'var(--font-display)',
+                  }
 
                   return isPage ? (
                     <Link
                       key={item.name}
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className={mobileClass}
+                      className={`${mobileCls} hover:bg-black/5`}
+                      style={mobileStyle}
                     >
                       {item.name}
                     </Link>
@@ -161,16 +176,16 @@ export default function Navbar() {
                       key={item.name}
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className={mobileClass}
+                      className={`${mobileCls} hover:bg-black/5`}
+                      style={mobileStyle}
                     >
                       {item.name}
                     </a>
                   )
                 })}
-                <div className="pt-3">
-                  <button className="btn-accent w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm">
-                    <Mail className="w-4 h-4" />
-                    <span>Contacta a ventas</span>
+                <div className="pt-3 px-1">
+                  <button className="btn-accent w-full py-3 rounded-full font-bold text-sm">
+                    Contacta a ventas
                   </button>
                 </div>
               </div>
