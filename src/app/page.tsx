@@ -2,6 +2,7 @@
 
 import { ExpandableServicesSection } from "@/components/sections/ExpandableServicesSection";
 import { ClientLogosSection } from "@/components/sections/ClientLogosSection";
+import { VideoTextSection } from "@/components/sections/VideoTextSection";
 import { Footer } from "@/components/Footer";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 
@@ -67,45 +68,8 @@ export default function Home() {
         <ClientLogosSection />
 
         <ExpandableServicesSection />
-        
-        <section className="min-h-screen bg-gradient-to-br from-purple-900 to-blue-900 py-20 px-6 flex items-center">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-5xl font-bold mb-8">¿Por qué Wiger AI?</h2>
-            <p className="text-xl leading-relaxed mb-8">
-              Somos pioneros en el desarrollo de soluciones de inteligencia artificial 
-              que transforman la manera en que las empresas operan y crecen.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="text-center">
-                <div className="text-4xl mb-4"></div>
-                <h3 className="text-xl font-semibold mb-2">Innovación</h3>
-                <p className="text-gray-300">Tecnología de vanguardia</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-4"></div>
-                <h3 className="text-xl font-semibold mb-2">Eficiencia</h3>
-                <p className="text-gray-300">Resultados rápidos y efectivos</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-4"></div>
-                <h3 className="text-xl font-semibold mb-2">Precisión</h3>
-                <p className="text-gray-300">Soluciones personalizadas</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        <section className="min-h-screen bg-black text-white py-20 px-6 flex items-center">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-5xl font-bold mb-8">Comencemos a trabajar juntos</h2>
-            <p className="text-xl mb-12 text-gray-300">
-              ¿Listo para transformar tu negocio con IA?
-            </p>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-colors duration-300">
-              Contactar Ahora
-            </button>
-          </div>
-        </section>
+
+        <VideoTextSection />
       </main>
       
       <Footer />

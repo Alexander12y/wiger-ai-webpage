@@ -97,15 +97,32 @@ export function Footer() {
   ]
 
   return (
-    <footer className="bg-gradient-to-b from-slate-50 to-white border-t border-slate-200">
-      <div className="max-w-7xl mx-auto px-8 py-16">
+    <footer className="bg-gradient-to-b from-gray-900 via-blue-900 to-black relative">
+      {/* Elementos futurísticos de fondo para continuidad */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-20 left-20 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-32 w-1 h-1 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute bottom-32 left-1/3 w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '2.5s' }}></div>
+        <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-cyan-300 rounded-full animate-pulse" style={{ animationDelay: '0.8s' }}></div>
+      </div>
+      
+      {/* Grid pattern sutil */}
+      <div className="absolute inset-0 opacity-3" style={{
+        backgroundImage: `
+          linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+        `,
+        backgroundSize: '60px 60px'
+      }}></div>
+
+      <div className="max-w-7xl mx-auto px-8 py-16 relative z-10">
         {/* Top Section - CTA */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
             ¿Listo para hablar?<br />
             Contáctanos.
           </h2>
-          <button className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+          <button className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25 border border-cyan-500/20">
             <Mail className="w-5 h-5" />
             Contáctanos
           </button>
@@ -129,13 +146,13 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-semibold text-slate-800 mb-4">{footerLinks.company.title}</h3>
+            <h3 className="font-semibold text-gray-200 mb-4">{footerLinks.company.title}</h3>
             <ul className="space-y-3">
               {footerLinks.company.links.map((link) => (
                 <li key={link.label}>
                   <a 
                     href={link.href}
-                    className="text-slate-600 hover:text-blue-600 transition-colors duration-200 text-sm"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -146,13 +163,13 @@ export function Footer() {
 
           {/* Products */}
           <div>
-            <h3 className="font-semibold text-slate-800 mb-4">{footerLinks.products.title}</h3>
+            <h3 className="font-semibold text-gray-200 mb-4">{footerLinks.products.title}</h3>
             <ul className="space-y-3">
               {footerLinks.products.links.map((link) => (
                 <li key={link.label}>
                   <a 
                     href={link.href}
-                    className="text-slate-600 hover:text-blue-600 transition-colors duration-200 text-sm"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -163,13 +180,13 @@ export function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="font-semibold text-slate-800 mb-4">{footerLinks.resources.title}</h3>
+            <h3 className="font-semibold text-gray-200 mb-4">{footerLinks.resources.title}</h3>
             <ul className="space-y-3">
               {footerLinks.resources.links.map((link) => (
                 <li key={link.label}>
                   <a 
                     href={link.href}
-                    className="text-slate-600 hover:text-blue-600 transition-colors duration-200 text-sm"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -180,13 +197,13 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="font-semibold text-slate-800 mb-4">{footerLinks.legal.title}</h3>
+            <h3 className="font-semibold text-gray-200 mb-4">{footerLinks.legal.title}</h3>
             <ul className="space-y-3">
               {footerLinks.legal.links.map((link) => (
                 <li key={link.label}>
                   <a 
                     href={link.href}
-                    className="text-slate-600 hover:text-blue-600 transition-colors duration-200 text-sm"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -197,13 +214,13 @@ export function Footer() {
 
           {/* Community */}
           <div>
-            <h3 className="font-semibold text-slate-800 mb-4">{footerLinks.community.title}</h3>
+            <h3 className="font-semibold text-gray-200 mb-4">{footerLinks.community.title}</h3>
             <ul className="space-y-3">
               {footerLinks.community.links.map((link) => (
                 <li key={link.label}>
                   <a 
                     href={link.href}
-                    className="text-slate-600 hover:text-blue-600 transition-colors duration-200 text-sm"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -214,7 +231,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Section - Social Links & Copyright */}
-        <div className="pt-8 border-t border-slate-200">
+        <div className="pt-8 border-t border-gray-700/50">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Social Links */}
             <div className="flex items-center gap-6">
@@ -224,7 +241,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-500 hover:text-blue-600 transition-colors duration-200"
+                  className="text-gray-400 hover:text-cyan-400 transition-colors duration-200"
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -233,7 +250,7 @@ export function Footer() {
             </div>
 
             {/* Copyright */}
-            <div className="text-sm text-slate-500">
+            <div className="text-sm text-gray-400">
               © {new Date().getFullYear()} Wiger AI. All rights reserved.
             </div>
           </div>
