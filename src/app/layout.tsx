@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Figtree } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: "swap",
 });
 
-const figtree = Figtree({
-  variable: "--font-figtree",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
-  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -27,9 +26,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${bricolage.variable} ${figtree.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning={true}
       >
+        <Navbar />
         {children}
       </body>
     </html>
