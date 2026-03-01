@@ -40,7 +40,7 @@ const services: Service[] = [
     title: 'Transportation Management System (TMS)',
     description: 'Cotizaciones al mejor precio sin tener que ir de carrier en carrier',
     detailedDescription: 'Wiger se integra con tu maquinaria, sistemas SCADA, plataformas de ecommerce y herramientas contables. API abierta y conectores nativos para que ningún dato quede aislado.',
-    backgroundImage: '',
+    backgroundImage: '/transportation.jpg',
     cardColor: '#162438',
     ctaText: 'Ver Integraciones',
     link: '/productos/integraciones'
@@ -127,13 +127,13 @@ export function ExpandableServicesSection() {
               >
                 {/* Background */}
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
                   style={{
-                    background: service.backgroundImage
-                      ? `url(${service.backgroundImage})`
-                      : service.cardColor,
-                    backgroundSize: service.backgroundImage ? 'cover' : 'auto',
-                    backgroundPosition: service.backgroundImage ? 'center' : 'initial',
+                    backgroundImage: service.backgroundImage ? `url(${service.backgroundImage})` : 'none',
+                    backgroundColor: service.cardColor,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center center',
+                    backgroundRepeat: 'no-repeat',
                   }}
                 >
                   {/* Overlay */}
