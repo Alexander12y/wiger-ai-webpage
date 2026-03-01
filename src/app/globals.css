@@ -1,119 +1,169 @@
 @import "tailwindcss";
 
+/* ══════════════════════════════════════════════════
+   WIGER AI — Precision Industrial Design System
+   ══════════════════════════════════════════════════ */
+
 :root {
-  /* Backgrounds — full dark theme */
-  --color-surface-page:    #0A1628;
-  --color-surface-card:    #12233A;
-  --color-surface-section: #0E1C2F;
-  --color-surface-dark:    #0E1C2F;
-  --color-surface-elevated: #162B45;
+  /* ── Surface palette — deep navy layering ── */
+  --color-surface-page:      #060E1A;
+  --color-surface-card:      #0C1929;
+  --color-surface-section:   #0A1424;
+  --color-surface-elevated:  #111F35;
+  --color-surface-subtle:    #0E1A2E;
 
-  /* Text — optimised for dark backgrounds */
-  --color-text-primary:       #F1EEE9;
-  --color-text-secondary:     #8899AD;
-  --color-text-muted:         #5A6E84;
-  --color-text-on-dark:       #F1EEE9;
-  --color-text-on-dark-muted: #8899AD;
+  /* ── Text hierarchy ── */
+  --color-text-primary:      #F0EDE8;
+  --color-text-secondary:    #8B9DB3;
+  --color-text-muted:        #4E6380;
+  --color-text-faint:        #2D4560;
 
-  /* Single accent — industrial amber */
-  --color-accent:       #E8650A;
-  --color-accent-hover: #C8520A;
-  --color-accent-light: rgba(232, 101, 10, 0.12);
+  /* ── Accent — industrial amber ── */
+  --color-accent:            #E8650A;
+  --color-accent-hover:      #FF7A1A;
+  --color-accent-light:      rgba(232, 101, 10, 0.10);
+  --color-accent-glow:       rgba(232, 101, 10, 0.25);
 
-  /* Borders — subtle on dark */
-  --color-border:      rgba(255, 255, 255, 0.08);
-  --color-border-dark: #1E3252;
+  /* ── Borders ── */
+  --color-border:            rgba(255, 255, 255, 0.06);
+  --color-border-accent:     rgba(232, 101, 10, 0.3);
 
-  /* Shadows — deeper for dark theme */
-  --shadow-card:       0 1px 3px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.15);
-  --shadow-card-hover: 0 4px 8px rgba(0,0,0,0.25), 0 12px 24px rgba(0,0,0,0.2);
+  /* ── Shadows ── */
+  --shadow-card:             0 1px 2px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+  --shadow-elevated:         0 8px 32px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-glow:             0 0 40px rgba(232, 101, 10, 0.08);
 
-  /* Fonts — Geist is injected by layout.tsx into these vars */
+  /* ── Fonts ── */
+  --font-display: var(--font-syne), 'Syne', system-ui, sans-serif;
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
 
-  /* Legacy shadcn mappings */
-  --background: #0A1628;
-  --foreground: #F1EEE9;
+  /* ── Spacing scale ── */
+  --section-gap: clamp(5rem, 10vw, 8rem);
+
+  /* ── Legacy shadcn ── */
+  --background: #060E1A;
+  --foreground: #F0EDE8;
 }
 
+/* ── Base ── */
 body {
   background-color: var(--color-surface-page);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom animations for expandable services */
+/* ── Display Typography ── */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+/* ══════════════════════════════════════
+   ANIMATIONS
+   ══════════════════════════════════════ */
+
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideInBlock {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(0.96);
-    filter: blur(1px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0px);
-  }
+  0%   { opacity: 0; transform: translateY(30px) scale(0.96); filter: blur(1px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.7; }
+}
+
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in-up {
   animation: slideInBlock 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-/* Line clamp utility */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.animate-marquee {
+  animation: marquee 35s linear infinite;
 }
 
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+/* Staggered reveal system */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-/* Text shadow for better readability */
-.text-shadow-lg {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
 
-/* Design system buttons */
+/* Legacy scroll animation */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════
+   BUTTONS
+   ══════════════════════════════════════ */
+
 .btn-accent {
   background-color: var(--color-accent);
   color: #FFFFFF;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-.btn-accent:hover { background-color: var(--color-accent-hover); }
+.btn-accent:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(232, 101, 10, 0.3);
+}
+.btn-accent:active { transform: translateY(0); }
 .btn-accent:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 
 .btn-outline-light {
   background-color: transparent;
-  border: 1.5px solid rgba(241,238,233,0.4);
-  color: var(--color-text-on-dark);
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  border: 1.5px solid rgba(240, 237, 232, 0.25);
+  color: var(--color-text-primary);
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
 .btn-outline-light:hover {
   border-color: var(--color-accent);
-  background-color: rgba(232,101,10,0.08);
+  background-color: rgba(232, 101, 10, 0.06);
+  transform: translateY(-1px);
 }
 
+/* ── Toggle buttons (used by ExpandableServicesSection) ── */
 .toggle-btn {
   background-color: rgba(255,255,255,0.15);
   backdrop-filter: blur(4px);
@@ -124,18 +174,80 @@ body {
 .toggle-btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 .toggle-btn.is-active { background-color: var(--color-accent); }
 
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+/* ══════════════════════════════════════
+   UTILITIES
+   ══════════════════════════════════════ */
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-.animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.text-shadow-lg {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Grid pattern background */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Accent line decorations */
+.accent-line {
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+}
+.accent-line-v {
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-accent), transparent);
+}
+
+/* ══════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-on-scroll, .animate-fade-in-up, .toggle-btn { transition: none; animation: none; }
+  .animate-on-scroll,
+  .animate-fade-in-up,
+  .toggle-btn,
+  .reveal,
+  .animate-marquee {
+    transition: none;
+    animation: none;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .animate-marquee { animation: none; }
 }
 
-/* ── Liquid Glass Navbar ── */
+/* ══════════════════════════════════════
+   LIQUID GLASS NAVBAR (preserved)
+   ══════════════════════════════════════ */
+
 .glass-navbar {
   position: relative;
   border-radius: 20px;
@@ -168,21 +280,18 @@ body {
   isolation: isolate;
 }
 
-/* When over hero (transparent bg), use light text */
 .glass-navbar--hero {
   background: transparent;
 }
 
-/* When scrolled past hero, give a tinted glass fill */
 .glass-navbar--scrolled {
   background: rgba(255, 255, 255, 0.12);
 }
 
 .glass-navbar--scrolled .glass-navbar-link {
-  color: var(--color-text-on-dark);
+  color: var(--color-text-primary);
 }
 
-/* Inner pill buttons for nav links on hover */
 .glass-nav-pill {
   position: relative;
   border-radius: 9999px;

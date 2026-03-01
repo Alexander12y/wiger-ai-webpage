@@ -85,7 +85,7 @@ export function ExpandableServicesSection() {
   }
 
   return (
-    <section className="py-24 px-8" style={{ backgroundColor: '#0A1628' }}>
+    <section id="productos" className="py-24 px-8" style={{ backgroundColor: '#0A1628' }}>
       <div className="max-w-7xl mx-auto">
         {/* Sub-Hero */}
         <div className="text-center mb-16">

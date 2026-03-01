@@ -5,7 +5,7 @@ const ADMIN_USER = process.env.ADMIN_USER ?? 'admin'
 const ADMIN_PASS = process.env.ADMIN_PASS ?? 'Wiger2025!'
 
 // Session token returned on successful login
-export const SESSION_TOKEN = process.env.ADMIN_TOKEN ?? 'wiger-admin-session-2025'
+const SESSION_TOKEN = process.env.ADMIN_TOKEN ?? 'wiger-admin-session-2025'
 
 export async function POST(request: NextRequest) {
   let body: { username?: string; password?: string }
