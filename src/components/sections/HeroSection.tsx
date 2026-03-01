@@ -63,25 +63,25 @@ export function HeroSection() {
                 className="text-xs font-semibold tracking-[0.2em] uppercase font-mono"
                 style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
               >
-                Plataforma AI para la Industria
+                Digital Platform
               </span>
             </div>
 
             {/* Main heading */}
             <h1 className="reveal reveal-delay-2 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[0.95] tracking-tight">
               <span style={{ color: 'var(--color-text-primary)' }}>
-                Manufactura
+                Empresas
               </span>
               <br />
               <span style={{ color: 'var(--color-text-primary)' }}>
-                inteligente,{' '}
+                autónomas en la{' '}
               </span>
               <br />
               <span
                 className="relative inline-block"
                 style={{ color: 'var(--color-accent)' }}
               >
-                resultados reales.
+                revolución de la AI.
                 <span
                   className="absolute -bottom-2 left-0 w-full h-[3px] origin-left"
                   style={{
@@ -98,9 +98,10 @@ export function HeroSection() {
               className="reveal reveal-delay-3 text-base sm:text-lg lg:text-xl max-w-xl leading-relaxed"
               style={{ color: 'var(--color-text-secondary)' }}
             >
-              ERP + CRM unificado con inteligencia artificial.
-              Diseñado para manufactureros y distribuidores que
-              no se conforman con lo convencional.
+              
+              En un mundo siempre moviéndose para adelante, 
+              con una revolución que cambiará la manera en que conocemos el mundo, 
+              no podíamos permitirnos quedarnos quietos…
             </p>
 
             {/* CTA Group */}
