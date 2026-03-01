@@ -55,6 +55,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button, [role="button"] {
+  cursor: pointer;
+}
+
 /* ── Display Typography ── */
 .font-display {
   font-family: var(--font-display);
@@ -215,6 +219,14 @@ body {
     linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+/* Capabilities bento grid — viewport-fitted equal rows */
+@media (min-width: 1024px) {
+  .capabilities-grid {
+    height: clamp(560px, calc(100svh - 72px), 860px);
+    grid-template-rows: repeat(3, 1fr);
+  }
 }
 
 /* Accent line decorations */

@@ -39,13 +39,8 @@ const services: Service[] = [
     id: 'TMS',
     title: 'Transportation Management System (TMS)',
     description: 'Cotizaciones al mejor precio sin tener que ir de carrier en carrier',
-<<<<<<< HEAD
-    detailedDescription: 'Wiger se integra con tu maquinaria, sistemas SCADA, plataformas de ecommerce y herramientas contables. API abierta y conectores nativos para que ningún dato quede aislado.',
-    backgroundImage: '/transportation.jpg',
-=======
     detailedDescription: 'Un sistema integrado y personalizado a tus procesos para transportar cualquier bien de tu empresa. Elije la paquetería y cotización que más te convenga y ahorra horas de procesos manuales manejando envíos.',
-    backgroundImage: '',
->>>>>>> e27978cf1887fce33a0d4ab5ded35e1b5cac2583
+    backgroundImage: '/transportation.jpg',
     cardColor: '#162438',
     ctaText: 'Explorar TMS',
     link: '/productos/integraciones'
