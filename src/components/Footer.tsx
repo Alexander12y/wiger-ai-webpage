@@ -16,10 +16,10 @@ const footerSections = [
   {
     title: 'Empresa',
     links: [
-      { label: 'Sobre Nosotros', href: '/about' },
+      { label: 'Sobre Nosotros', href: '/sobre-nosotros' },
       { label: 'Carreras', href: '/careers' },
       { label: 'Socios', href: '/partners' },
-      { label: 'Contacto', href: '/contact' },
+      { label: 'Contacto', href: '/contacto' },
     ],
   },
   {
@@ -93,18 +93,18 @@ export function Footer() {
         {/* Main grid */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12 py-16 lg:py-20">
           {/* Brand column */}
-          <div className="col-span-2 md:col-span-1">
+          <div className="col-span-2">
             <Link href="/" className="inline-block mb-5">
               <Image
                 src="/wiger-logo-light.png"
                 alt="Wiger AI"
-                width={120}
-                height={36}
-                className="h-8 w-auto object-contain"
+                width={200}
+                height={60}
+                className="h-14 w-auto object-contain"
               />
             </Link>
             <p
-              className="text-sm leading-relaxed max-w-[200px]"
+              className="text-sm leading-relaxed max-w-[240px]"
               style={{ color: 'var(--color-text-muted)' }}
             >
               Plataforma AI para manufactura y distribución.

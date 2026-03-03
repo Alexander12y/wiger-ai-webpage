@@ -75,22 +75,23 @@ export default function Navbar() {
             }`}
           >
             <div className="px-5 sm:px-8">
-              <div className="flex items-center justify-between h-20 relative z-10">
-                {/* Logo */}
+              <div className="flex items-center justify-between h-24 relative z-10">
+
+                {/* Logo — left */}
                 <div className="flex-shrink-0">
                   <Link href="/" className="block">
                     <Image
                       src="/wiger-logo.png"
                       alt="Wiger AI Logo"
-                      width={320}
-                      height={90}
-                      className="h-14 w-auto object-contain"
+                      width={360}
+                      height={100}
+                      className="h-20 w-auto object-contain"
                       priority
                     />
                   </Link>
                 </div>
 
-                {/* Navigation Links */}
+                {/* Navigation Links — desktop */}
                 <div className="hidden md:flex items-center gap-2">
                   {navItems.map((item) => {
                     const isPage = item.href.startsWith('/')
@@ -109,33 +110,35 @@ export default function Navbar() {
                   })}
                 </div>
 
-                {/* CTA Button — desktop */}
-                <div className="hidden md:flex flex-shrink-0">
-                  <button className="btn-accent inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm">
-                    <Mail className="w-4 h-4" />
-                    <span>Contacta a ventas</span>
-                  </button>
+                {/* Right — CTA (desktop) / Hamburger (mobile) */}
+                <div className="flex items-center">
+                  <div className="hidden md:flex flex-shrink-0">
+                    <Link href="/contacto" className="btn-accent inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm">
+                      <Mail className="w-4 h-4" />
+                      <span>Contacta a ventas</span>
+                    </Link>
+                  </div>
+
+                  <div className="md:hidden">
+                    <button
+                      onClick={() => setMobileOpen(!mobileOpen)}
+                      aria-expanded={mobileOpen}
+                      aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+                      className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+                    >
+                      {mobileOpen ? (
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      ) : (
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
                 </div>
 
-                {/* Mobile Menu Button */}
-                <div className="md:hidden">
-                  <button
-                    onClick={() => setMobileOpen(!mobileOpen)}
-                    aria-expanded={mobileOpen}
-                    aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
-                    className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
-                  >
-                    {mobileOpen ? (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    ) : (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                      </svg>
-                    )}
-                  </button>
-                </div>
               </div>
             </div>
 
@@ -168,10 +171,10 @@ export default function Navbar() {
                   )
                 })}
                 <div className="pt-3">
-                  <button className="btn-accent w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm">
+                  <Link href="/contacto" onClick={() => setMobileOpen(false)} className="btn-accent w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm">
                     <Mail className="w-4 h-4" />
                     <span>Contacta a ventas</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             )}

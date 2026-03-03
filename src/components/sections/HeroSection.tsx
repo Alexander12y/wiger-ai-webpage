@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react'
 import { ArrowRight, Play } from 'lucide-react'
+import Link from 'next/link'
+import Script from 'next/script'
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -55,7 +57,7 @@ export function HeroSection() {
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 pt-32 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[70vh]">
           {/* Left — Typography */}
-          <div className="lg:col-span-7 space-y-8">
+          <div className="lg:col-span-6 space-y-8">
             {/* Eyebrow */}
             <div className="reveal reveal-delay-1 flex items-center gap-3">
               <div className="h-[2px] w-8" style={{ backgroundColor: 'var(--color-accent)' }} />
@@ -106,11 +108,14 @@ export function HeroSection() {
 
             {/* CTA Group */}
             <div className="reveal reveal-delay-4 flex flex-col sm:flex-row gap-4 pt-2">
-              <button className="btn-accent group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold text-base">
-                Solicitar demo
+              <Link href="/contacto" className="btn-accent group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold text-base">
+                Contáctanos
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </button>
-              <button className="btn-outline-light inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold text-base">
+              </Link>
+              <button
+                className="btn-outline-light inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold text-base"
+                onClick={() => document.getElementById('hero-demo')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 <Play className="w-4 h-4" />
                 Ver en acción
               </button>
@@ -143,7 +148,7 @@ export function HeroSection() {
           </div>
 
           {/* Right — Video card / visual element */}
-          <div className="lg:col-span-5 reveal reveal-delay-3">
+          <div className="lg:col-span-6 reveal reveal-delay-3">
             <div
               className="relative rounded-2xl overflow-hidden"
               style={{
@@ -154,46 +159,26 @@ export function HeroSection() {
               {/* Accent top bar */}
               <div className="h-[2px]" style={{ background: 'linear-gradient(90deg, var(--color-accent), transparent)' }} />
 
-              <div className="aspect-[4/3] flex items-center justify-center relative">
-                {/* Abstract industrial visual */}
-                <div className="absolute inset-0 grid-pattern opacity-30" />
-
-                {/* Floating data points */}
-                <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs"
-                  style={{ backgroundColor: 'rgba(232, 101, 10, 0.12)', color: 'var(--color-accent)' }}>
-                  <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--color-accent)', animation: 'subtlePulse 2s ease-in-out infinite' }} />
-                  En tiempo real
-                </div>
-
-                <div className="absolute bottom-6 right-6 px-3 py-1.5 rounded-full text-xs font-mono"
-                  style={{ backgroundColor: 'var(--color-surface-elevated)', color: 'var(--color-text-muted)' }}>
-                  v2.4.1
-                </div>
-
-                {/* Center play area */}
-                <div className="text-center space-y-4 relative z-10">
-                  <div
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto cursor-pointer transition-all duration-300 hover:scale-105"
-                    style={{
-                      backgroundColor: 'var(--color-accent)',
-                      boxShadow: '0 0 30px rgba(232, 101, 10, 0.3)',
-                    }}
-                  >
-                    <Play className="w-7 h-7 text-white ml-0.5" fill="white" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
-                      Demo Interactiva
-                    </p>
-                    <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
-                      2:30 min
-                    </p>
-                  </div>
-                </div>
-
-                {/* Decorative lines */}
-                <div className="absolute top-1/2 left-0 w-full h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--color-border), transparent)' }} />
-                <div className="absolute top-0 left-1/2 w-px h-full" style={{ background: 'linear-gradient(180deg, transparent, var(--color-border), transparent)' }} />
+              {/* Howdygo demo embed */}
+              <Script src="https://js.howdygo.com/v1.2.1/index.js" strategy="afterInteractive" />
+              <div
+                id="hero-demo"
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: 0,
+                  paddingBottom: 'calc(45.703125% + 40px)',
+                }}
+              >
+                <iframe
+                  id="howdygo-frame"
+                  src="https://app.howdygo.com/embed/83d0b963-8904-47a4-9b41-e771bbca91d4"
+                  frameBorder={0}
+                  scrolling="no"
+                  allow="clipboard-write; autoplay"
+                  allowFullScreen
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                />
               </div>
 
               {/* Bottom stats bar */}

@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import Link from 'next/link'
 import { SmoothScrollProvider } from '@/components/SmoothScrollProvider'
 import { Footer } from '@/components/Footer'
 
@@ -10,16 +11,20 @@ interface Client {
   solutionTag: string
   description: string
   videoPath: string | null
+  embedUrl?: string
+  caseStudyHref?: string
 }
 
 const clients: Client[] = [
   {
     id: 1,
-    name: '[Nombre del Cliente 1]',
-    solutionTag: '[Tipo de Solución]',
+    name: 'Sercodam Redes y Piolas',
+    solutionTag: 'ERP Personalizado',
     description:
-      '[Descripción de quiénes son y cuál era su desafío. Segunda línea con el contexto de cómo Wiger AI entró a apoyarlos. Tercera línea con el resultado concreto que lograron juntos.]',
+      'Empresa manufacturera y distribuidora de redes deportivas, de construcción e industriales. Operaban con inventario disperso en hojas de Google Sheets y perdían horas semanales en tareas manuales repetitivas. Wiger les implementó un ERP completamente personalizado — hoy ahorran 1 día completo por semana.',
     videoPath: null,
+    embedUrl: 'https://app.howdygo.com/embed/83d0b963-8904-47a4-9b41-e771bbca91d4',
+    caseStudyHref: '/clientes/sercodam',
   },
   {
     id: 2,
@@ -55,8 +60,20 @@ const clients: Client[] = [
   },
 ]
 
-function VideoPlaceholder({ videoPath, clientName }: { videoPath: string | null; clientName: string }) {
+function VideoPlaceholder({ videoPath, clientName, embedUrl }: { videoPath: string | null; clientName: string; embedUrl?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  if (embedUrl) {
+    return (
+      <div className="relative w-full rounded-2xl overflow-hidden" style={{ paddingBottom: 'calc(45.703125% + 40px)', background: '#0A1628' }}>
+        <iframe
+          src={embedUrl}
+          allow="fullscreen"
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+        />
+      </div>
+    )
+  }
 
   if (videoPath) {
     return (
@@ -170,29 +187,51 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
         </p>
 
         {/* CTA link */}
-        <button
-          className="self-start flex items-center gap-2 text-sm font-semibold transition-all duration-200 hover:gap-3 group"
-          style={{ color: '#E8650A' }}
-        >
-          <span>[Ver caso completo]</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+        {client.caseStudyHref ? (
+          <Link
+            href={client.caseStudyHref}
+            className="self-start flex items-center gap-2 text-sm font-semibold transition-all duration-200 hover:gap-3 group"
+            style={{ color: '#E8650A' }}
           >
-            <path
-              fillRule="evenodd"
-              d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
+            <span>Ver caso completo</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Link>
+        ) : (
+          <button
+            className="self-start flex items-center gap-2 text-sm font-semibold transition-all duration-200 hover:gap-3 group"
+            style={{ color: '#E8650A' }}
+          >
+            <span>[Ver caso completo]</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        )}
       </div>
 
       {/* Right: Video (3/5) */}
       <div className="lg:col-span-3">
-        <VideoPlaceholder videoPath={client.videoPath} clientName={client.name} />
+        <VideoPlaceholder videoPath={client.videoPath} clientName={client.name} embedUrl={client.embedUrl} />
       </div>
     </div>
   )

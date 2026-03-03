@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
 export function CTASection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -70,19 +71,19 @@ export function CTASection() {
           className="reveal reveal-delay-2 mt-6 text-base sm:text-lg max-w-lg mx-auto leading-relaxed"
           style={{ color: 'var(--color-text-secondary)' }}
         >
-          Agenda una demo personalizada y descubre cómo Wiger
+          Ponte en contacto con nuestro equipo y descubre cómo Wiger
           transforma operaciones industriales en semanas, no meses.
         </p>
 
         {/* CTAs */}
         <div className="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center mt-10">
-          <button className="btn-accent group inline-flex items-center justify-center gap-3 px-10 py-5 rounded-xl font-semibold text-lg">
-            Agendar demo gratuita
+          <Link href="/contacto" className="btn-accent group inline-flex items-center justify-center gap-3 px-10 py-5 rounded-xl font-semibold text-lg">
+            Ponerse en contacto
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-          </button>
-          <button className="btn-outline-light inline-flex items-center justify-center gap-3 px-10 py-5 rounded-xl font-semibold text-lg">
+          </Link>
+          <Link href="/contacto" className="btn-outline-light inline-flex items-center justify-center gap-3 px-10 py-5 rounded-xl font-semibold text-lg">
             Hablar con ventas
-          </button>
+          </Link>
         </div>
 
         {/* Trust note */}
