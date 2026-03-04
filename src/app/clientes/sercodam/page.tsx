@@ -10,70 +10,101 @@ export const metadata: Metadata = {
 
 const EMBED_URL = 'https://app.howdygo.com/embed/83d0b963-8904-47a4-9b41-e771bbca91d4'
 
+// Minimal SVG icons — editorial style, aligned to brand accent
+function IconClock() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3.5 2.5" />
+    </svg>
+  )
+}
+
+function IconBox() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+      <path d="m3.3 7 8.7 5 8.7-5" />
+      <path d="M12 22V12" />
+    </svg>
+  )
+}
+
+function IconZap() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+    </svg>
+  )
+}
+
+const metrics = [
+  { stat: '1 día / sem', label: 'Tiempo ahorrado', Icon: IconClock },
+  { stat: '100 %', label: 'Inventario digitalizado', Icon: IconBox },
+  { stat: '< 4 sem', label: 'Tiempo de implementación', Icon: IconZap },
+]
+
 export default function SerdacomCaseStudy() {
   return (
     <>
-      <main style={{ background: '#0E1C2F', minHeight: '100vh' }}>
+      <main style={{ background: 'var(--color-surface-page)', minHeight: '100vh' }}>
+
         {/* ── HERO ─────────────────────────────────────────────────────── */}
         <section
           className="pt-40 pb-20 px-6 lg:px-8"
           style={{
-            background: 'linear-gradient(180deg, #060E1A 0%, #0E1C2F 100%)',
-            borderBottom: '1px solid #1E3252',
+            background: 'linear-gradient(180deg, #FAF8F5 0%, #F3F0EA 100%)',
+            borderBottom: '1px solid var(--color-border)',
           }}
         >
           <div className="max-w-4xl mx-auto">
             {/* Back link */}
             <Link
               href="/clientes"
-              className="inline-flex items-center gap-2 text-sm font-medium mb-10 transition-colors duration-200 hover:opacity-80"
-              style={{ color: '#94A3B8' }}
+              className="inline-flex items-center gap-2 text-sm font-medium mb-10 transition-opacity duration-200 hover:opacity-60"
+              style={{ color: 'var(--color-text-muted)' }}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-4 h-4"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z"
-                  clipRule="evenodd"
-                />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                <path fillRule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clipRule="evenodd" />
               </svg>
               Casos de éxito
             </Link>
 
-            {/* Logo placeholder */}
-            <div
-              className="inline-flex items-center justify-center px-6 py-3 rounded-xl mb-8 text-sm font-semibold"
-              style={{
-                background: 'rgba(30, 50, 82, 0.6)',
-                border: '1px solid #1E3252',
-                color: '#4A6080',
-              }}
-            >
-              Logo Sercodam
-            </div>
-
             {/* Badge */}
-            <div className="mb-5">
+            <div className="mb-8">
               <span
                 className="inline-block text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full"
                 style={{
-                  background: 'rgba(232,101,10,0.15)',
+                  background: 'rgba(232,101,10,0.10)',
                   color: '#E8650A',
-                  border: '1px solid rgba(232,101,10,0.3)',
+                  border: '1px solid rgba(232,101,10,0.25)',
                 }}
               >
                 ERP Personalizado
               </span>
             </div>
 
+            {/* Client logo — just above the title */}
+            <div
+              className="inline-flex items-center justify-center rounded-2xl px-7 py-4 mb-6"
+              style={{
+                background: 'var(--color-surface-card)',
+                border: '1px solid var(--color-border)',
+                boxShadow: 'var(--shadow-card)',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/LOGO SERCODAM.png"
+                alt="Sercodam Redes y Piolas"
+                style={{ height: '48px', maxWidth: '200px', objectFit: 'contain' }}
+              />
+            </div>
+
             {/* Headline */}
             <h1
               className="text-4xl md:text-5xl font-bold leading-tight mb-5"
-              style={{ color: '#F1EEE9' }}
+              style={{ color: 'var(--color-text-primary)' }}
             >
               Sercodam Redes y Piolas
             </h1>
@@ -81,7 +112,7 @@ export default function SerdacomCaseStudy() {
             {/* Subtitle */}
             <p
               className="text-lg md:text-xl leading-relaxed max-w-2xl"
-              style={{ color: '#94A3B8' }}
+              style={{ color: 'var(--color-text-secondary)' }}
             >
               Fabricante y distribuidor de redes deportivas, de construcción e industriales con
               operaciones en toda la República Mexicana.
@@ -90,28 +121,54 @@ export default function SerdacomCaseStudy() {
         </section>
 
         {/* ── MÉTRICAS ─────────────────────────────────────────────────── */}
-        <section className="py-16 px-6 lg:px-8" style={{ borderBottom: '1px solid #1E3252' }}>
-          <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {[
-              { stat: '1 día / semana', label: 'Tiempo ahorrado' },
-              { stat: '100%', label: 'Inventario digitalizado' },
-              { stat: '< 4 sem', label: 'Tiempo de implementación' },
-            ].map(({ stat, label }) => (
+        <section
+          className="py-16 px-6 lg:px-8"
+          style={{ borderBottom: '1px solid var(--color-border)' }}
+        >
+          <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {metrics.map(({ stat, label, Icon }) => (
               <div
                 key={label}
-                className="rounded-2xl p-8 text-center"
+                className="flex flex-col"
                 style={{
-                  background: 'linear-gradient(135deg, #0A1628 0%, #162438 100%)',
-                  border: '1px solid #1E3252',
+                  background: 'var(--color-surface-card)',
+                  border: '1px solid var(--color-border)',
+                  borderTop: '2.5px solid var(--color-accent)',
+                  borderRadius: '14px',
+                  padding: '28px 26px 26px',
+                  boxShadow: 'var(--shadow-card)',
                 }}
               >
+                {/* Icon */}
+                <span style={{ color: 'var(--color-accent)', marginBottom: '14px', display: 'block' }}>
+                  <Icon />
+                </span>
+
+                {/* Stat */}
                 <p
-                  className="text-4xl font-bold mb-2"
-                  style={{ color: '#E8650A' }}
+                  style={{
+                    fontSize: '2.25rem',
+                    fontWeight: '700',
+                    color: 'var(--color-text-primary)',
+                    lineHeight: '1.05',
+                    letterSpacing: '-0.02em',
+                    marginBottom: '8px',
+                    fontFamily: 'var(--font-sans)',
+                  }}
                 >
                   {stat}
                 </p>
-                <p className="text-sm font-medium" style={{ color: '#94A3B8' }}>
+
+                {/* Label */}
+                <p
+                  style={{
+                    fontSize: '0.72rem',
+                    color: 'var(--color-text-muted)',
+                    fontWeight: '600',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.07em',
+                  }}
+                >
                   {label}
                 </p>
               </div>
@@ -120,28 +177,34 @@ export default function SerdacomCaseStudy() {
         </section>
 
         {/* ── EL RETO ──────────────────────────────────────────────────── */}
-        <section className="py-16 px-6 lg:px-8" style={{ borderBottom: '1px solid #1E3252' }}>
+        <section
+          className="py-16 px-6 lg:px-8"
+          style={{
+            background: 'var(--color-surface-section)',
+            borderBottom: '1px solid var(--color-border)',
+          }}
+        >
           <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div>
               <p
                 className="text-xs font-bold tracking-widest uppercase mb-3"
-                style={{ color: '#E8650A' }}
+                style={{ color: 'var(--color-accent)' }}
               >
                 El reto
               </p>
-              <h2 className="text-2xl font-bold" style={{ color: '#F1EEE9' }}>
+              <h2 className="text-2xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
                 Inventario en hojas de cálculo
               </h2>
             </div>
             <div className="lg:col-span-2 flex flex-col gap-4">
-              <p className="text-base leading-relaxed" style={{ color: '#94A3B8' }}>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                 Sercodam gestionaba su inventario de cientos de referencias de redes — deportivas,
                 de construcción e industriales — en múltiples hojas de Google Sheets compartidas
                 entre distintos empleados. Cada actualización era manual, propensa a errores y
                 dependía de que la persona correcta tuviera acceso al archivo correcto en el
                 momento correcto.
               </p>
-              <p className="text-base leading-relaxed" style={{ color: '#94A3B8' }}>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                 El equipo perdía horas semanales consolidando datos, reconciliando diferencias entre
                 hojas y generando reportes a mano. El crecimiento del negocio amenazaba con hacer
                 ese sistema insostenible.
@@ -151,27 +214,30 @@ export default function SerdacomCaseStudy() {
         </section>
 
         {/* ── LA SOLUCIÓN ──────────────────────────────────────────────── */}
-        <section className="py-16 px-6 lg:px-8" style={{ borderBottom: '1px solid #1E3252' }}>
+        <section
+          className="py-16 px-6 lg:px-8"
+          style={{ borderBottom: '1px solid var(--color-border)' }}
+        >
           <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div>
               <p
                 className="text-xs font-bold tracking-widest uppercase mb-3"
-                style={{ color: '#E8650A' }}
+                style={{ color: 'var(--color-accent)' }}
               >
                 La solución
               </p>
-              <h2 className="text-2xl font-bold" style={{ color: '#F1EEE9' }}>
+              <h2 className="text-2xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
                 ERP 100% a la medida
               </h2>
             </div>
             <div className="lg:col-span-2 flex flex-col gap-4">
-              <p className="text-base leading-relaxed" style={{ color: '#94A3B8' }}>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                 Wiger diseñó e implementó un ERP completamente personalizado para Sercodam,
                 adaptado a su catálogo de productos, flujos de pedidos y estructura de almacén.
                 El sistema centraliza el inventario en tiempo real, automatiza la generación de
                 reportes y elimina la necesidad de actualizaciones manuales en hojas de cálculo.
               </p>
-              <p className="text-base leading-relaxed" style={{ color: '#94A3B8' }}>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                 La implementación se completó en menos de cuatro semanas, con capacitación incluida
                 para todo el equipo. Hoy, Sercodam opera con visibilidad total de su inventario y
                 ha recuperado el equivalente a un día completo de trabajo por semana.
@@ -181,24 +247,34 @@ export default function SerdacomCaseStudy() {
         </section>
 
         {/* ── DEMO EMBED ───────────────────────────────────────────────── */}
-        <section className="py-16 px-6 lg:px-8" style={{ borderBottom: '1px solid #1E3252' }}>
+        <section
+          className="py-16 px-6 lg:px-8"
+          style={{
+            background: 'var(--color-surface-section)',
+            borderBottom: '1px solid var(--color-border)',
+          }}
+        >
           <div className="max-w-4xl mx-auto">
             <p
               className="text-xs font-bold tracking-widest uppercase mb-3"
-              style={{ color: '#E8650A' }}
+              style={{ color: 'var(--color-accent)' }}
             >
               Demo interactivo
             </p>
             <h2
               className="text-2xl font-bold mb-10"
-              style={{ color: '#F1EEE9' }}
+              style={{ color: 'var(--color-text-primary)' }}
             >
               Mira el sistema en acción
             </h2>
 
             <div
               className="relative w-full rounded-2xl overflow-hidden"
-              style={{ paddingBottom: 'calc(45.703125% + 40px)', background: '#0A1628' }}
+              style={{
+                paddingBottom: 'calc(45.703125% + 40px)',
+                background: 'var(--color-surface-subtle)',
+                border: '1px solid var(--color-border)',
+              }}
             >
               <iframe
                 src={EMBED_URL}
@@ -221,14 +297,14 @@ export default function SerdacomCaseStudy() {
           <div className="max-w-2xl mx-auto">
             <p
               className="text-xs font-bold tracking-widest uppercase mb-4"
-              style={{ color: '#E8650A' }}
+              style={{ color: 'var(--color-accent)' }}
             >
               ¿Siguiente paso?
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-5" style={{ color: '#F1EEE9' }}>
+            <h2 className="text-3xl md:text-4xl font-bold mb-5" style={{ color: 'var(--color-text-primary)' }}>
               Tu operación también puede transformarse
             </h2>
-            <p className="text-base leading-relaxed mb-10" style={{ color: '#94A3B8' }}>
+            <p className="text-base leading-relaxed mb-10" style={{ color: 'var(--color-text-secondary)' }}>
               Platícanos cómo trabajas hoy y en menos de una semana te mostramos
               exactamente cómo Wiger AI puede ayudarte.
             </p>

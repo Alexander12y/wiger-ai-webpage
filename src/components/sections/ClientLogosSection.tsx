@@ -2,12 +2,12 @@
 
 export function ClientLogosSection() {
   const clientLogos = [
-    { id: 1, name: 'Cliente 1', imagen:  "C:\\erick\\wiger-ai-webpage\\public\\LOGO SERCODAM.png"},
-    { id: 2, name: 'Cliente 2', imagen:  "C:\\erick\\wiger-ai-webpage\\public\\LOGO SERCODAM.png" },
-    { id: 3, name: 'Cliente 3', imagen:  "C:\\erick\\wiger-ai-webpage\\public\\LOGO SERCODAM.png" },
-    { id: 4, name: 'Cliente 4', imagen:  "C:\\erick\\wiger-ai-webpage\\public\\LOGO SERCODAM.png" },
-    { id: 5, name: 'Cliente 5', imagen:  "C:\\erick\\wiger-ai-webpage\\public\\LOGO SERCODAM.png" },
-    { id: 6, name: 'Cliente 6', imagen:  "C:\\erick\\wiger-ai-webpage\\public\\LOGO SERCODAM.png" },
+    { id: 1, name: 'Sercodam', logo: '/LOGO SERCODAM.png' },
+    { id: 2, name: 'Cliente 2' },
+    { id: 3, name: 'Cliente 3' },
+    { id: 4, name: 'Cliente 4' },
+    { id: 5, name: 'Cliente 5' },
+    { id: 6, name: 'Cliente 6' },
   ]
 
   return (
@@ -31,18 +31,27 @@ export function ClientLogosSection() {
           {clientLogos.map((logo) => (
             <div
               key={logo.id}
-              className="rounded-md h-16 flex items-center justify-center"
+              className="rounded-md h-16 flex items-center justify-center px-4"
               style={{
                 border: '1px solid var(--color-border)',
                 backgroundColor: 'var(--color-surface-card)',
               }}
             >
-              <span
-                className="font-semibold text-sm"
-                style={{ color: 'var(--color-text-secondary)' }}
-              >
-                {logo.imagen}
-              </span>
+              {logo.logo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={logo.logo}
+                  alt={logo.name}
+                  className="max-h-10 max-w-full object-contain"
+                />
+              ) : (
+                <span
+                  className="font-semibold text-sm"
+                  style={{ color: 'var(--color-text-secondary)' }}
+                >
+                  {logo.name}
+                </span>
+              )}
             </div>
           ))}
         </div>

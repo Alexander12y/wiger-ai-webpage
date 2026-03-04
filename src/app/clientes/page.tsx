@@ -8,6 +8,7 @@ import { Footer } from '@/components/Footer'
 interface Client {
   id: number
   name: string
+  logo?: string
   solutionTag: string
   description: string
   videoPath: string | null
@@ -19,6 +20,7 @@ const clients: Client[] = [
   {
     id: 1,
     name: 'Sercodam Redes y Piolas',
+    logo: '/LOGO SERCODAM.png',
     solutionTag: 'ERP Personalizado',
     description:
       'Empresa manufacturera y distribuidora de redes deportivas, de construcción e industriales. Operaban con inventario disperso en hojas de Google Sheets y perdían horas semanales en tareas manuales repetitivas. Wiger les implementó un ERP completamente personalizado — hoy ahorran 1 día completo por semana.',
@@ -156,6 +158,25 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
           {String(index + 1).padStart(2, '0')}
         </span>
 
+        {/* Client logo (if available) */}
+        {client.logo && (
+          <div
+            className="inline-flex items-center justify-center rounded-xl px-5 py-3 self-start"
+            style={{
+              background: 'var(--color-surface-card)',
+              border: '1px solid var(--color-border)',
+              boxShadow: 'var(--shadow-card)',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={client.logo}
+              alt={`Logo ${client.name}`}
+              className="h-9 max-w-[140px] object-contain"
+            />
+          </div>
+        )}
+
         {/* Client name */}
         <h2
           className="text-2xl lg:text-3xl font-bold leading-tight"
@@ -180,7 +201,7 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
 
         {/* Description */}
         <p
-          className="text-sm leading-relaxed line-clamp-3"
+          className="text-sm leading-relaxed"
           style={{ color: 'var(--color-text-secondary)' }}
         >
           {client.description}

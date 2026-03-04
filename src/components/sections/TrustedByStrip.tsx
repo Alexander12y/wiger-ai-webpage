@@ -1,13 +1,15 @@
 'use client'
 
+type Client = { name: string; logo?: string }
+
 export function TrustedByStrip() {
-  const clients = [
-    'Cliente 1',
-    'Cliente 2',
-    'Cliente 3',
-    'Cliente 4',
-    'Cliente 5',
-    'Cliente 6',
+  const clients: Client[] = [
+    { name: 'Sercodam', logo: '/LOGO SERCODAM.png' },
+    { name: 'Cliente 2' },
+    { name: 'Cliente 3' },
+    { name: 'Cliente 4' },
+    { name: 'Cliente 5' },
+    { name: 'Cliente 6' },
   ]
 
   // Duplicate for seamless loop
@@ -49,19 +51,30 @@ export function TrustedByStrip() {
         <div className="animate-marquee flex items-center gap-16 whitespace-nowrap px-8">
           {marqueeClients.map((client, i) => (
             <div
-              key={`${client}-${i}`}
-              className="flex-shrink-0 px-6 py-3 rounded-lg"
+              key={`${client.name}-${i}`}
+              className="flex-shrink-0 px-6 py-3 rounded-lg flex items-center justify-center"
               style={{
                 border: '1px solid var(--color-border)',
                 backgroundColor: 'rgba(255,255,255,0.02)',
+                minWidth: '120px',
+                height: '52px',
               }}
             >
-              <span
-                className="text-sm font-semibold tracking-wide"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                {client}
-              </span>
+              {client.logo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  style={{ maxHeight: '28px', maxWidth: '100px', objectFit: 'contain' }}
+                />
+              ) : (
+                <span
+                  className="text-sm font-semibold tracking-wide"
+                  style={{ color: 'var(--color-text-muted)' }}
+                >
+                  {client.name}
+                </span>
+              )}
             </div>
           ))}
         </div>
