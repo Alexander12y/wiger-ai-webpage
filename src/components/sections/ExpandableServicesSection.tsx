@@ -48,11 +48,11 @@ const services: Service[] = [
   {
     id: 'FSM',
     title: 'Field Service Management (FSM)',
-    description: 'Acompañamiento experto desde el día uno',
-    detailedDescription: 'Nuestro equipo de implementación entiende la industria manufacturera y de distribución. Configuración a tu medida, capacitación en planta y soporte continuo para que la adopción sea real y sostenida.',
+    description: '',
+    detailedDescription: 'Hecho para proyectos de construcción .',
     backgroundImage: '',
-    cardColor: '#251C10',
-    ctaText: 'Conocer el Proceso',
+    cardColor: '#1E3252',
+    ctaText: 'Explorar FSM',
     link: '/implementacion'
   }
 ]

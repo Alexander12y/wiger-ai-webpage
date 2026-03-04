@@ -105,9 +105,9 @@ export function CapabilitiesGrid() {
           <h2 className="reveal reveal-delay-1 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            Tecnología que entiende{' '}
+            Tus procesos actuales optimizados{' '}
             <span style={{ color: 'var(--color-accent)' }}>
-              tu industria
+              sin tener que adaptarte
             </span>
           </h2>
           <p className="reveal reveal-delay-2 mt-5 text-base lg:text-lg leading-relaxed"

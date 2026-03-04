@@ -12,20 +12,20 @@ interface MetricData {
 const metrics: MetricData[] = [
   {
     value: '40',
-    suffix: '%',
+    suffix: '%*',
     label: 'Más eficiencia',
     description: 'Incremento promedio en eficiencia operativa tras los primeros 6 meses',
   },
   {
     value: '3',
-    suffix: 'x',
+    suffix: 'x*',
     label: 'Retorno de inversión',
     description: 'ROI promedio logrado por nuestros clientes en el primer año',
   },
   {
-    value: '98',
+    value: '99.9',
     suffix: '%',
-    label: 'Uptime garantizado',
+    label: 'SLA',
     description: 'Disponibilidad de plataforma respaldada por infraestructura empresarial',
   },
   {
@@ -123,9 +123,9 @@ export function MetricsSection() {
               className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight"
               style={{ color: 'var(--color-text-primary)' }}
             >
-              Números que hablan{' '}
+              Lo único que tú y tus empleados necesitan{' '}
               <span style={{ color: 'var(--color-accent)' }}>
-                por sí solos
+                es una conexión a internet
               </span>
             </h2>
           </div>
@@ -133,8 +133,9 @@ export function MetricsSection() {
             className="text-base max-w-sm leading-relaxed"
             style={{ color: 'var(--color-text-secondary)' }}
           >
-            Resultados comprobados de empresas que ya operan
-            con Wiger como su plataforma central.
+            Los productos de Wiger se adaptan tan bien a tus
+            procesos que ni tú ni tus empleados requerirán más de
+            una semana de adaptación.
           </p>
         </div>
 
