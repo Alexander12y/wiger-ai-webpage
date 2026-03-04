@@ -26,7 +26,8 @@ export function VideoTextSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen bg-[#0E1C2F] py-20 px-6 flex items-center relative overflow-hidden"
+      className="min-h-screen py-20 px-6 flex items-center relative overflow-hidden"
+      style={{ backgroundColor: 'var(--color-surface-dark)' }}
     >
       {/* Amber left-edge accent */}
       <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--color-accent)] opacity-80" />
@@ -82,7 +83,7 @@ export function VideoTextSection() {
 
           {/* Video placeholder — right side */}
           <div className="lg:col-span-3 animate-on-scroll">
-            <div className="relative bg-[#162438] rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ backgroundColor: 'var(--color-surface-dark-card)' }}>
               {/* Amber top edge */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-[var(--color-accent)]" />
 

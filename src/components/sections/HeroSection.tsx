@@ -45,13 +45,13 @@ export function HeroSection() {
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(105deg, rgba(6,14,26,0.92) 0%, rgba(6,14,26,0.80) 45%, rgba(6,14,26,0.55) 100%)',
+            background: 'linear-gradient(105deg, rgba(28,18,8,0.92) 0%, rgba(28,18,8,0.80) 45%, rgba(28,18,8,0.55) 100%)',
           }}
         />
       </div>
 
       {/* Grid pattern overlay */}
-      <div className="absolute inset-0 z-[2] grid-pattern opacity-40" />
+      <div className="absolute inset-0 z-[2] grid-pattern-dark opacity-40" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 pt-32 pb-20">
@@ -71,11 +71,11 @@ export function HeroSection() {
 
             {/* Main heading */}
             <h1 className="reveal reveal-delay-2 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[0.95] tracking-tight">
-              <span style={{ color: 'var(--color-text-primary)' }}>
+              <span style={{ color: 'var(--color-text-on-dark)' }}>
                 Empresas
               </span>
               <br />
-              <span style={{ color: 'var(--color-text-primary)' }}>
+              <span style={{ color: 'var(--color-text-on-dark)' }}>
                 autónomas en la{' '}
               </span>
               <br />
@@ -98,9 +98,9 @@ export function HeroSection() {
             {/* Subtext */}
             <p
               className="reveal reveal-delay-3 text-base sm:text-lg lg:text-xl max-w-xl leading-relaxed"
-              style={{ color: 'var(--color-text-secondary)' }}
+              style={{ color: 'var(--color-text-on-dark-secondary)' }}
             >
-              
+
               En un mundo siempre moviéndose para adelante, 
               con una revolución que cambiará la manera en que conocemos el mundo, 
               no podíamos permitirnos quedarnos quietos…
@@ -114,6 +114,7 @@ export function HeroSection() {
               </Link>
               <button
                 className="btn-outline-light inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold text-base"
+                style={{ borderColor: 'rgba(240,237,232,0.30)', color: '#F0EDE8' }}
                 onClick={() => document.getElementById('hero-demo')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <Play className="w-4 h-4" />
@@ -129,8 +130,8 @@ export function HeroSection() {
                     key={i}
                     className="w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs font-bold"
                     style={{
-                      borderColor: 'var(--color-surface-page)',
-                      backgroundColor: 'var(--color-surface-elevated)',
+                      borderColor: 'var(--color-surface-dark)',
+                      backgroundColor: 'var(--color-surface-dark-card)',
                       color: 'var(--color-accent)',
                     }}
                   >
@@ -138,8 +139,8 @@ export function HeroSection() {
                   </div>
                 ))}
               </div>
-              <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                <span className="font-semibold" style={{ color: 'var(--color-text-secondary)' }}>
+              <p className="text-sm" style={{ color: 'var(--color-text-on-dark-muted)' }}>
+                <span className="font-semibold" style={{ color: 'rgba(240,237,232,0.70)' }}>
                   Empresas líderes
                 </span>{' '}
                 ya transforman su operación
@@ -152,7 +153,7 @@ export function HeroSection() {
             <div
               className="relative rounded-2xl overflow-hidden"
               style={{
-                backgroundColor: 'var(--color-surface-card)',
+                backgroundColor: 'var(--color-surface-dark-card)',
                 boxShadow: 'var(--shadow-elevated)',
               }}
             >
@@ -184,18 +185,18 @@ export function HeroSection() {
               {/* Bottom stats bar */}
               <div
                 className="grid grid-cols-3 divide-x"
-                style={{ borderTop: '1px solid var(--color-border)', divideColor: 'var(--color-border)' } as React.CSSProperties}
+                style={{ borderTop: '1px solid var(--color-border-on-dark)', divideColor: 'var(--color-border-on-dark)' } as React.CSSProperties}
               >
                 {[
                   { label: 'Eficiencia', value: '+40%' },
                   { label: 'Integración', value: '< 4 sem' },
                   { label: 'Soporte', value: '24/7' },
                 ].map((stat) => (
-                  <div key={stat.label} className="px-4 py-3 text-center" style={{ borderColor: 'var(--color-border)' }}>
+                  <div key={stat.label} className="px-4 py-3 text-center" style={{ borderColor: 'var(--color-border-on-dark)' }}>
                     <p className="text-sm font-bold font-display" style={{ color: 'var(--color-accent)' }}>
                       {stat.value}
                     </p>
-                    <p className="text-[10px] uppercase tracking-wider mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+                    <p className="text-[10px] uppercase tracking-wider mt-0.5" style={{ color: 'var(--color-text-on-dark-muted)' }}>
                       {stat.label}
                     </p>
                   </div>
@@ -208,10 +209,10 @@ export function HeroSection() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 reveal reveal-delay-6">
-        <span className="text-[10px] uppercase tracking-[0.2em]" style={{ color: 'var(--color-text-muted)' }}>
+        <span className="text-[10px] uppercase tracking-[0.2em]" style={{ color: 'var(--color-text-on-dark-muted)' }}>
           Scroll
         </span>
-        <div className="w-px h-8" style={{ background: 'linear-gradient(180deg, var(--color-text-muted), transparent)' }} />
+        <div className="w-px h-8" style={{ background: 'linear-gradient(180deg, rgba(240,237,232,0.45), transparent)' }} />
       </div>
     </section>
   )

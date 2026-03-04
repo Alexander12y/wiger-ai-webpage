@@ -11,7 +11,7 @@ export default function ContactoPage() {
   return (
     <main
       className="min-h-screen relative"
-      style={{ backgroundColor: '#0E1C2F' }}
+      style={{ backgroundColor: 'var(--color-surface-page)' }}
     >
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
@@ -26,8 +26,8 @@ export default function ContactoPage() {
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm mb-12 transition-colors duration-200 hover:text-white/70"
-          style={{ color: 'rgba(255,255,255,0.6)' }}
+          className="inline-flex items-center gap-2 text-sm mb-12 transition-colors duration-200 hover:text-[#E8650A]"
+          style={{ color: 'var(--color-text-muted)' }}
         >
           <ArrowLeft className="w-4 h-4" />
           Volver al inicio
@@ -47,7 +47,7 @@ export default function ContactoPage() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[0.95] tracking-tight text-white">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[0.95] tracking-tight" style={{ color: 'var(--color-text-primary)' }}>
               Empieza tu{' '}
               <span style={{ color: '#E8650A' }}>
                 transformación
@@ -55,7 +55,7 @@ export default function ContactoPage() {
               hoy.
             </h1>
 
-            <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'rgba(255,255,255,0.8)' }}>
+            <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
               Completa el formulario y un especialista de Wiger AI se pondrá en contacto contigo en menos de 24 horas.
             </p>
 
@@ -74,7 +74,7 @@ export default function ContactoPage() {
                   >
                     ✓
                   </span>
-                  <span className="text-sm" style={{ color: 'rgba(255,255,255,0.85)' }}>{item}</span>
+                  <span className="text-sm" style={{ color: 'var(--color-text-primary)' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -89,14 +89,14 @@ export default function ContactoPage() {
                   <div
                     key={initial}
                     className="w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs font-bold"
-                    style={{ borderColor: '#0E1C2F', backgroundColor: 'rgba(232,101,10,0.15)', color: '#E8650A' }}
+                    style={{ borderColor: 'var(--color-surface-page)', backgroundColor: 'rgba(232,101,10,0.15)', color: '#E8650A' }}
                   >
                     {initial}
                   </div>
                 ))}
               </div>
-              <p className="text-sm" style={{ color: 'rgba(255,255,255,0.65)' }}>
-                <span className="font-semibold" style={{ color: 'rgba(255,255,255,0.9)' }}>Empresas líderes</span>
+              <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                <span className="font-semibold" style={{ color: 'var(--color-text-primary)' }}>Empresas líderes</span>
                 {' '}ya transforman su operación
               </p>
             </div>
@@ -106,9 +106,8 @@ export default function ContactoPage() {
           <div
             className="rounded-2xl p-8 sm:p-10"
             style={{
-              backgroundColor: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              backdropFilter: 'blur(12px)',
+              backgroundColor: 'var(--color-surface-card)',
+              border: '1px solid var(--color-border)',
             }}
           >
             {/* Accent top bar */}

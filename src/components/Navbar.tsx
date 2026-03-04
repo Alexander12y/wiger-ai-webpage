@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Mail } from 'lucide-react'
@@ -48,17 +48,7 @@ function GlassSvgFilter() {
 }
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
     <>
@@ -68,35 +58,35 @@ export default function Navbar() {
       <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
         {/* Centering container — same max-w as page content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-          {/* The actual glass bar */}
-          <nav
-            className={`glass-navbar pointer-events-auto transition-colors duration-500 ${
-              isScrolled ? 'glass-navbar--scrolled' : 'glass-navbar--hero'
-            }`}
-          >
+          {/* The actual glass bar — always cream/scrolled appearance */}
+          <nav className="glass-navbar glass-navbar--scrolled pointer-events-auto">
             <div className="px-5 sm:px-8">
-              <div className="flex items-center justify-between h-24 relative z-10">
+              <div className="flex items-center h-24 relative z-10">
 
-                {/* Logo — left */}
-                <div className="flex-shrink-0">
-                  <Link href="/" className="block">
-                    <Image
-                      src="/wiger-logo.png"
-                      alt="Wiger AI Logo"
-                      width={360}
-                      height={100}
-                      className="h-20 w-auto object-contain"
-                      priority
-                    />
-                  </Link>
+                {/* Left zone — flex-1 mirrors right zone for true center alignment */}
+                <div className="flex-1 flex items-center">
+                  <div className="flex-shrink-0">
+                    <Link href="/" className="block">
+                      <div style={{ height: '44px', overflow: 'hidden' }}>
+                        <Image
+                          src="/wiger-logo-light.png"
+                          alt="Wiger AI Logo"
+                          width={500}
+                          height={500}
+                          style={{ height: '92px', width: 'auto', marginTop: '-24px' }}
+                          priority
+                        />
+                      </div>
+                    </Link>
+                  </div>
                 </div>
 
-                {/* Navigation Links — desktop */}
+                {/* Navigation Links — desktop center */}
                 <div className="hidden md:flex items-center gap-2">
                   {navItems.map((item) => {
                     const isPage = item.href.startsWith('/')
                     const linkClass =
-                      'glass-nav-pill text-base font-medium text-white/90 hover:text-white transition-colors duration-200 border border-white/10 hover:border-white/25'
+                      'glass-navbar-link glass-nav-pill text-base font-medium transition-colors duration-200 border border-white/10 hover:border-white/25'
 
                     return isPage ? (
                       <Link key={item.name} href={item.href} className={linkClass}>
@@ -110,8 +100,8 @@ export default function Navbar() {
                   })}
                 </div>
 
-                {/* Right — CTA (desktop) / Hamburger (mobile) */}
-                <div className="flex items-center">
+                {/* Right zone — flex-1 justify-end for balanced layout */}
+                <div className="flex-1 flex items-center justify-end">
                   <div className="hidden md:flex flex-shrink-0">
                     <Link href="/contacto" className="btn-accent inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm">
                       <Mail className="w-4 h-4" />
@@ -124,7 +114,7 @@ export default function Navbar() {
                       onClick={() => setMobileOpen(!mobileOpen)}
                       aria-expanded={mobileOpen}
                       aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
-                      className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+                      className="p-2 rounded-lg transition-colors text-[#1A1410] hover:bg-black/05"
                     >
                       {mobileOpen ? (
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,11 +134,10 @@ export default function Navbar() {
 
             {/* Mobile Menu Panel — inside the glass bar */}
             {mobileOpen && (
-              <div className="md:hidden border-t border-white/15 px-5 sm:px-8 py-4 space-y-1 relative z-10">
+              <div className="md:hidden border-t border-black/10 px-5 sm:px-8 py-4 space-y-1 relative z-10">
                 {navItems.map((item) => {
                   const isPage = item.href.startsWith('/')
-                  const mobileClass =
-                    'block text-base font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-lg px-3 py-2 transition-colors'
+                  const mobileClass = 'block text-base font-medium text-[#1A1410]/90 hover:text-[#1A1410] hover:bg-black/05 rounded-lg px-3 py-2 transition-colors'
 
                   return isPage ? (
                     <Link

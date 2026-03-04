@@ -5,18 +5,27 @@
    ══════════════════════════════════════════════════ */
 
 :root {
-  /* ── Surface palette — deep navy layering ── */
-  --color-surface-page:      #060E1A;
-  --color-surface-card:      #0C1929;
-  --color-surface-section:   #0A1424;
-  --color-surface-elevated:  #111F35;
-  --color-surface-subtle:    #0E1A2E;
+  /* ── Surface palette — warm cream ── */
+  --color-surface-page:      #FAF8F5;
+  --color-surface-card:      #FFFFFF;
+  --color-surface-section:   #F3F0EA;
+  --color-surface-elevated:  #FFF8F2;
+  --color-surface-subtle:    #EDE8E1;
 
-  /* ── Text hierarchy ── */
-  --color-text-primary:      #F0EDE8;
-  --color-text-secondary:    #8B9DB3;
-  --color-text-muted:        #4E6380;
-  --color-text-faint:        #2D4560;
+  /* ── Dark anchors (Hero, VideoText, Contact, Footer) ── */
+  --color-surface-dark:      #1C1208;
+  --color-surface-dark-card: #231811;
+  --color-text-on-dark:      #F0EDE8;
+  --color-text-on-dark-muted: rgba(240,237,232,0.65);
+  --color-text-on-dark-secondary: rgba(240,237,232,0.70);
+  --color-text-on-dark-faint:     rgba(240,237,232,0.35);
+  --color-border-on-dark:         rgba(255,255,255,0.08);
+
+  /* ── Text hierarchy — warm, high contrast ── */
+  --color-text-primary:      #1A1410;
+  --color-text-secondary:    #5A4E46;
+  --color-text-muted:        #8C7D74;
+  --color-text-faint:        #BEB0A8;
 
   /* ── Accent — industrial amber ── */
   --color-accent:            #E8650A;
@@ -25,12 +34,12 @@
   --color-accent-glow:       rgba(232, 101, 10, 0.25);
 
   /* ── Borders ── */
-  --color-border:            rgba(255, 255, 255, 0.06);
+  --color-border:            rgba(0, 0, 0, 0.08);
   --color-border-accent:     rgba(232, 101, 10, 0.3);
 
   /* ── Shadows ── */
-  --shadow-card:             0 1px 2px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
-  --shadow-elevated:         0 8px 32px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-card:             0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+  --shadow-elevated:         0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
   --shadow-glow:             0 0 40px rgba(232, 101, 10, 0.08);
 
   /* ── Fonts ── */
@@ -42,8 +51,8 @@
   --section-gap: clamp(5rem, 10vw, 8rem);
 
   /* ── Legacy shadcn ── */
-  --background: #060E1A;
-  --foreground: #F0EDE8;
+  --background: #FAF8F5;
+  --foreground: #1A1410;
 }
 
 /* ── Base ── */
@@ -157,7 +166,7 @@ button, [role="button"] {
 
 .btn-outline-light {
   background-color: transparent;
-  border: 1.5px solid rgba(240, 237, 232, 0.25);
+  border: 1.5px solid rgba(0, 0, 0, 0.20);
   color: var(--color-text-primary);
   transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
@@ -213,8 +222,16 @@ button, [role="button"] {
   z-index: 0;
 }
 
-/* Grid pattern background */
+/* Grid pattern background — light sections */
 .grid-pattern {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Grid pattern background — dark sections */
+.grid-pattern-dark {
   background-image:
     linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
@@ -297,7 +314,7 @@ button, [role="button"] {
 }
 
 .glass-navbar--scrolled {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(250, 248, 245, 0.95);
 }
 
 .glass-navbar--scrolled .glass-navbar-link {

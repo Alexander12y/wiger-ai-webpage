@@ -103,10 +103,10 @@ export function ContactPageForm() {
 
   const inputClass = `
     w-full rounded-lg px-4 py-3 text-sm transition-all duration-200 outline-none
-    bg-white/5 border border-white/10 text-white placeholder-white/30
-    focus:border-[#E8650A] focus:bg-white/8 focus:ring-1 focus:ring-[#E8650A]/30
+    bg-[#F3F0EA] border border-[rgba(0,0,0,0.08)] text-[#1A1410] placeholder-[#BEB0A8]
+    focus:border-[#E8650A] focus:bg-[#FFF8F2] focus:ring-1 focus:ring-[#E8650A]/30
   `
-  const labelClass = 'block text-xs font-semibold uppercase tracking-[0.1em] mb-1.5 text-white/75'
+  const labelClass = 'block text-xs font-semibold uppercase tracking-[0.1em] mb-1.5 text-[#5A4E46]'
 
   if (status === 'success') {
     return (
@@ -114,8 +114,8 @@ export function ContactPageForm() {
         <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(232,101,10,0.12)' }}>
           <CheckCircle className="w-8 h-8" style={{ color: '#E8650A' }} />
         </div>
-        <h3 className="text-2xl font-bold text-white">¡Mensaje enviado!</h3>
-        <p className="text-white/50 max-w-sm">
+        <h3 className="text-2xl font-bold text-[#1A1410]">¡Mensaje enviado!</h3>
+        <p className="text-[#8C7D74] max-w-sm">
           Nuestro equipo de ventas se pondrá en contacto contigo en menos de 24 horas.
         </p>
         <button
@@ -217,7 +217,7 @@ export function ContactPageForm() {
             style={{ appearance: 'none', backgroundImage: 'none' }}
           >
             {companySizes.map((opt) => (
-              <option key={opt.value} value={opt.value} disabled={opt.value === ''} style={{ backgroundColor: '#0E1C2F' }}>
+              <option key={opt.value} value={opt.value} disabled={opt.value === ''} style={{ backgroundColor: '#FFFFFF' }}>
                 {opt.label}
               </option>
             ))}
@@ -239,7 +239,7 @@ export function ContactPageForm() {
             style={{ appearance: 'none', backgroundImage: 'none' }}
           >
             {industries.map((opt) => (
-              <option key={opt.value} value={opt.value} disabled={opt.value === ''} style={{ backgroundColor: '#0E1C2F' }}>
+              <option key={opt.value} value={opt.value} disabled={opt.value === ''} style={{ backgroundColor: '#FFFFFF' }}>
                 {opt.label}
               </option>
             ))}
@@ -256,7 +256,7 @@ export function ContactPageForm() {
             style={{ appearance: 'none', backgroundImage: 'none' }}
           >
             {howHeardOptions.map((opt) => (
-              <option key={opt.value} value={opt.value} disabled={opt.value === ''} style={{ backgroundColor: '#0E1C2F' }}>
+              <option key={opt.value} value={opt.value} disabled={opt.value === ''} style={{ backgroundColor: '#FFFFFF' }}>
                 {opt.label}
               </option>
             ))}
@@ -313,7 +313,7 @@ export function ContactPageForm() {
         )}
       </button>
 
-      <p className="text-center text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>
+      <p className="text-center text-xs" style={{ color: 'rgba(0,0,0,0.45)' }}>
         Sin compromiso · Respondemos en menos de 24 h
       </p>
     </form>

@@ -2,44 +2,49 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
-import { Brain, Zap, BarChart3, Shield, Layers, ArrowUpRight, X } from 'lucide-react'
+import { Network, Factory, Truck, ShoppingCart, HardHat, ArrowUpRight, X } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useMotion'
 
 const capabilities = [
   {
-    icon: Brain,
-    label: 'AI Predictiva',
-    title: 'Anticipa problemas antes de que ocurran',
-    description: 'Algoritmos que analizan patrones de producción, anticipan fallos en maquinaria y optimizan inventario automáticamente.',
+    icon: Network,
+    label: 'Redes físicas',
+    title: '',
+    description: '',
+    bgImage: '', // <- URL de imagen de fondo (ej: '/images/redes.jpg')
     size: 'large' as const,
     accent: true,
   },
   {
-    icon: Zap,
-    label: 'Automatización',
-    title: 'Procesos sin intervención manual',
-    description: 'Desde órdenes de compra hasta reportes de calidad, automatiza las tareas repetitivas.',
+    icon: Factory,
+    label: 'Manufactura',
+    title: '',
+    description: '',
+    bgImage: '', // <- URL de imagen de fondo
     size: 'small' as const,
   },
   {
-    icon: BarChart3,
-    label: 'Analytics',
-    title: 'Visibilidad total en tiempo real',
-    description: 'Dashboards inteligentes que muestran KPIs de producción, ventas y logística al instante.',
+    icon: Truck,
+    label: 'Distribución',
+    title: '',
+    description: '',
+    bgImage: '', // <- URL de imagen de fondo
     size: 'small' as const,
   },
   {
-    icon: Shield,
-    label: 'Seguridad',
-    title: 'Datos protegidos con estándar bancario',
-    description: 'Encriptación de extremo a extremo, backups automáticos y cumplimiento con normativas industriales.',
+    icon: ShoppingCart,
+    label: 'Retail',
+    title: '',
+    description: '',
+    bgImage: '', // <- URL de imagen de fondo
     size: 'small' as const,
   },
   {
-    icon: Layers,
-    label: 'Integración',
-    title: 'Se conecta con todo tu ecosistema',
-    description: 'API abierta, conectores nativos para SAP, sistemas SCADA, ecommerce y herramientas contables.',
+    icon: HardHat,
+    label: 'Construcción',
+    title: '',
+    description: '',
+    bgImage: '', // <- URL de imagen de fondo
     size: 'small' as const,
   },
 ]
@@ -145,10 +150,23 @@ export function CapabilitiesGrid() {
                     e.currentTarget.style.boxShadow = 'var(--shadow-glow)'
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = cap.accent ? 'rgba(232, 101, 10, 0.3)' : 'rgba(255, 255, 255, 0.06)'
+                    e.currentTarget.style.borderColor = cap.accent ? 'rgba(232, 101, 10, 0.3)' : 'rgba(0, 0, 0, 0.08)'
                     e.currentTarget.style.boxShadow = 'none'
                   }}
                 >
+                  {/* Background image — alta transparencia sobre negro */}
+                  {cap.bgImage && (
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        backgroundImage: `url(${cap.bgImage})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        opacity: 0.15,
+                      }}
+                    />
+                  )}
+
                   {/* Grid pattern on large card */}
                   {isLarge && <div className="absolute inset-0 grid-pattern opacity-30" />}
 
@@ -168,7 +186,7 @@ export function CapabilitiesGrid() {
                           onClick={(e) => { e.stopPropagation(); setExpandedIndex(null) }}
                           className="toggle-btn absolute top-4 right-4 pointer-events-auto w-9 h-9
                             rounded-full flex items-center justify-center"
-                          style={{ backgroundColor: 'rgba(255,255,255,0.06)', border: '1px solid var(--color-border)' }}
+                          style={{ backgroundColor: 'rgba(0,0,0,0.04)', border: '1px solid var(--color-border)' }}
                           aria-label="Cerrar"
                         >
                           <X className="w-4 h-4" style={{ color: 'var(--color-text-muted)' }} />
@@ -236,7 +254,7 @@ export function CapabilitiesGrid() {
                             className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300
                               group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                             style={{
-                              backgroundColor: 'rgba(255,255,255,0.05)',
+                              backgroundColor: 'rgba(0,0,0,0.04)',
                               border: '1px solid var(--color-border)',
                             }}
                           >

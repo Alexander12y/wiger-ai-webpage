@@ -31,24 +31,17 @@ const values = [
   },
 ]
 
-const milestones = [
-  { year: '2022', event: 'Fundación de Wiger AI en Monterrey, México.' },
-  { year: '2023', event: 'Primer ERP personalizado implementado en producción.' },
-  { year: '2024', event: 'Expansión a 5 industrias: manufactura, distribución, construcción, retail y logística.' },
-  { year: '2025', event: 'Más de 10 empresas transformadas. Equipo de 12 personas.' },
-]
-
 export default function SobreNosotrosPage() {
   return (
     <>
-      <main style={{ background: '#0E1C2F', minHeight: '100vh' }}>
+      <main style={{ background: 'var(--color-surface-page)', minHeight: '100vh' }}>
 
         {/* ── HERO ─────────────────────────────────────────────────────── */}
         <section
           className="pt-40 pb-24 px-6 lg:px-8"
           style={{
-            background: 'linear-gradient(180deg, #060E1A 0%, #0E1C2F 100%)',
-            borderBottom: '1px solid #1E3252',
+            background: 'linear-gradient(180deg, #FAF8F5 0%, #F3F0EA 100%)',
+            borderBottom: '1px solid var(--color-border)',
           }}
         >
           <div className="max-w-4xl mx-auto text-center">
@@ -60,14 +53,14 @@ export default function SobreNosotrosPage() {
             </p>
             <h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
-              style={{ color: '#F1EEE9' }}
+              style={{ color: 'var(--color-text-primary)' }}
             >
               Construimos el software que{' '}
               <span style={{ color: '#E8650A' }}>tu operación merece</span>
             </h1>
             <p
               className="text-lg md:text-xl leading-relaxed max-w-2xl mx-auto"
-              style={{ color: '#94A3B8' }}
+              style={{ color: 'var(--color-text-secondary)' }}
             >
               Somos un equipo de ingenieros y estrategas de negocio enfocados en un solo problema:
               hacer que las empresas manufactureras y distribuidoras de México operen con la
@@ -77,13 +70,13 @@ export default function SobreNosotrosPage() {
         </section>
 
         {/* ── MISIÓN Y VISIÓN ──────────────────────────────────────────── */}
-        <section className="py-20 px-6 lg:px-8" style={{ borderBottom: '1px solid #1E3252' }}>
+        <section className="py-20 px-6 lg:px-8" style={{ borderBottom: '1px solid var(--color-border)' }}>
           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
             <div
               className="rounded-2xl p-10"
               style={{
-                background: 'linear-gradient(135deg, #0A1628 0%, #162438 100%)',
-                border: '1px solid #1E3252',
+                background: 'var(--color-surface-card)',
+                border: '1px solid var(--color-border)',
               }}
             >
               <p
@@ -92,10 +85,10 @@ export default function SobreNosotrosPage() {
               >
                 Misión
               </p>
-              <h2 className="text-xl font-bold mb-4" style={{ color: '#F1EEE9' }}>
+              <h2 className="text-xl font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>
                 Digitalizar la industria real de México
               </h2>
-              <p className="text-sm leading-relaxed" style={{ color: '#94A3B8' }}>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                 Desarrollamos sistemas ERP, CRM y de automatización completamente personalizados
                 para empresas que producen, distribuyen y mueven cosas en el mundo físico.
                 Queremos que cada PyME industrial tenga acceso a la tecnología que antes solo
@@ -106,8 +99,8 @@ export default function SobreNosotrosPage() {
             <div
               className="rounded-2xl p-10"
               style={{
-                background: 'linear-gradient(135deg, #0A1628 0%, #162438 100%)',
-                border: '1px solid #1E3252',
+                background: 'var(--color-surface-card)',
+                border: '1px solid var(--color-border)',
               }}
             >
               <p
@@ -116,10 +109,10 @@ export default function SobreNosotrosPage() {
               >
                 Visión
               </p>
-              <h2 className="text-xl font-bold mb-4" style={{ color: '#F1EEE9' }}>
+              <h2 className="text-xl font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>
                 La plataforma de operaciones de la industria latinoamericana
               </h2>
-              <p className="text-sm leading-relaxed" style={{ color: '#94A3B8' }}>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                 En cinco años, queremos ser el sistema operativo de referencia para las empresas
                 manufactureras y distribuidoras de América Latina — el lugar donde cada orden,
                 inventario, cliente y proceso vive y se gestiona de forma inteligente.
@@ -128,8 +121,41 @@ export default function SobreNosotrosPage() {
           </div>
         </section>
 
+        {/* ── IMAGEN ───────────────────────────────────────────────────── */}
+        <section className="py-16 px-6 lg:px-8" style={{ borderBottom: '1px solid var(--color-border)' }}>
+          <div className="max-w-5xl mx-auto">
+            <div
+              className="w-full rounded-2xl overflow-hidden flex flex-col items-center justify-center gap-4"
+              style={{
+                minHeight: '380px',
+                background: 'var(--color-surface-section)',
+                border: '1px dashed rgba(232,101,10,0.30)',
+              }}
+            >
+              {/* Camera icon */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="56"
+                height="56"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(232,101,10,0.40)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                <circle cx="12" cy="13" r="3" />
+              </svg>
+              <p className="text-sm font-medium" style={{ color: 'var(--color-text-muted)' }}>
+                Foto del equipo — próximamente
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* ── VALORES ──────────────────────────────────────────────────── */}
-        <section className="py-20 px-6 lg:px-8" style={{ borderBottom: '1px solid #1E3252' }}>
+        <section className="py-20 px-6 lg:px-8" style={{ borderBottom: '1px solid var(--color-border)' }}>
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
               <p
@@ -138,7 +164,7 @@ export default function SobreNosotrosPage() {
               >
                 Valores
               </p>
-              <h2 className="text-3xl font-bold" style={{ color: '#F1EEE9' }}>
+              <h2 className="text-3xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
                 Cómo trabajamos
               </h2>
             </div>
@@ -149,8 +175,8 @@ export default function SobreNosotrosPage() {
                   key={v.title}
                   className="rounded-2xl p-8"
                   style={{
-                    background: 'linear-gradient(135deg, #0A1628 0%, #162438 100%)',
-                    border: '1px solid #1E3252',
+                    background: 'var(--color-surface-card)',
+                    border: '1px solid var(--color-border)',
                   }}
                 >
                   <span
@@ -159,64 +185,14 @@ export default function SobreNosotrosPage() {
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="text-lg font-bold mt-3 mb-3" style={{ color: '#F1EEE9' }}>
+                  <h3 className="text-lg font-bold mt-3 mb-3" style={{ color: 'var(--color-text-primary)' }}>
                     {v.title}
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#94A3B8' }}>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                     {v.description}
                   </p>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── HISTORIA ─────────────────────────────────────────────────── */}
-        <section className="py-20 px-6 lg:px-8" style={{ borderBottom: '1px solid #1E3252' }}>
-          <div className="max-w-3xl mx-auto">
-            <div className="mb-14">
-              <p
-                className="text-xs font-bold tracking-widest uppercase mb-3"
-                style={{ color: '#E8650A' }}
-              >
-                Historia
-              </p>
-              <h2 className="text-3xl font-bold" style={{ color: '#F1EEE9' }}>
-                Del problema real a la solución real
-              </h2>
-            </div>
-
-            <div className="relative">
-              {/* Vertical line */}
-              <div
-                className="absolute left-[11px] top-2 bottom-2 w-px"
-                style={{ background: '#1E3252' }}
-              />
-
-              <div className="space-y-10">
-                {milestones.map((m) => (
-                  <div key={m.year} className="flex gap-6 relative">
-                    {/* Dot */}
-                    <div
-                      className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
-                      style={{ background: '#0A1628', border: '2px solid #E8650A' }}
-                    >
-                      <div className="w-2 h-2 rounded-full" style={{ background: '#E8650A' }} />
-                    </div>
-                    <div>
-                      <span
-                        className="text-xs font-bold tracking-widest uppercase"
-                        style={{ color: '#E8650A' }}
-                      >
-                        {m.year}
-                      </span>
-                      <p className="text-base mt-1" style={{ color: '#94A3B8' }}>
-                        {m.event}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
@@ -230,10 +206,10 @@ export default function SobreNosotrosPage() {
             >
               ¿Trabajamos juntos?
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-5" style={{ color: '#F1EEE9' }}>
+            <h2 className="text-3xl md:text-4xl font-bold mb-5" style={{ color: 'var(--color-text-primary)' }}>
               Cuéntanos tu operación
             </h2>
-            <p className="text-base leading-relaxed mb-10" style={{ color: '#94A3B8' }}>
+            <p className="text-base leading-relaxed mb-10" style={{ color: 'var(--color-text-secondary)' }}>
               En menos de una semana te mostramos exactamente cómo Wiger AI puede transformar
               tu empresa.
             </p>
@@ -248,8 +224,8 @@ export default function SobreNosotrosPage() {
                 href="/clientes"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-colors duration-200"
                 style={{
-                  border: '1px solid #1E3252',
-                  color: '#94A3B8',
+                  border: '1px solid var(--color-border)',
+                  color: 'var(--color-text-secondary)',
                 }}
               >
                 Ver casos de éxito
