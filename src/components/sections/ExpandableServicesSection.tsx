@@ -21,7 +21,7 @@ const services: Service[] = [
     description: 'Control total de tu operación productiva',
     detailedDescription: 'Gestiona inventarios, órdenes de producción, cadena de suministro y costos en tiempo real. Un sistema diseñado para la realidad de la manufactura: integrado, ágil y adaptable a tu proceso.',
     backgroundImage: '/manufactura.jpg',
-    cardColor: '#1A2E45',
+    cardColor: 'var(--color-surface-dark-card)',
     ctaText: 'Explorar ERP',
     link: '/productos/erp'
   },
@@ -31,7 +31,7 @@ const services: Service[] = [
     description: 'Relaciones comerciales que impulsan ventas',
     detailedDescription: 'Administra clientes, distribuidores y prospectos con visibilidad completa del pipeline. Cotizaciones, seguimiento de pedidos y análisis de cartera, todo conectado a tu ERP para decisiones más rápidas.',
     backgroundImage: '/shaking_hands.png',
-    cardColor: '#0E1C2F',
+    cardColor: 'var(--color-surface-dark)',
     ctaText: 'Explorar CRM',
     link: '/productos/crm'
   },
@@ -40,8 +40,8 @@ const services: Service[] = [
     title: 'Transportation Management System (TMS)',
     description: 'Cotizaciones al mejor precio sin tener que ir de carrier en carrier',
     detailedDescription: 'Un sistema integrado y personalizado a tus procesos para transportar cualquier bien de tu empresa. Elije la paquetería y cotización que más te convenga y ahorra horas de procesos manuales manejando envíos.',
-    backgroundImage: '',
-    cardColor: '#162438',
+    backgroundImage: '/transportation.jpg',
+    cardColor: '#1A1209',
     ctaText: 'Explorar TMS',
     link: '/productos/integraciones'
   },
@@ -85,7 +85,7 @@ export function ExpandableServicesSection() {
   }
 
   return (
-    <section id="productos" className="py-24 px-8" style={{ backgroundColor: '#0A1628' }}>
+    <section id="productos" className="py-24 px-8" style={{ backgroundColor: 'var(--color-surface-dark)' }}>
       <div className="max-w-7xl mx-auto">
         {/* Sub-Hero */}
         <div className="text-center mb-16">
@@ -94,7 +94,7 @@ export function ExpandableServicesSection() {
               Mientras el mundo avanza sin parar,
             </h2>
             <div className="relative">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-light italic" style={{ color: '#8899AD' }}>
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-light italic" style={{ color: 'rgba(240,237,232,0.55)' }}>
                 ¿puedes permitirte quedarte atrás?
               </h3>
               <div className="mt-6 w-12 h-[2px] bg-[var(--color-accent)] mx-auto" />
@@ -127,20 +127,20 @@ export function ExpandableServicesSection() {
               >
                 {/* Background */}
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
                   style={{
-                    background: service.backgroundImage
-                      ? `url(${service.backgroundImage})`
-                      : service.cardColor,
-                    backgroundSize: service.backgroundImage ? 'cover' : 'auto',
-                    backgroundPosition: service.backgroundImage ? 'center' : 'initial',
+                    backgroundImage: service.backgroundImage ? `url(${service.backgroundImage})` : 'none',
+                    backgroundColor: service.cardColor,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center center',
+                    backgroundRepeat: 'no-repeat',
                   }}
                 >
                   {/* Overlay */}
                   <div className={`absolute inset-0 transition-all duration-500 ${
                     isExpanded
-                      ? 'bg-[#0E1C2F]/60'
-                      : 'bg-[#0E1C2F]/30 group-hover:bg-[#0E1C2F]/40'
+                      ? 'bg-[#1C1208]/60'
+                      : 'bg-[#1C1208]/30 group-hover:bg-[#1C1208]/40'
                   }`}></div>
                 </div>
 
@@ -236,7 +236,7 @@ export function ExpandableServicesSection() {
 
         {/* Call to Action */}
         <div className="text-center mt-16 pt-16 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-          <p className="mb-6 text-lg" style={{ color: '#8899AD' }}>
+          <p className="mb-6 text-lg" style={{ color: 'var(--color-text-on-dark-muted)' }}>
             ¿Necesitas una solución personalizada?
           </p>
           <button className="btn-accent px-8 py-4 rounded-xl font-semibold text-lg">

@@ -50,7 +50,7 @@ export default function ContactSection() {
     border: '1px solid rgba(255,255,255,0.12)',
     borderRadius: '0.75rem',
     padding: '0.75rem 1rem',
-    color: '#F1EEE9',
+    color: '#F0EDE8',
     fontSize: '0.875rem',
     outline: 'none',
     transition: 'border-color 0.15s',
@@ -63,11 +63,11 @@ export default function ContactSection() {
     textTransform: 'uppercase',
     letterSpacing: '0.05em',
     marginBottom: '0.375rem',
-    color: '#94A3B8',
+    color: 'var(--color-text-on-dark-secondary)',
   }
 
   return (
-    <section id="contacto" style={{ background: '#0E1C2F' }} className="py-24 px-6">
+    <section id="contacto" style={{ background: 'var(--color-surface-dark)' }} className="py-24 px-6">
       <div className="max-w-2xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-12">
@@ -81,10 +81,10 @@ export default function ContactSection() {
           >
             Contacto
           </span>
-          <h2 className="text-3xl font-bold mb-3" style={{ color: '#F1EEE9' }}>
+          <h2 className="text-3xl font-bold mb-3" style={{ color: 'var(--color-text-on-dark)' }}>
             ¿Listo para comenzar?
           </h2>
-          <p className="text-base" style={{ color: '#94A3B8' }}>
+          <p className="text-base" style={{ color: 'var(--color-text-on-dark-secondary)' }}>
             Cuéntanos sobre tu empresa y te contactaremos a la brevedad.
           </p>
         </div>
@@ -112,10 +112,10 @@ export default function ContactSection() {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold mb-2" style={{ color: '#F1EEE9' }}>
+            <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--color-text-on-dark)' }}>
               ¡Mensaje enviado!
             </h3>
-            <p style={{ color: '#94A3B8' }}>
+            <p style={{ color: 'var(--color-text-on-dark-secondary)' }}>
               Gracias por contactarnos. Te responderemos pronto.
             </p>
           </div>
@@ -142,7 +142,7 @@ export default function ContactSection() {
                   placeholder="Juan García"
                   style={inputBase}
                   onFocus={(e) => (e.currentTarget.style.borderColor = '#E8650A')}
-                  onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)')}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)')}
                 />
               </div>
               <div>
@@ -159,7 +159,7 @@ export default function ContactSection() {
                   placeholder="juan@empresa.com"
                   style={inputBase}
                   onFocus={(e) => (e.currentTarget.style.borderColor = '#E8650A')}
-                  onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)')}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)')}
                 />
               </div>
             </div>
@@ -179,7 +179,7 @@ export default function ContactSection() {
                   placeholder="Industrias XYZ"
                   style={inputBase}
                   onFocus={(e) => (e.currentTarget.style.borderColor = '#E8650A')}
-                  onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)')}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)')}
                 />
               </div>
               <div>
@@ -195,7 +195,7 @@ export default function ContactSection() {
                   placeholder="+52 55 1234 5678"
                   style={inputBase}
                   onFocus={(e) => (e.currentTarget.style.borderColor = '#E8650A')}
-                  onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)')}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)')}
                 />
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function ContactSection() {
                 placeholder="Cuéntanos sobre tu empresa, el área en que necesitas ayuda y cualquier detalle relevante..."
                 style={{ ...inputBase, resize: 'vertical', minHeight: '120px' }}
                 onFocus={(e) => (e.currentTarget.style.borderColor = '#E8650A')}
-                onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)')}
+                onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)')}
               />
             </div>
 
@@ -286,7 +286,7 @@ export default function ContactSection() {
               )}
             </button>
 
-            <p className="text-center text-xs" style={{ color: '#4A6080' }}>
+            <p className="text-center text-xs" style={{ color: 'var(--color-text-on-dark-faint)' }}>
               Al enviar aceptas que nos comuniquemos contigo sobre tu consulta.
             </p>
           </form>

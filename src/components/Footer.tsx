@@ -16,10 +16,10 @@ const footerSections = [
   {
     title: 'Empresa',
     links: [
-      { label: 'Sobre Nosotros', href: '/about' },
+      { label: 'Sobre Nosotros', href: '/sobre-nosotros' },
       { label: 'Carreras', href: '/careers' },
       { label: 'Socios', href: '/partners' },
-      { label: 'Contacto', href: '/contact' },
+      { label: 'Contacto', href: '/contacto' },
     ],
   },
   {
@@ -84,7 +84,7 @@ export function Footer() {
   return (
     <footer
       className="relative"
-      style={{ backgroundColor: 'var(--color-surface-card)' }}
+      style={{ backgroundColor: 'var(--color-surface-dark)' }}
     >
       {/* Top accent line */}
       <div className="h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--color-accent), transparent)' }} />
@@ -93,19 +93,21 @@ export function Footer() {
         {/* Main grid */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12 py-16 lg:py-20">
           {/* Brand column */}
-          <div className="col-span-2 md:col-span-1">
+          <div className="col-span-2">
             <Link href="/" className="inline-block mb-5">
-              <Image
-                src="/wiger-logo-light.png"
-                alt="Wiger AI"
-                width={120}
-                height={36}
-                className="h-8 w-auto object-contain"
-              />
+              <div style={{ height: '48px', overflow: 'hidden' }}>
+                <Image
+                  src="/wiger-logo.png"
+                  alt="Wiger AI"
+                  width={500}
+                  height={500}
+                  style={{ height: '100px', width: 'auto', marginTop: '-26px' }}
+                />
+              </div>
             </Link>
             <p
-              className="text-sm leading-relaxed max-w-[200px]"
-              style={{ color: 'var(--color-text-muted)' }}
+              className="text-sm leading-relaxed max-w-[240px]"
+              style={{ color: 'var(--color-text-on-dark-muted)' }}
             >
               Plataforma AI para manufactura y distribución.
             </p>
@@ -121,16 +123,16 @@ export function Footer() {
                   className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200"
                   style={{
                     backgroundColor: 'rgba(255,255,255,0.04)',
-                    border: '1px solid var(--color-border)',
-                    color: 'var(--color-text-muted)',
+                    border: '1px solid var(--color-border-on-dark)',
+                    color: 'var(--color-text-on-dark-muted)',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = 'rgba(232, 101, 10, 0.4)'
                     e.currentTarget.style.color = 'var(--color-accent)'
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.06)'
-                    e.currentTarget.style.color = 'var(--color-text-muted)'
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)'
+                    e.currentTarget.style.color = 'var(--color-text-on-dark-muted)'
                   }}
                   aria-label={social.name}
                 >
@@ -145,7 +147,7 @@ export function Footer() {
             <div key={section.title}>
               <h3
                 className="text-xs font-semibold tracking-[0.15em] uppercase mb-5"
-                style={{ color: 'var(--color-text-secondary)' }}
+                style={{ color: 'var(--color-text-on-dark-secondary)' }}
               >
                 {section.title}
               </h3>
@@ -155,12 +157,12 @@ export function Footer() {
                     <a
                       href={link.href}
                       className="text-sm transition-colors duration-200"
-                      style={{ color: 'var(--color-text-muted)' }}
+                      style={{ color: 'var(--color-text-on-dark-muted)' }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.color = 'var(--color-accent)'
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.color = 'var(--color-text-muted)'
+                        e.currentTarget.style.color = 'var(--color-text-on-dark-muted)'
                       }}
                     >
                       {link.label}
@@ -175,16 +177,16 @@ export function Footer() {
         {/* Bottom bar */}
         <div
           className="py-6 flex flex-col sm:flex-row justify-between items-center gap-4"
-          style={{ borderTop: '1px solid var(--color-border)' }}
+          style={{ borderTop: '1px solid var(--color-border-on-dark)' }}
         >
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+          <p className="text-xs" style={{ color: 'var(--color-text-on-dark-muted)' }}>
             &copy; {new Date().getFullYear()} Wiger AI. Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-1">
-            <span className="text-xs" style={{ color: 'var(--color-text-faint)' }}>
+            <span className="text-xs" style={{ color: 'var(--color-text-on-dark-faint)' }}>
               Hecho en
             </span>
-            <span className="text-xs font-semibold" style={{ color: 'var(--color-text-muted)' }}>
+            <span className="text-xs font-semibold" style={{ color: 'var(--color-text-on-dark-muted)' }}>
               {' '}México
             </span>
           </div>

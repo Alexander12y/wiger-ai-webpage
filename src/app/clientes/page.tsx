@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import Link from 'next/link'
 import { SmoothScrollProvider } from '@/components/SmoothScrollProvider'
 import { Footer } from '@/components/Footer'
 
@@ -10,16 +11,20 @@ interface Client {
   solutionTag: string
   description: string
   videoPath: string | null
+  embedUrl?: string
+  caseStudyHref?: string
 }
 
 const clients: Client[] = [
   {
     id: 1,
-    name: '[Nombre del Cliente 1]',
-    solutionTag: '[Tipo de Solución]',
+    name: 'Sercodam Redes y Piolas',
+    solutionTag: 'ERP Personalizado',
     description:
-      '[Descripción de quiénes son y cuál era su desafío. Segunda línea con el contexto de cómo Wiger AI entró a apoyarlos. Tercera línea con el resultado concreto que lograron juntos.]',
+      'Empresa manufacturera y distribuidora de redes deportivas, de construcción e industriales. Operaban con inventario disperso en hojas de Google Sheets y perdían horas semanales en tareas manuales repetitivas. Wiger les implementó un ERP completamente personalizado — hoy ahorran 1 día completo por semana.',
     videoPath: null,
+    embedUrl: 'https://app.howdygo.com/embed/83d0b963-8904-47a4-9b41-e771bbca91d4',
+    caseStudyHref: '/clientes/sercodam',
   },
   {
     id: 2,
@@ -55,12 +60,24 @@ const clients: Client[] = [
   },
 ]
 
-function VideoPlaceholder({ videoPath, clientName }: { videoPath: string | null; clientName: string }) {
+function VideoPlaceholder({ videoPath, clientName, embedUrl }: { videoPath: string | null; clientName: string; embedUrl?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  if (embedUrl) {
+    return (
+      <div className="relative w-full rounded-2xl overflow-hidden" style={{ paddingBottom: 'calc(45.703125% + 40px)', background: 'var(--color-surface-section)' }}>
+        <iframe
+          src={embedUrl}
+          allow="fullscreen"
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+        />
+      </div>
+    )
+  }
 
   if (videoPath) {
     return (
-      <div className="relative w-full aspect-video rounded-2xl overflow-hidden" style={{ background: '#0A1628' }}>
+      <div className="relative w-full aspect-video rounded-2xl overflow-hidden" style={{ background: 'var(--color-surface-section)' }}>
         <video
           ref={videoRef}
           className="w-full h-full object-cover"
@@ -78,8 +95,8 @@ function VideoPlaceholder({ videoPath, clientName }: { videoPath: string | null;
     <div
       className="relative w-full aspect-video rounded-2xl overflow-hidden flex flex-col items-center justify-center gap-4"
       style={{
-        background: 'linear-gradient(135deg, #0A1628 0%, #162438 60%, #1a2d42 100%)',
-        border: '1px solid #1E3252',
+        background: 'var(--color-surface-section)',
+        border: '1px solid var(--color-border)',
       }}
     >
       {/* Top accent bar */}
@@ -106,10 +123,10 @@ function VideoPlaceholder({ videoPath, clientName }: { videoPath: string | null;
 
       {/* Label */}
       <div className="text-center px-6">
-        <p className="text-sm font-semibold" style={{ color: '#94A3B8' }}>
+        <p className="text-sm font-semibold" style={{ color: 'var(--color-text-muted)' }}>
           Video del caso
         </p>
-        <p className="text-xs mt-1" style={{ color: '#4A6080' }}>
+        <p className="text-xs mt-1" style={{ color: 'var(--color-text-faint)' }}>
           {clientName}
         </p>
       </div>
@@ -127,7 +144,7 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
   return (
     <div
       className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center py-16 lg:py-20"
-      style={{ borderBottom: '1px solid #1E3252' }}
+      style={{ borderBottom: '1px solid var(--color-border)' }}
     >
       {/* Left: Text info (2/5) */}
       <div className="lg:col-span-2 flex flex-col gap-5">
@@ -142,7 +159,7 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
         {/* Client name */}
         <h2
           className="text-2xl lg:text-3xl font-bold leading-tight"
-          style={{ color: '#F1EEE9' }}
+          style={{ color: 'var(--color-text-primary)' }}
         >
           {client.name}
         </h2>
@@ -164,35 +181,57 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
         {/* Description */}
         <p
           className="text-sm leading-relaxed line-clamp-3"
-          style={{ color: '#94A3B8' }}
+          style={{ color: 'var(--color-text-secondary)' }}
         >
           {client.description}
         </p>
 
         {/* CTA link */}
-        <button
-          className="self-start flex items-center gap-2 text-sm font-semibold transition-all duration-200 hover:gap-3 group"
-          style={{ color: '#E8650A' }}
-        >
-          <span>[Ver caso completo]</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+        {client.caseStudyHref ? (
+          <Link
+            href={client.caseStudyHref}
+            className="self-start flex items-center gap-2 text-sm font-semibold transition-all duration-200 hover:gap-3 group"
+            style={{ color: '#E8650A' }}
           >
-            <path
-              fillRule="evenodd"
-              d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
+            <span>Ver caso completo</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Link>
+        ) : (
+          <button
+            className="self-start flex items-center gap-2 text-sm font-semibold transition-all duration-200 hover:gap-3 group"
+            style={{ color: '#E8650A' }}
+          >
+            <span>[Ver caso completo]</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        )}
       </div>
 
       {/* Right: Video (3/5) */}
       <div className="lg:col-span-3">
-        <VideoPlaceholder videoPath={client.videoPath} clientName={client.name} />
+        <VideoPlaceholder videoPath={client.videoPath} clientName={client.name} embedUrl={client.embedUrl} />
       </div>
     </div>
   )
@@ -201,13 +240,13 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
 export default function ClientesPage() {
   return (
     <SmoothScrollProvider>
-      <main style={{ background: '#0E1C2F', minHeight: '100vh' }}>
+      <main style={{ background: 'var(--color-surface-page)', minHeight: '100vh' }}>
         {/* Header */}
         <section
           className="pt-40 pb-16 px-6 lg:px-8"
           style={{
-            background: 'linear-gradient(180deg, #060E1A 0%, #0E1C2F 100%)',
-            borderBottom: '1px solid #1E3252',
+            background: 'linear-gradient(180deg, #FAF8F5 0%, #F3F0EA 100%)',
+            borderBottom: '1px solid var(--color-border)',
           }}
         >
           <div className="max-w-5xl mx-auto text-center">
@@ -222,7 +261,7 @@ export default function ClientesPage() {
             {/* Main title */}
             <h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
-              style={{ color: '#F1EEE9' }}
+              style={{ color: 'var(--color-text-primary)' }}
             >
               Historias inspiradoras de{' '}
               <span style={{ color: '#E8650A' }}>clientes inspiradores</span>
@@ -231,7 +270,7 @@ export default function ClientesPage() {
             {/* Subtitle placeholder */}
             <p
               className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
-              style={{ color: '#94A3B8' }}
+              style={{ color: 'var(--color-text-secondary)' }}
             >
               [Subtítulo: una línea que describe la propuesta de valor de los casos de éxito
               y lo que el visitante va a descubrir en esta página.]
@@ -249,13 +288,13 @@ export default function ClientesPage() {
         {/* Bottom CTA */}
         <section
           className="py-20 px-6 lg:px-8 text-center"
-          style={{ borderTop: '1px solid #1E3252' }}
+          style={{ borderTop: '1px solid var(--color-border)' }}
         >
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4" style={{ color: '#F1EEE9' }}>
+            <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>
               [¿Listo para ser la próxima historia?]
             </h2>
-            <p className="text-base mb-8" style={{ color: '#94A3B8' }}>
+            <p className="text-base mb-8" style={{ color: 'var(--color-text-secondary)' }}>
               [Texto de llamada a la acción para que el visitante contacte a ventas o
               solicite una demo.]
             </p>
