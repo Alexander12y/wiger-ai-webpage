@@ -23,6 +23,9 @@ const syne = Syne({
 export const metadata: Metadata = {
   title: "Wiger AI — ERP + CRM para Manufactura y Distribución",
   description: "Plataforma de gestión unificada para manufactureros y distribuidores. Control de inventario, ventas, producción y clientes en un solo sistema diseñado para la industria.",
+  icons: {
+    icon: "/wiger_ai_chip.png",
+  },
 };
 
 export default async function RootLayout({
