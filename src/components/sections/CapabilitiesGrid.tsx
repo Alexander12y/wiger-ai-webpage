@@ -99,7 +99,7 @@ export function CapabilitiesGrid() {
               className="text-xs font-semibold tracking-[0.2em] uppercase"
               style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
             >
-              Capacidades
+              Industrias
             </span>
           </div>
           <h2 className="reveal reveal-delay-1 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight"
