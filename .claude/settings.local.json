@@ -6,7 +6,10 @@
       "Bash(npx prisma:*)",
       "mcp__MCP_DOCKER__brave_web_search",
       "mcp__MCP_DOCKER__scrape_webpage",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "WebSearch",
+      "WebFetch(domain:vercel.com)",
+      "WebFetch(domain:www.hostinger.com)"
     ]
   }
 }

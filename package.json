@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "postinstall": "prisma generate",
     "db:seed": "tsx prisma/seed.ts"
   },
   "prisma": {
@@ -38,6 +39,10 @@
     "tailwind-merge": "^3.3.1",
     "three": "^0.180.0",
     "zod": "^4.3.6"
+  },
+  "overrides": {
+    "hono": "^4.12.4",
+    "@hono/node-server": "^1.19.10"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
