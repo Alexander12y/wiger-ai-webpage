@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Syne } from "next/font/google";
+import { headers } from "next/headers";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 
@@ -44,16 +45,21 @@ export const metadata: Metadata = {
   icons: { icon: '/favicon.ico' },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Read the nonce injected by middleware so Next.js can attach it to its own
+  // inline scripts, keeping them compliant with our strict CSP (no unsafe-inline).
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+
   return (
     <html lang="es">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} antialiased`}
         suppressHydrationWarning={true}
+        {...(nonce ? { "data-nonce": nonce } : {})}
       >
         <Navbar />
         {children}

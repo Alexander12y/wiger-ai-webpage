@@ -1,11 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'fs/promises'
 import path from 'path'
+import { z } from 'zod'
 import { getAdminFromRequest } from '@/lib/adminAuth'
 import { prisma } from '@/lib/prisma'
 
 // Max file size: 500 MB
 const MAX_SIZE_BYTES = 500 * 1024 * 1024
+
+// Allowed file extensions for uploads
+const ALLOWED_EXTENSIONS = new Set([
+  '.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.ico',
+  '.mp4', '.webm', '.ogg',
+  '.pdf', '.txt',
+])
+
+// Zod schema for the targetPath field
+const targetPathSchema = z
+  .string()
+  .min(1)
+  .max(200)
+  // Only allow safe path characters: alphanumeric, hyphens, underscores, dots, forward slashes
+  .regex(/^[\w\-./]+$/, 'Ruta inválida')
+  // Block any directory traversal attempts
+  .refine((p) => !p.includes('..'), 'No se permiten rutas con ".."')
+  .refine((p) => !path.isAbsolute(p), 'No se permiten rutas absolutas')
 
 export async function POST(request: NextRequest) {
   // Auth: verify admin session cookie
@@ -22,10 +41,26 @@ export async function POST(request: NextRequest) {
   }
 
   const file = formData.get('file') as File | null
-  const targetPath = formData.get('targetPath') as string | null
+  const rawTargetPath = formData.get('targetPath')
 
-  if (!file || !targetPath) {
+  if (!file || !rawTargetPath) {
     return NextResponse.json({ error: 'Archivo y ruta destino son requeridos' }, { status: 400 })
+  }
+
+  // Validate targetPath with Zod before any filesystem operations
+  const parsedPath = targetPathSchema.safeParse(rawTargetPath)
+  if (!parsedPath.success) {
+    return NextResponse.json({ error: 'Ruta de destino inválida' }, { status: 400 })
+  }
+  const targetPath = parsedPath.data
+
+  // Validate file extension against allowlist
+  const ext = path.extname(file.name).toLowerCase()
+  if (!ALLOWED_EXTENSIONS.has(ext)) {
+    return NextResponse.json(
+      { error: `Tipo de archivo no permitido: ${ext}` },
+      { status: 415 }
+    )
   }
 
   if (file.size > MAX_SIZE_BYTES) {
@@ -35,7 +70,7 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  // Sanitize the target path — prevent directory traversal
+  // Sanitize the target path — prevent directory traversal (defense-in-depth)
   const normalized = path.normalize(targetPath).replace(/\\/g, '/')
   if (normalized.startsWith('..') || path.isAbsolute(normalized)) {
     return NextResponse.json({ error: 'Ruta de destino inválida' }, { status: 400 })
