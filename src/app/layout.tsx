@@ -25,6 +25,10 @@ const DESCRIPTION = "Plataforma de gestión unificada para manufactureros y dist
 export const metadata: Metadata = {
   metadataBase: new URL('https://wiger.ai'),
   title: "Wiger AI — ERP + CRM para Manufactura y Distribución",
+  description: "Plataforma de gestión unificada para manufactureros y distribuidores. Control de inventario, ventas, producción y clientes en un solo sistema diseñado para la industria.",
+  icons: {
+    icon: "/wiger_ai_chip.png",
+  },
   description: DESCRIPTION,
   robots: { index: true, follow: true, nocache: false },
   openGraph: {
@@ -38,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Wiger AI — ERP + CRM para Manufactura y Distribución",
+    title: "Wiger AI — ERP + CRM para Manufactura y Construcción",
     description: DESCRIPTION,
     images: ['/og-image.png'],
   },
