@@ -11,7 +11,7 @@ const capabilities = [
     label: 'Redes físicas',
     title: '',
     description: '',
-    bgImage: '/redes_fisicas.jpg',
+    bgImage: '/optimized/redes_fisicas.webp',
     size: 'large' as const,
     accent: true,
   },
@@ -20,7 +20,7 @@ const capabilities = [
     label: 'Manufactura',
     title: '',
     description: '',
-    bgImage: '/manufactura_industria.jpg',
+    bgImage: '/optimized/manufactura_industria.webp',
     size: 'small' as const,
   },
   {
@@ -28,7 +28,7 @@ const capabilities = [
     label: 'Distribución',
     title: '',
     description: '',
-    bgImage: '/distribucion_industria.jpg',
+    bgImage: '/optimized/distribucion_industria.webp',
     size: 'small' as const,
   },
   {
@@ -36,7 +36,7 @@ const capabilities = [
     label: 'Retail',
     title: '',
     description: '',
-    bgImage: '/retial_industria.jpg',
+    bgImage: '/optimized/retial_industria.webp',
     size: 'small' as const,
   },
   {
@@ -44,7 +44,7 @@ const capabilities = [
     label: 'Construcción',
     title: '',
     description: '',
-    bgImage: '/construccion_industria.jpg',
+    bgImage: '/optimized/construccion_industria.webp',
     size: 'small' as const,
   },
 ]
@@ -60,15 +60,36 @@ export function CapabilitiesGrid() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible')
+            observer.unobserve(entry.target)
           }
         })
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: '0px 0px -50px 0px' }
     )
 
     const elements = sectionRef.current?.querySelectorAll('.reveal')
     elements?.forEach((el) => observer.observe(el))
     return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const bgObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement
+            if (el.dataset.bg) {
+              el.style.backgroundImage = `url(${el.dataset.bg})`
+            }
+            bgObserver.unobserve(el)
+          }
+        })
+      },
+      { rootMargin: '200px 0px' }
+    )
+    const bgElements = sectionRef.current?.querySelectorAll('[data-bg]')
+    bgElements?.forEach((el) => bgObserver.observe(el))
+    return () => bgObserver.disconnect()
   }, [])
 
   useEffect(() => {
@@ -154,12 +175,12 @@ export function CapabilitiesGrid() {
                     e.currentTarget.style.boxShadow = 'none'
                   }}
                 >
-                  {/* Background image — alta transparencia sobre negro */}
+                  {/* Background image — lazy loaded via data-bg observer */}
                   {cap.bgImage && (
                     <div
                       className="absolute inset-0"
+                      data-bg={cap.bgImage}
                       style={{
-                        backgroundImage: `url(${cap.bgImage})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         opacity: 0.4,

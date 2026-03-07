@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Plus, Minus, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 
 interface Service {
   id: string
@@ -20,7 +21,7 @@ const services: Service[] = [
     title: 'ERP para Manufactura',
     description: 'Control total de tu operación productiva',
     detailedDescription: 'Gestiona inventarios, órdenes de producción, cadena de suministro y costos en tiempo real. Un sistema diseñado para la realidad de la manufactura: integrado, ágil y adaptable a tu proceso.',
-    backgroundImage: '/manufactura.jpg',
+    backgroundImage: '/optimized/manufactura.webp',
     cardColor: 'var(--color-surface-dark-card)',
     ctaText: 'Explorar ERP',
     link: '/productos/erp'
@@ -30,7 +31,7 @@ const services: Service[] = [
     title: 'CRM Industrial',
     description: 'Relaciones comerciales que impulsan ventas',
     detailedDescription: 'Administra clientes, distribuidores y prospectos con visibilidad completa del pipeline. Cotizaciones, seguimiento de pedidos y análisis de cartera, todo conectado a tu ERP para decisiones más rápidas.',
-    backgroundImage: '/shaking_hands.png',
+    backgroundImage: '/optimized/shaking_hands.webp',
     cardColor: 'var(--color-surface-dark)',
     ctaText: 'Explorar CRM',
     link: '/productos/crm'
@@ -40,7 +41,7 @@ const services: Service[] = [
     title: 'Transportation Management System (TMS)',
     description: 'Cotizaciones al mejor precio sin tener que ir de carrier en carrier',
     detailedDescription: 'Un sistema integrado y personalizado a tus procesos para transportar cualquier bien de tu empresa. Elije la paquetería y cotización que más te convenga y ahorra horas de procesos manuales manejando envíos.',
-    backgroundImage: '/transportation.jpg',
+    backgroundImage: '/optimized/transportation.webp',
     cardColor: '#1A1209',
     ctaText: 'Explorar TMS',
     link: '/productos/integraciones'
@@ -50,7 +51,7 @@ const services: Service[] = [
     title: 'Field Service Management (FSM)',
     description: '',
     detailedDescription: 'Hecho para proyectos de construcción .',
-    backgroundImage: '/field_service.jpg',
+    backgroundImage: '/optimized/field_service.webp',
     cardColor: '#1E3252',
     ctaText: 'Explorar FSM',
     link: '/implementacion'
@@ -68,10 +69,11 @@ export function ExpandableServicesSection() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible')
+            observer.unobserve(entry.target)
           }
         })
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: '0px 0px -50px 0px' }
     )
     const elements = sectionRef.current?.querySelectorAll('.reveal')
     elements?.forEach((el) => observer.observe(el))
@@ -144,22 +146,28 @@ export function ExpandableServicesSection() {
               >
                 {/* Background */}
                 <div
-                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
-                  style={{
-                    backgroundImage: service.backgroundImage ? `url(${service.backgroundImage})` : 'none',
-                    backgroundColor: service.cardColor,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center center',
-                    backgroundRepeat: 'no-repeat',
-                  }}
+                  className="absolute inset-0"
+                  style={{ backgroundColor: service.cardColor }}
                 >
-                  {/* Overlay */}
-                  <div className={`absolute inset-0 transition-all duration-500 ${
-                    isExpanded
-                      ? 'bg-[#1C1208]/60'
-                      : 'bg-[#1C1208]/30 group-hover:bg-[#1C1208]/40'
-                  }`}></div>
+                  {service.backgroundImage && (
+                    <Image
+                      src={service.backgroundImage}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 30vw"
+                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                      quality={85}
+                    />
+                  )}
                 </div>
+
+                {/* Overlay */}
+                <div className={`absolute inset-0 transition-all duration-500 ${
+                  isExpanded
+                    ? 'bg-[#1C1208]/60'
+                    : 'bg-[#1C1208]/30 group-hover:bg-[#1C1208]/40'
+                }`} />
 
                 {/* Content */}
                 <div className="relative h-full p-5 md:p-7 lg:p-9 flex flex-col justify-between text-white">
