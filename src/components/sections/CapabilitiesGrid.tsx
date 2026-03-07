@@ -11,7 +11,7 @@ const capabilities = [
     label: 'Redes físicas',
     title: '',
     description: '',
-    bgImage: '', // <- URL de imagen de fondo (ej: '/images/redes.jpg')
+    bgImage: '/redes_fisicas.jpg',
     size: 'large' as const,
     accent: true,
   },
@@ -20,7 +20,7 @@ const capabilities = [
     label: 'Manufactura',
     title: '',
     description: '',
-    bgImage: '', // <- URL de imagen de fondo
+    bgImage: '/manufactura_industria.jpg',
     size: 'small' as const,
   },
   {
@@ -28,7 +28,7 @@ const capabilities = [
     label: 'Distribución',
     title: '',
     description: '',
-    bgImage: '', // <- URL de imagen de fondo
+    bgImage: '/distribucion_industria.jpg',
     size: 'small' as const,
   },
   {
@@ -36,7 +36,7 @@ const capabilities = [
     label: 'Retail',
     title: '',
     description: '',
-    bgImage: '', // <- URL de imagen de fondo
+    bgImage: '/retial_industria.jpg',
     size: 'small' as const,
   },
   {
@@ -44,7 +44,7 @@ const capabilities = [
     label: 'Construcción',
     title: '',
     description: '',
-    bgImage: '', // <- URL de imagen de fondo
+    bgImage: '/construccion_industria.jpg',
     size: 'small' as const,
   },
 ]
@@ -135,8 +135,8 @@ export function CapabilitiesGrid() {
                     isLarge ? 'md:col-span-2 lg:col-span-2 lg:row-span-2' : ''
                   }`}
                   style={{
-                    backgroundColor: cap.accent ? 'var(--color-surface-elevated)' : 'var(--color-surface-card)',
-                    border: `1px solid ${cap.accent ? 'var(--color-border-accent)' : 'var(--color-border)'}`,
+                    backgroundColor: cap.accent ? '#231811' : '#1C1208',
+                    border: `1px solid ${cap.accent ? 'rgba(232,101,10,0.3)' : 'rgba(255,255,255,0.08)'}`,
                   }}
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -150,7 +150,7 @@ export function CapabilitiesGrid() {
                     e.currentTarget.style.boxShadow = 'var(--shadow-glow)'
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = cap.accent ? 'rgba(232, 101, 10, 0.3)' : 'rgba(0, 0, 0, 0.08)'
+                    e.currentTarget.style.borderColor = cap.accent ? 'rgba(232, 101, 10, 0.3)' : 'rgba(255, 255, 255, 0.08)'
                     e.currentTarget.style.boxShadow = 'none'
                   }}
                 >
@@ -162,7 +162,7 @@ export function CapabilitiesGrid() {
                         backgroundImage: `url(${cap.bgImage})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
-                        opacity: 0.15,
+                        opacity: 0.4,
                       }}
                     />
                   )}
@@ -186,10 +186,10 @@ export function CapabilitiesGrid() {
                           onClick={(e) => { e.stopPropagation(); setExpandedIndex(null) }}
                           className="toggle-btn absolute top-4 right-4 pointer-events-auto w-9 h-9
                             rounded-full flex items-center justify-center"
-                          style={{ backgroundColor: 'rgba(0,0,0,0.04)', border: '1px solid var(--color-border)' }}
+                          style={{ backgroundColor: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}
                           aria-label="Cerrar"
                         >
-                          <X className="w-4 h-4" style={{ color: 'var(--color-text-muted)' }} />
+                          <X className="w-4 h-4" style={{ color: 'rgba(240,237,232,0.55)' }} />
                         </button>
 
                         {/* Amber accent line at bottom */}
@@ -208,13 +208,13 @@ export function CapabilitiesGrid() {
                       <div className="flex items-center gap-3 mb-4">
                         <div
                           className="w-10 h-10 rounded-xl flex items-center justify-center"
-                          style={{ backgroundColor: 'var(--color-accent-light)' }}
+                          style={{ backgroundColor: 'rgba(232,101,10,0.2)' }}
                         >
                           <Icon className="w-5 h-5" style={{ color: 'var(--color-accent)' }} />
                         </div>
                         <span
                           className="text-xs font-semibold tracking-[0.12em] uppercase"
-                          style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
+                          style={{ color: 'rgba(240,237,232,0.55)', fontFamily: 'var(--font-mono)' }}
                         >
                           {cap.label}
                         </span>
@@ -225,7 +225,7 @@ export function CapabilitiesGrid() {
                         className={`font-display font-bold leading-snug mb-3 ${
                           isLarge ? 'text-2xl lg:text-3xl' : 'text-lg lg:text-xl'
                         }`}
-                        style={{ color: 'var(--color-text-primary)' }}
+                        style={{ color: 'var(--color-text-on-dark)' }}
                       >
                         {cap.title}
                       </h3>
@@ -233,7 +233,7 @@ export function CapabilitiesGrid() {
                       {/* Description */}
                       <p
                         className={`leading-relaxed ${isLarge ? 'text-base lg:text-lg max-w-lg' : 'text-sm'}`}
-                        style={{ color: 'var(--color-text-secondary)' }}
+                        style={{ color: 'var(--color-text-on-dark-muted)' }}
                       >
                         {cap.description}
                       </p>
@@ -254,11 +254,11 @@ export function CapabilitiesGrid() {
                             className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300
                               group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                             style={{
-                              backgroundColor: 'rgba(0,0,0,0.04)',
-                              border: '1px solid var(--color-border)',
+                              backgroundColor: 'rgba(255,255,255,0.06)',
+                              border: '1px solid rgba(255,255,255,0.12)',
                             }}
                           >
-                            <ArrowUpRight className="w-4 h-4" style={{ color: 'var(--color-text-muted)' }} />
+                            <ArrowUpRight className="w-4 h-4" style={{ color: 'rgba(240,237,232,0.55)' }} />
                           </div>
                         </motion.div>
                       )}

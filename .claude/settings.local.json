@@ -9,7 +9,8 @@
       "Bash(node:*)",
       "WebSearch",
       "WebFetch(domain:vercel.com)",
-      "WebFetch(domain:www.hostinger.com)"
+      "WebFetch(domain:www.hostinger.com)",
+      "mcp__MCP_DOCKER__browser_navigate"
     ]
   }
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Plus, Minus, ArrowRight } from 'lucide-react'
 
 interface Service {
@@ -50,7 +50,7 @@ const services: Service[] = [
     title: 'Field Service Management (FSM)',
     description: '',
     detailedDescription: 'Hecho para proyectos de construcción .',
-    backgroundImage: '',
+    backgroundImage: '/field_service.jpg',
     cardColor: '#1E3252',
     ctaText: 'Explorar FSM',
     link: '/implementacion'
@@ -60,6 +60,23 @@ const services: Service[] = [
 export function ExpandableServicesSection() {
   const [expandedService, setExpandedService] = useState<string>('')
   const [showExpandedContent, setShowExpandedContent] = useState<string>('')
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible')
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+    const elements = sectionRef.current?.querySelectorAll('.reveal')
+    elements?.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
 
   const handleServiceClick = (serviceId: string) => {
     if (expandedService === serviceId) {
@@ -85,25 +102,25 @@ export function ExpandableServicesSection() {
   }
 
   return (
-    <section id="productos" className="py-24 px-8" style={{ backgroundColor: 'var(--color-surface-dark)' }}>
+    <section ref={sectionRef} id="productos" className="py-24 px-8" style={{ backgroundColor: 'var(--color-surface-dark)' }}>
       <div className="max-w-7xl mx-auto">
         {/* Sub-Hero */}
         <div className="text-center mb-16">
           <div className="relative">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4" style={{ color: '#F1EEE9' }}>
+            <h2 className="reveal text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4" style={{ color: '#F1EEE9' }}>
               Mientras el mundo avanza sin parar,
             </h2>
             <div className="relative">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-light italic" style={{ color: 'rgba(240,237,232,0.55)' }}>
+              <h3 className="reveal reveal-delay-1 text-3xl md:text-4xl lg:text-5xl font-light italic" style={{ color: 'rgba(240,237,232,0.55)' }}>
                 ¿puedes permitirte quedarte atrás?
               </h3>
-              <div className="mt-6 w-12 h-[2px] bg-[var(--color-accent)] mx-auto" />
+              <div className="reveal reveal-delay-2 mt-6 w-12 h-[2px] bg-[var(--color-accent)] mx-auto" />
             </div>
           </div>
         </div>
 
         {/* Services Grid */}
-        <div className="flex flex-col md:flex-row gap-6 md:h-[75vh] w-full">
+        <div className="reveal reveal-delay-3 flex flex-col md:flex-row gap-6 md:h-[75vh] w-full">
           {services.map((service) => {
             const isExpanded = expandedService === service.id
 
@@ -235,7 +252,7 @@ export function ExpandableServicesSection() {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16 pt-16 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+        <div className="reveal reveal-delay-4 text-center mt-16 pt-16 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
           <p className="mb-6 text-lg" style={{ color: 'var(--color-text-on-dark-muted)' }}>
             ¿Necesitas una solución personalizada?
           </p>
