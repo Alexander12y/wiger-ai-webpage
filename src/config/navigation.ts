@@ -1,23 +1,24 @@
 export interface NavItem {
-  name: string
+  /** Translation key under the 'nav' namespace */
+  labelKey: string
   href: string
-  children?: { name: string; href: string; description?: string }[]
+  children?: { labelKey: string; href: string; descriptionKey?: string }[]
 }
 
 export const navItems: NavItem[] = [
-  { name: 'Productos', href: '#productos' },
-  { name: 'Clientes', href: '/clientes' },
-  { name: 'Sobre nosotros', href: '/sobre-nosotros' },
+  { labelKey: 'products', href: '#productos' },
+  { labelKey: 'clients', href: '/clientes' },
+  { labelKey: 'aboutUs', href: '/sobre-nosotros' },
   {
-    name: 'Industrias',
+    labelKey: 'industries',
     href: '#',
     children: [
       {
-        name: 'Redes Físicas',
+        labelKey: 'physicalNetworks',
         href: '/industrias/redes-fisicas',
-        description: 'Lorem ipsum dolor sit amet',
+        descriptionKey: 'physicalNetworksDesc',
       },
     ],
   },
-  { name: 'Contacto', href: '/contacto' },
+  { labelKey: 'contact', href: '/contacto' },
 ]

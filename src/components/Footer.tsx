@@ -1,45 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
-
-const footerSections = [
-  {
-    title: 'Productos',
-    links: [
-      { label: 'ERP para Manufactura', href: '/productos/erp' },
-      { label: 'CRM Industrial', href: '/productos/crm' },
-      { label: 'Integraciones', href: '/productos/integraciones' },
-      { label: 'Módulos', href: '/productos/modulos' },
-    ],
-  },
-  {
-    title: 'Empresa',
-    links: [
-      { label: 'Sobre Nosotros', href: '/sobre-nosotros' },
-      { label: 'Carreras', href: '/careers' },
-      { label: 'Socios', href: '/partners' },
-      { label: 'Contacto', href: '/contacto' },
-    ],
-  },
-  {
-    title: 'Recursos',
-    links: [
-      { label: 'Blog', href: '/blog' },
-      { label: 'Documentación', href: '/docs' },
-      { label: 'Casos de Éxito', href: '/casos-de-exito' },
-      { label: 'Soporte', href: '/soporte' },
-    ],
-  },
-  {
-    title: 'Legal',
-    links: [
-      { label: 'Privacidad', href: '/privacidad' },
-      { label: 'Términos', href: '/terminos' },
-      { label: 'Seguridad', href: '/seguridad' },
-    ],
-  },
-]
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 
 const socialLinks = [
   {
@@ -81,18 +44,55 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  const t = useTranslations('footer')
+
+  const footerSections = [
+    {
+      title: t('products'),
+      links: [
+        { label: t('erpManufacturing'), href: '/productos/erp' },
+        { label: t('crmIndustrial'), href: '/productos/crm' },
+        { label: t('integrations'), href: '/productos/integraciones' },
+        { label: t('modules'), href: '/productos/modulos' },
+      ],
+    },
+    {
+      title: t('company'),
+      links: [
+        { label: t('aboutUs'), href: '/sobre-nosotros' },
+        { label: t('careers'), href: '/careers' },
+        { label: t('partners'), href: '/partners' },
+        { label: t('contact'), href: '/contacto' },
+      ],
+    },
+    {
+      title: t('resources'),
+      links: [
+        { label: t('blog'), href: '/blog' },
+        { label: t('documentation'), href: '/docs' },
+        { label: t('caseStudies'), href: '/casos-de-exito' },
+        { label: t('support'), href: '/soporte' },
+      ],
+    },
+    {
+      title: t('legal'),
+      links: [
+        { label: t('privacy'), href: '/privacidad' },
+        { label: t('terms'), href: '/terminos' },
+        { label: t('security'), href: '/seguridad' },
+      ],
+    },
+  ]
+
   return (
     <footer
       className="relative"
       style={{ backgroundColor: 'var(--color-surface-dark)' }}
     >
-      {/* Top accent line */}
       <div className="h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--color-accent), transparent)' }} />
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Main grid */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12 py-16 lg:py-20">
-          {/* Brand column */}
           <div className="col-span-2">
             <Link href="/" className="inline-block mb-5">
               <div style={{ height: '48px', overflow: 'hidden' }}>
@@ -109,10 +109,9 @@ export function Footer() {
               className="text-sm leading-relaxed max-w-[240px]"
               style={{ color: 'var(--color-text-on-dark-muted)' }}
             >
-              Plataforma AI para manufactura y distribución.
+              {t('tagline')}
             </p>
 
-            {/* Social links */}
             <div className="flex items-center gap-3 mt-6">
               {socialLinks.map((social) => (
                 <a
@@ -142,7 +141,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Link columns */}
           {footerSections.map((section) => (
             <div key={section.title}>
               <h3
@@ -174,20 +172,19 @@ export function Footer() {
           ))}
         </div>
 
-        {/* Bottom bar */}
         <div
           className="py-6 flex flex-col sm:flex-row justify-between items-center gap-4"
           style={{ borderTop: '1px solid var(--color-border-on-dark)' }}
         >
           <p className="text-xs" style={{ color: 'var(--color-text-on-dark-muted)' }}>
-            &copy; {new Date().getFullYear()} Wiger AI. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} {t('copyright')}
           </p>
           <div className="flex items-center gap-1">
             <span className="text-xs" style={{ color: 'var(--color-text-on-dark-faint)' }}>
-              Hecho en
+              {t('madeIn')}
             </span>
             <span className="text-xs font-semibold" style={{ color: 'var(--color-text-on-dark-muted)' }}>
-              {' '}México
+              {' '}{t('country')}
             </span>
           </div>
         </div>

@@ -2,11 +2,14 @@
 
 import { useEffect, useRef } from 'react'
 import { ArrowRight, Play } from 'lucide-react'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 import Script from 'next/script'
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const t = useTranslations('hero')
+  const tc = useTranslations('common')
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -43,7 +46,6 @@ export function HeroSection() {
         >
           <source src="/videos/hero-background.mp4" type="video/mp4" />
         </video>
-        {/* Gradient overlay — heavier on left for text readability */}
         <div
           className="absolute inset-0"
           style={{
@@ -52,7 +54,6 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Grid pattern overlay */}
       <div className="absolute inset-0 z-[2] grid-pattern-dark opacity-40" />
 
       {/* Content */}
@@ -60,32 +61,30 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[70vh]">
           {/* Left — Typography */}
           <div className="lg:col-span-6 space-y-8">
-            {/* Eyebrow */}
             <div className="reveal reveal-delay-1 flex items-center gap-3">
               <div className="h-[2px] w-8" style={{ backgroundColor: 'var(--color-accent)' }} />
               <span
                 className="text-xs font-semibold tracking-[0.2em] uppercase font-mono"
                 style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
               >
-                Digital Platform
+                {t('eyebrow')}
               </span>
             </div>
 
-            {/* Main heading */}
             <h1 className="reveal reveal-delay-2 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[0.95] tracking-tight">
               <span style={{ color: 'var(--color-text-on-dark)' }}>
-                Empresas
+                {t('headingLine1')}
               </span>
               <br />
               <span style={{ color: 'var(--color-text-on-dark)' }}>
-                autónomas en la{' '}
+                {t('headingLine2')}{' '}
               </span>
               <br />
               <span
                 className="relative inline-block"
                 style={{ color: 'var(--color-accent)' }}
               >
-                revolución de la AI.
+                {t('headingLine3')}
                 <span
                   className="absolute -bottom-2 left-0 w-full h-[3px] origin-left"
                   style={{
@@ -97,21 +96,16 @@ export function HeroSection() {
               </span>
             </h1>
 
-            {/* Subtext */}
             <p
               className="reveal reveal-delay-3 text-base sm:text-lg lg:text-xl max-w-xl leading-relaxed"
               style={{ color: 'var(--color-text-on-dark-secondary)' }}
             >
-
-              En un mundo siempre moviéndose para adelante, 
-              con una revolución que cambiará la manera en que conocemos el mundo, 
-              no podíamos permitirnos quedarnos quietos…
+              {t('subtext')}
             </p>
 
-            {/* CTA Group */}
             <div className="reveal reveal-delay-4 flex flex-col sm:flex-row gap-4 pt-2">
               <Link href="/contacto" className="btn-accent group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold text-base">
-                Contáctanos
+                {t('ctaPrimary')}
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Link>
               <button
@@ -120,11 +114,10 @@ export function HeroSection() {
                 onClick={() => document.getElementById('hero-demo')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <Play className="w-4 h-4" />
-                Ver en acción
+                {t('ctaSecondary')}
               </button>
             </div>
 
-            {/* Trust metric */}
             <div className="reveal reveal-delay-5 flex items-center gap-6 pt-4">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
@@ -143,14 +136,14 @@ export function HeroSection() {
               </div>
               <p className="text-sm" style={{ color: 'var(--color-text-on-dark-muted)' }}>
                 <span className="font-semibold" style={{ color: 'rgba(240,237,232,0.70)' }}>
-                  Empresas líderes
+                  {t('trustMetricBold')}
                 </span>{' '}
-                ya transforman su operación
+                {t('trustMetricText')}
               </p>
             </div>
           </div>
 
-          {/* Right — Video card / visual element */}
+          {/* Right — Video card */}
           <div className="lg:col-span-6 reveal reveal-delay-3">
             <div
               className="relative rounded-2xl overflow-hidden"
@@ -159,10 +152,8 @@ export function HeroSection() {
                 boxShadow: 'var(--shadow-elevated)',
               }}
             >
-              {/* Accent top bar */}
               <div className="h-[2px]" style={{ background: 'linear-gradient(90deg, var(--color-accent), transparent)' }} />
 
-              {/* Howdygo demo embed */}
               <Script src="https://js.howdygo.com/v1.2.1/index.js" strategy="afterInteractive" />
               <div
                 id="hero-demo"
@@ -184,15 +175,14 @@ export function HeroSection() {
                 />
               </div>
 
-              {/* Bottom stats bar */}
               <div
                 className="grid grid-cols-3 divide-x"
                 style={{ borderTop: '1px solid var(--color-border-on-dark)', divideColor: 'var(--color-border-on-dark)' } as React.CSSProperties}
               >
                 {[
-                  { label: 'Eficiencia', value: '+40%' },
-                  { label: 'Integración', value: '< 4 sem' },
-                  { label: 'Soporte', value: '24/7' },
+                  { label: t('statEfficiency'), value: t('statEfficiencyValue') },
+                  { label: t('statIntegration'), value: t('statIntegrationValue') },
+                  { label: t('statSupport'), value: t('statSupportValue') },
                 ].map((stat) => (
                   <div key={stat.label} className="px-4 py-3 text-center" style={{ borderColor: 'var(--color-border-on-dark)' }}>
                     <p className="text-sm font-bold font-display" style={{ color: 'var(--color-accent)' }}>
@@ -212,7 +202,7 @@ export function HeroSection() {
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 reveal reveal-delay-6">
         <span className="text-[10px] uppercase tracking-[0.2em]" style={{ color: 'var(--color-text-on-dark-muted)' }}>
-          Scroll
+          {tc('scroll')}
         </span>
         <div className="w-px h-8" style={{ background: 'linear-gradient(180deg, rgba(240,237,232,0.45), transparent)' }} />
       </div>

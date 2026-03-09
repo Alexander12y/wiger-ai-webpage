@@ -4,55 +4,58 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
 import { Network, Factory, Truck, ShoppingCart, HardHat, ArrowUpRight, X } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useMotion'
-
-const capabilities = [
-  {
-    icon: Network,
-    label: 'Redes físicas',
-    title: '',
-    description: '',
-    bgImage: '/optimized/redes_fisicas.webp',
-    size: 'large' as const,
-    accent: true,
-  },
-  {
-    icon: Factory,
-    label: 'Manufactura',
-    title: '',
-    description: '',
-    bgImage: '/optimized/manufactura_industria.webp',
-    size: 'small' as const,
-  },
-  {
-    icon: Truck,
-    label: 'Distribución',
-    title: '',
-    description: '',
-    bgImage: '/optimized/distribucion_industria.webp',
-    size: 'small' as const,
-  },
-  {
-    icon: ShoppingCart,
-    label: 'Retail',
-    title: '',
-    description: '',
-    bgImage: '/optimized/retial_industria.webp',
-    size: 'small' as const,
-  },
-  {
-    icon: HardHat,
-    label: 'Construcción',
-    title: '',
-    description: '',
-    bgImage: '/optimized/construccion_industria.webp',
-    size: 'small' as const,
-  },
-]
+import { useTranslations } from 'next-intl'
 
 export function CapabilitiesGrid() {
   const sectionRef = useRef<HTMLElement>(null)
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
   const prefersReducedMotion = useReducedMotion()
+  const t = useTranslations('capabilities')
+  const tc = useTranslations('common')
+
+  const capabilities = [
+    {
+      icon: Network,
+      label: t('physicalNetworks'),
+      title: '',
+      description: '',
+      bgImage: '/optimized/redes_fisicas.webp',
+      size: 'large' as const,
+      accent: true,
+    },
+    {
+      icon: Factory,
+      label: t('manufacturing'),
+      title: '',
+      description: '',
+      bgImage: '/optimized/manufactura_industria.webp',
+      size: 'small' as const,
+    },
+    {
+      icon: Truck,
+      label: t('distribution'),
+      title: '',
+      description: '',
+      bgImage: '/optimized/distribucion_industria.webp',
+      size: 'small' as const,
+    },
+    {
+      icon: ShoppingCart,
+      label: t('retail'),
+      title: '',
+      description: '',
+      bgImage: '/optimized/retial_industria.webp',
+      size: 'small' as const,
+    },
+    {
+      icon: HardHat,
+      label: t('construction'),
+      title: '',
+      description: '',
+      bgImage: '/optimized/construccion_industria.webp',
+      size: 'small' as const,
+    },
+  ]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -120,22 +123,21 @@ export function CapabilitiesGrid() {
               className="text-xs font-semibold tracking-[0.2em] uppercase"
               style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
             >
-              Industrias
+              {t('eyebrow')}
             </span>
           </div>
           <h2 className="reveal reveal-delay-1 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            Tus procesos actuales optimizados{' '}
+            {t('heading')}{' '}
             <span style={{ color: 'var(--color-accent)' }}>
-              sin tener que adaptarte
+              {t('headingAccent')}
             </span>
           </h2>
           <p className="reveal reveal-delay-2 mt-5 text-base lg:text-lg leading-relaxed"
             style={{ color: 'var(--color-text-secondary)' }}
           >
-            Cada módulo fue diseñado con la realidad de manufactureros
-            y distribuidores mexicanos en mente. Sin plantillas genéricas.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -175,7 +177,6 @@ export function CapabilitiesGrid() {
                     e.currentTarget.style.boxShadow = 'none'
                   }}
                 >
-                  {/* Background image — lazy loaded via data-bg observer */}
                   {cap.bgImage && (
                     <div
                       className="absolute inset-0"
@@ -188,10 +189,8 @@ export function CapabilitiesGrid() {
                     />
                   )}
 
-                  {/* Grid pattern on large card */}
                   {isLarge && <div className="absolute inset-0 grid-pattern opacity-30" />}
 
-                  {/* Expanded overlay */}
                   <AnimatePresence>
                     {isExpanded && (
                       <motion.div
@@ -202,18 +201,15 @@ export function CapabilitiesGrid() {
                         transition={{ duration: 0.25, delay: 0.15 }}
                         className="absolute inset-0 z-20 pointer-events-none"
                       >
-                        {/* X close button */}
                         <button
                           onClick={(e) => { e.stopPropagation(); setExpandedIndex(null) }}
                           className="toggle-btn absolute top-4 right-4 pointer-events-auto w-9 h-9
                             rounded-full flex items-center justify-center"
                           style={{ backgroundColor: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}
-                          aria-label="Cerrar"
+                          aria-label={tc('close')}
                         >
                           <X className="w-4 h-4" style={{ color: 'rgba(240,237,232,0.55)' }} />
                         </button>
-
-                        {/* Amber accent line at bottom */}
                         <div className="absolute bottom-0 left-0 right-0 h-[3px]"
                           style={{ background: 'var(--color-accent)' }} />
                       </motion.div>
@@ -225,7 +221,6 @@ export function CapabilitiesGrid() {
                     className="relative z-10 flex flex-col p-6 lg:p-8 justify-between h-full min-h-[200px] lg:min-h-0"
                   >
                     <div>
-                      {/* Icon + Label */}
                       <div className="flex items-center gap-3 mb-4">
                         <div
                           className="w-10 h-10 rounded-xl flex items-center justify-center"
@@ -241,7 +236,6 @@ export function CapabilitiesGrid() {
                         </span>
                       </div>
 
-                      {/* Title */}
                       <h3
                         className={`font-display font-bold leading-snug mb-3 ${
                           isLarge ? 'text-2xl lg:text-3xl' : 'text-lg lg:text-xl'
@@ -251,7 +245,6 @@ export function CapabilitiesGrid() {
                         {cap.title}
                       </h3>
 
-                      {/* Description */}
                       <p
                         className={`leading-relaxed ${isLarge ? 'text-base lg:text-lg max-w-lg' : 'text-sm'}`}
                         style={{ color: 'var(--color-text-on-dark-muted)' }}
@@ -260,7 +253,6 @@ export function CapabilitiesGrid() {
                       </p>
                     </div>
 
-                    {/* Arrow — only when NOT expanded */}
                     <AnimatePresence>
                       {!isExpanded && (
                         <motion.div

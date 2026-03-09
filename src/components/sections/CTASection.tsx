@@ -2,10 +2,12 @@
 
 import { useEffect, useRef } from 'react'
 import { ArrowRight } from 'lucide-react'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 
 export function CTASection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const t = useTranslations('cta')
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -30,10 +32,7 @@ export function CTASection() {
       className="relative py-28 lg:py-36 px-6 sm:px-8 lg:px-12 overflow-hidden noise-overlay"
       style={{ backgroundColor: 'var(--color-surface-page)' }}
     >
-      {/* Background decorations */}
       <div className="absolute inset-0 grid-pattern opacity-15" />
-
-      {/* Accent glow */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
         style={{
@@ -42,28 +41,26 @@ export function CTASection() {
       />
 
       <div className="max-w-[1400px] mx-auto relative z-10 text-center">
-        {/* Eyebrow */}
         <div className="reveal flex items-center justify-center gap-3 mb-8">
           <div className="h-[2px] w-8" style={{ backgroundColor: 'var(--color-accent)' }} />
           <span
             className="text-xs font-semibold tracking-[0.2em] uppercase"
             style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-mono)' }}
           >
-            Comienza hoy
+            {t('eyebrow')}
           </span>
           <div className="h-[2px] w-8" style={{ backgroundColor: 'var(--color-accent)' }} />
         </div>
 
-        {/* Heading */}
         <h2
           className="reveal reveal-delay-1 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[0.95] tracking-tight max-w-4xl mx-auto"
           style={{ color: 'var(--color-text-primary)' }}
         >
-          Tu competencia{' '}
+          {t('headingStart')}{' '}
           <br className="hidden sm:block" />
-          ya está{' '}
+          {t('headingMiddle')}{' '}
           <span style={{ color: 'var(--color-accent)' }}>
-            evolucionando.
+            {t('headingAccent')}
           </span>
         </h2>
 
@@ -71,27 +68,24 @@ export function CTASection() {
           className="reveal reveal-delay-2 mt-6 text-base sm:text-lg max-w-lg mx-auto leading-relaxed"
           style={{ color: 'var(--color-text-secondary)' }}
         >
-          Ponte en contacto con nuestro equipo y descubre cómo Wiger
-          transforma operaciones industriales en semanas, no meses.
+          {t('subtitle')}
         </p>
 
-        {/* CTAs */}
         <div className="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center mt-10">
           <Link href="/contacto" className="btn-accent group inline-flex items-center justify-center gap-3 px-10 py-5 rounded-xl font-semibold text-lg">
-            Ponerse en contacto
+            {t('primary')}
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </Link>
           <Link href="/contacto" className="btn-outline-light inline-flex items-center justify-center gap-3 px-10 py-5 rounded-xl font-semibold text-lg">
-            Hablar con ventas
+            {t('secondary')}
           </Link>
         </div>
 
-        {/* Trust note */}
         <p
           className="reveal reveal-delay-4 mt-8 text-xs"
           style={{ color: 'var(--color-text-muted)' }}
         >
-          Sin compromiso. Implementación en 4 semanas. Soporte 24/7.
+          {t('trustNote')}
         </p>
       </div>
     </section>

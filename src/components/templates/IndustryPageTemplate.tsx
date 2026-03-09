@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 import { SmoothScrollProvider } from '@/components/SmoothScrollProvider'
 import { Footer } from '@/components/Footer'
 import { IndustryPageData } from '@/types/industry'
@@ -48,6 +49,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 /* ── Section 1: Hero ─────────────────────────── */
 
 function HeroSection({ data }: { data: IndustryPageData }) {
+  const t = useTranslations('industry')
   return (
     <section
       className="relative min-h-screen flex flex-col justify-center grid-pattern-dark overflow-hidden"
@@ -109,7 +111,7 @@ function HeroSection({ data }: { data: IndustryPageData }) {
               color: 'var(--color-text-on-dark)',
             }}
           >
-            Ver soluciones
+            {t('viewSolutions')}
           </a>
         </div>
 
@@ -151,6 +153,7 @@ function HeroSection({ data }: { data: IndustryPageData }) {
 /* ── Section 2: Retos ────────────────────────── */
 
 function ChallengesSection({ data }: { data: IndustryPageData }) {
+  const t = useTranslations('industry')
   return (
     <section
       id="retos"
@@ -159,7 +162,7 @@ function ChallengesSection({ data }: { data: IndustryPageData }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="reveal mb-16">
-          <Eyebrow>Retos de la industria</Eyebrow>
+          <Eyebrow>{t('challengesEyebrow')}</Eyebrow>
           <h2
             className="font-display text-4xl sm:text-5xl font-bold leading-tight max-w-2xl"
             style={{ color: 'var(--color-text-primary)' }}
@@ -204,6 +207,7 @@ function ChallengesSection({ data }: { data: IndustryPageData }) {
 /* ── Section 3: Segmentos ────────────────────── */
 
 function SegmentsSection({ data }: { data: IndustryPageData }) {
+  const t = useTranslations('industry')
   return (
     <section
       id="segmentos"
@@ -212,7 +216,7 @@ function SegmentsSection({ data }: { data: IndustryPageData }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="reveal mb-16">
-          <Eyebrow>Segmentos de la industria</Eyebrow>
+          <Eyebrow>{t('segmentsEyebrow')}</Eyebrow>
           <h2
             className="font-display text-4xl sm:text-5xl font-bold leading-tight max-w-2xl"
             style={{ color: 'var(--color-text-primary)' }}
@@ -261,6 +265,7 @@ function SegmentsSection({ data }: { data: IndustryPageData }) {
 /* ── Section 4: Soluciones ───────────────────── */
 
 function SolutionsSection({ data }: { data: IndustryPageData }) {
+  const t = useTranslations('industry')
   return (
     <section
       id="soluciones"
@@ -285,7 +290,7 @@ function SolutionsSection({ data }: { data: IndustryPageData }) {
               className="text-xs font-mono font-semibold uppercase tracking-widest"
               style={{ color: 'var(--color-accent)' }}
             >
-              Soluciones a medida
+              {t('solutionsEyebrow')}
             </span>
           </div>
           <h2
@@ -346,7 +351,8 @@ function SolutionsSection({ data }: { data: IndustryPageData }) {
 
 /* ── Section 5: Métricas ─────────────────────── */
 
-function MetricsSection({ data }: { data: IndustryPageData }) {
+function IndustryMetricsSection({ data }: { data: IndustryPageData }) {
+  const t = useTranslations('industry')
   return (
     <section
       id="metricas"
@@ -355,7 +361,7 @@ function MetricsSection({ data }: { data: IndustryPageData }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="reveal mb-16 text-center">
-          <Eyebrow>Métricas de éxito</Eyebrow>
+          <Eyebrow>{t('metricsEyebrow')}</Eyebrow>
           <h2
             className="font-display text-4xl sm:text-5xl font-bold leading-tight"
             style={{ color: 'var(--color-text-primary)' }}
@@ -392,6 +398,7 @@ function MetricsSection({ data }: { data: IndustryPageData }) {
 /* ── Section 6: Casos de éxito ───────────────── */
 
 function CaseStudiesSection({ data }: { data: IndustryPageData }) {
+  const t = useTranslations('industry')
   return (
     <section
       id="casos"
@@ -400,7 +407,7 @@ function CaseStudiesSection({ data }: { data: IndustryPageData }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="reveal mb-16">
-          <Eyebrow>Casos de éxito</Eyebrow>
+          <Eyebrow>{t('caseStudiesEyebrow')}</Eyebrow>
           <h2
             className="font-display text-4xl sm:text-5xl font-bold leading-tight max-w-2xl"
             style={{ color: 'var(--color-text-primary)' }}
@@ -453,6 +460,7 @@ function CaseStudiesSection({ data }: { data: IndustryPageData }) {
 /* ── Section 7: FAQ ──────────────────────────── */
 
 function FaqSection({ data }: { data: IndustryPageData }) {
+  const t = useTranslations('industry')
   const [open, setOpen] = useState<number | null>(null)
 
   return (
@@ -463,7 +471,7 @@ function FaqSection({ data }: { data: IndustryPageData }) {
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="reveal mb-16 text-center">
-          <Eyebrow>Preguntas frecuentes</Eyebrow>
+          <Eyebrow>{t('faqEyebrow')}</Eyebrow>
           <h2
             className="font-display text-4xl sm:text-5xl font-bold leading-tight"
             style={{ color: 'var(--color-text-primary)' }}
@@ -537,6 +545,7 @@ function FaqSection({ data }: { data: IndustryPageData }) {
 /* ── CTA Banner ──────────────────────────────── */
 
 function CtaBanner({ data }: { data: IndustryPageData }) {
+  const t = useTranslations('industry')
   return (
     <section
       className="py-24 relative overflow-hidden"
@@ -552,7 +561,7 @@ function CtaBanner({ data }: { data: IndustryPageData }) {
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="reveal">
           <div className="flex justify-center mb-4">
-            <Eyebrow>Empieza hoy</Eyebrow>
+            <Eyebrow>{t('ctaEyebrow')}</Eyebrow>
           </div>
           <h2
             className="font-display text-4xl sm:text-5xl font-bold mb-6"
@@ -590,7 +599,7 @@ export default function IndustryPageTemplate({ data }: { data: IndustryPageData 
       <ChallengesSection data={data} />
       <SegmentsSection data={data} />
       <SolutionsSection data={data} />
-      <MetricsSection data={data} />
+      <IndustryMetricsSection data={data} />
       <CaseStudiesSection data={data} />
       <FaqSection data={data} />
       <CtaBanner data={data} />

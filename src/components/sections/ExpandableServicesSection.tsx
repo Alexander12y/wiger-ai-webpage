@@ -3,57 +3,43 @@
 import { useState, useRef, useEffect } from 'react'
 import { Plus, Minus, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 interface Service {
   id: string
-  title: string
-  description: string
-  detailedDescription: string
+  translationKey: string
   backgroundImage: string
   cardColor: string
-  ctaText: string
   link: string
 }
 
 const services: Service[] = [
   {
     id: 'erp',
-    title: 'ERP para Manufactura',
-    description: 'Control total de tu operación productiva',
-    detailedDescription: 'Gestiona inventarios, órdenes de producción, cadena de suministro y costos en tiempo real. Un sistema diseñado para la realidad de la manufactura: integrado, ágil y adaptable a tu proceso.',
+    translationKey: 'erp',
     backgroundImage: '/optimized/manufactura.webp',
     cardColor: 'var(--color-surface-dark-card)',
-    ctaText: 'Explorar ERP',
     link: '/productos/erp'
   },
   {
     id: 'crm',
-    title: 'CRM Industrial',
-    description: 'Relaciones comerciales que impulsan ventas',
-    detailedDescription: 'Administra clientes, distribuidores y prospectos con visibilidad completa del pipeline. Cotizaciones, seguimiento de pedidos y análisis de cartera, todo conectado a tu ERP para decisiones más rápidas.',
+    translationKey: 'crm',
     backgroundImage: '/optimized/shaking_hands.webp',
     cardColor: 'var(--color-surface-dark)',
-    ctaText: 'Explorar CRM',
     link: '/productos/crm'
   },
   {
     id: 'TMS',
-    title: 'Transportation Management System (TMS)',
-    description: 'Cotizaciones al mejor precio sin tener que ir de carrier en carrier',
-    detailedDescription: 'Un sistema integrado y personalizado a tus procesos para transportar cualquier bien de tu empresa. Elije la paquetería y cotización que más te convenga y ahorra horas de procesos manuales manejando envíos.',
+    translationKey: 'tms',
     backgroundImage: '/optimized/transportation.webp',
     cardColor: '#1A1209',
-    ctaText: 'Explorar TMS',
     link: '/productos/integraciones'
   },
   {
     id: 'FSM',
-    title: 'Field Service Management (FSM)',
-    description: '',
-    detailedDescription: 'Hecho para proyectos de construcción .',
+    translationKey: 'fsm',
     backgroundImage: '/optimized/field_service.webp',
     cardColor: '#1E3252',
-    ctaText: 'Explorar FSM',
     link: '/implementacion'
   }
 ]
@@ -62,6 +48,8 @@ export function ExpandableServicesSection() {
   const [expandedService, setExpandedService] = useState<string>('')
   const [showExpandedContent, setShowExpandedContent] = useState<string>('')
   const sectionRef = useRef<HTMLElement>(null)
+  const t = useTranslations('services')
+  const tc = useTranslations('common')
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -82,16 +70,13 @@ export function ExpandableServicesSection() {
 
   const handleServiceClick = (serviceId: string) => {
     if (expandedService === serviceId) {
-      // Collapsing
       setShowExpandedContent('')
       setTimeout(() => {
         setExpandedService('')
       }, 100)
     } else {
-      // Expanding
       setExpandedService(serviceId)
       setShowExpandedContent('')
-      // Show content after expansion animation completes
       setTimeout(() => {
         setShowExpandedContent(serviceId)
       }, 700)
@@ -110,11 +95,11 @@ export function ExpandableServicesSection() {
         <div className="text-center mb-16">
           <div className="relative">
             <h2 className="reveal text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4" style={{ color: '#F1EEE9' }}>
-              Mientras el mundo avanza sin parar,
+              {t('heading')}
             </h2>
             <div className="relative">
               <h3 className="reveal reveal-delay-1 text-3xl md:text-4xl lg:text-5xl font-light italic" style={{ color: 'rgba(240,237,232,0.55)' }}>
-                ¿puedes permitirte quedarte atrás?
+                {t('subheading')}
               </h3>
               <div className="reveal reveal-delay-2 mt-6 w-12 h-[2px] bg-[var(--color-accent)] mx-auto" />
             </div>
@@ -125,8 +110,11 @@ export function ExpandableServicesSection() {
         <div className="reveal reveal-delay-3 flex flex-col md:flex-row gap-6 md:h-[75vh] w-full">
           {services.map((service) => {
             const isExpanded = expandedService === service.id
+            const title = t(`${service.translationKey}.title`)
+            const description = t(`${service.translationKey}.description`)
+            const detailedDescription = t(`${service.translationKey}.detailedDescription`)
+            const ctaText = t(`${service.translationKey}.cta`)
 
-            // Calculate width based on expansion state
             let widthClass = ''
             if (expandedService === '') {
               widthClass = 'flex-1'
@@ -144,7 +132,6 @@ export function ExpandableServicesSection() {
                 }`}
                 onClick={() => handleServiceClick(service.id)}
               >
-                {/* Background */}
                 <div
                   className="absolute inset-0"
                   style={{ backgroundColor: service.cardColor }}
@@ -162,16 +149,13 @@ export function ExpandableServicesSection() {
                   )}
                 </div>
 
-                {/* Overlay */}
                 <div className={`absolute inset-0 transition-all duration-500 ${
                   isExpanded
                     ? 'bg-[#1C1208]/60'
                     : 'bg-[#1C1208]/30 group-hover:bg-[#1C1208]/40'
                 }`} />
 
-                {/* Content */}
                 <div className="relative h-full p-5 md:p-7 lg:p-9 flex flex-col justify-between text-white">
-                  {/* Header */}
                   <div className="flex justify-between items-start">
                     <div className={`transition-all duration-700 ${isExpanded ? 'w-full pr-4' : 'w-full pr-8'}`}>
                       <h3 className={`font-normal transition-all duration-700 mb-3 leading-tight text-shadow-lg ${
@@ -181,18 +165,17 @@ export function ExpandableServicesSection() {
                             ? 'text-xl md:text-2xl lg:text-3xl'
                             : 'text-xl md:text-xl lg:text-2xl'
                       }`}>
-                        {service.title}
+                        {title}
                       </h3>
                     </div>
 
-                    {/* Toggle Button — shown when expanded or no card is expanded */}
                     {(isExpanded || expandedService === '') && (
                       <button
                         onClick={(e) => handleToggleClick(service.id, e)}
                         className={`toggle-btn ${isExpanded ? 'is-active' : ''} flex-shrink-0 flex items-center justify-center focus:outline-none group/toggle ${
                           isExpanded ? 'w-10 h-10 md:w-12 md:h-12' : 'w-8 h-8 md:w-10 md:h-10'
                         }`}
-                        aria-label={isExpanded ? 'Contraer servicio' : 'Expandir servicio'}
+                        aria-label={isExpanded ? tc('collapseService') : tc('expandService')}
                         aria-expanded={isExpanded}
                         aria-controls={`service-panel-${service.id}`}
                       >
@@ -204,12 +187,11 @@ export function ExpandableServicesSection() {
                       </button>
                     )}
 
-                    {/* Compressed state indicator */}
                     {!isExpanded && expandedService !== '' && (
                       <button
                         onClick={(e) => handleToggleClick(service.id, e)}
                         className="toggle-btn flex-shrink-0 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center focus:outline-none group/toggle"
-                        aria-label="Expandir servicio"
+                        aria-label={tc('expandService')}
                         aria-expanded="false"
                         aria-controls={`service-panel-${service.id}`}
                       >
@@ -218,7 +200,6 @@ export function ExpandableServicesSection() {
                     )}
                   </div>
 
-                  {/* Expanded Content */}
                   {isExpanded && showExpandedContent === service.id && (
                     <div
                       id={`service-panel-${service.id}`}
@@ -228,12 +209,12 @@ export function ExpandableServicesSection() {
                     >
                       <div className="mb-4">
                         <p className="text-white/80 leading-snug text-base md:text-lg">
-                          {service.description}
+                          {description}
                         </p>
                       </div>
                       <div className="mb-8">
                         <p className="text-white/90 leading-relaxed text-base md:text-lg lg:text-xl">
-                          {service.detailedDescription}
+                          {detailedDescription}
                         </p>
                       </div>
                       <div>
@@ -244,7 +225,7 @@ export function ExpandableServicesSection() {
                             console.log(`Navigate to ${service.link}`)
                           }}
                         >
-                          {service.ctaText}
+                          {ctaText}
                           <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-200" />
                         </button>
                       </div>
@@ -252,7 +233,6 @@ export function ExpandableServicesSection() {
                   )}
                 </div>
 
-                {/* Amber bottom accent when expanded */}
                 {isExpanded && <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[var(--color-accent)]" />}
               </div>
             )
@@ -262,10 +242,10 @@ export function ExpandableServicesSection() {
         {/* Call to Action */}
         <div className="reveal reveal-delay-4 text-center mt-16 pt-16 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
           <p className="mb-6 text-lg" style={{ color: 'var(--color-text-on-dark-muted)' }}>
-            ¿Necesitas una solución personalizada?
+            {t('customSolution')}
           </p>
           <button className="btn-accent px-8 py-4 rounded-xl font-semibold text-lg">
-            Contactar Especialista
+            {t('contactSpecialist')}
           </button>
         </div>
       </div>

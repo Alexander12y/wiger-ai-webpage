@@ -2,9 +2,11 @@
 
 import { useRef, useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Mail, ChevronDown } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 import { navItems } from '@/config/navigation'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 
 function GlassSvgFilter() {
   return (
@@ -42,6 +44,8 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const t = useTranslations('nav')
+  const tc = useTranslations('common')
 
   function scheduleClose() {
     closeTimer.current = setTimeout(() => setOpenDropdown(null), 150)
@@ -88,13 +92,15 @@ export default function Navbar() {
                 {/* Desktop nav */}
                 <div className="hidden md:flex items-center gap-2">
                   {navItems.map((item) => {
+                    const label = t(item.labelKey)
+
                     if (item.children && item.children.length > 0) {
-                      const isOpen = openDropdown === item.name
+                      const isOpen = openDropdown === item.labelKey
                       return (
                         <div
-                          key={item.name}
+                          key={item.labelKey}
                           className="relative"
-                          onMouseEnter={() => { cancelClose(); setOpenDropdown(item.name) }}
+                          onMouseEnter={() => { cancelClose(); setOpenDropdown(item.labelKey) }}
                           onMouseLeave={scheduleClose}
                         >
                           <button
@@ -102,7 +108,7 @@ export default function Navbar() {
                             aria-expanded={isOpen}
                             aria-haspopup="true"
                           >
-                            {item.name}
+                            {label}
                             <ChevronDown
                               className="w-3.5 h-3.5 transition-transform duration-200"
                               style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
@@ -120,7 +126,6 @@ export default function Navbar() {
                                 background: 'transparent',
                               }}
                             >
-                              {/* Actual panel */}
                               <div
                                 className="rounded-xl py-1"
                                 style={{
@@ -131,8 +136,8 @@ export default function Navbar() {
                               >
                                 {item.children.map((child) => (
                                   <Link
-                                    key={child.name}
-                                    href={child.href}
+                                    key={child.labelKey}
+                                    href={child.href as '/clientes'}
                                     className="block px-4 py-2.5 transition-colors duration-150"
                                     style={{ color: 'var(--color-text-primary)' }}
                                     onMouseEnter={(e) => {
@@ -146,13 +151,13 @@ export default function Navbar() {
                                       el.style.color = 'var(--color-text-primary)'
                                     }}
                                   >
-                                    <span className="block text-sm font-medium">{child.name}</span>
-                                    {child.description && (
+                                    <span className="block text-sm font-medium">{t(child.labelKey)}</span>
+                                    {child.descriptionKey && (
                                       <span
                                         className="block text-xs mt-0.5"
                                         style={{ color: 'var(--color-text-muted)' }}
                                       >
-                                        {child.description}
+                                        {t(child.descriptionKey)}
                                       </span>
                                     )}
                                   </Link>
@@ -166,26 +171,29 @@ export default function Navbar() {
 
                     const isPage = item.href.startsWith('/')
                     return isPage ? (
-                      <Link key={item.name} href={item.href} className={linkClass}>
-                        {item.name}
+                      <Link key={item.labelKey} href={item.href as '/clientes'} className={linkClass}>
+                        {label}
                       </Link>
                     ) : (
-                      <a key={item.name} href={item.href} className={linkClass}>
-                        {item.name}
+                      <a key={item.labelKey} href={item.href} className={linkClass}>
+                        {label}
                       </a>
                     )
                   })}
                 </div>
 
                 {/* Right zone */}
-                <div className="flex-1 flex items-center justify-end">
+                <div className="flex-1 flex items-center justify-end gap-3">
+                  <div className="hidden md:block">
+                    <LanguageSwitcher />
+                  </div>
                   <div className="hidden md:flex flex-shrink-0">
                     <Link
                       href="/contacto"
                       className="btn-accent inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm"
                     >
                       <Mail className="w-4 h-4" />
-                      <span>Contacta a ventas</span>
+                      <span>{tc('contactSales')}</span>
                     </Link>
                   </div>
 
@@ -193,7 +201,7 @@ export default function Navbar() {
                     <button
                       onClick={() => setMobileOpen(!mobileOpen)}
                       aria-expanded={mobileOpen}
-                      aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+                      aria-label={mobileOpen ? tc('closeMenu') : tc('openMenu')}
                       className="p-2 rounded-lg transition-colors text-[#1A1410] hover:bg-black/05"
                     >
                       {mobileOpen ? (
@@ -215,16 +223,23 @@ export default function Navbar() {
             {/* Mobile menu */}
             {mobileOpen && (
               <div className="md:hidden border-t border-black/10 px-5 sm:px-8 py-4 space-y-1 relative z-10">
+                {/* Language switcher at top of mobile menu */}
+                <div className="flex justify-center pb-3 mb-2" style={{ borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
+                  <LanguageSwitcher />
+                </div>
+
                 {navItems.map((item) => {
+                  const label = t(item.labelKey)
+
                   if (item.children && item.children.length > 0) {
-                    const isExpanded = mobileExpanded === item.name
+                    const isExpanded = mobileExpanded === item.labelKey
                     return (
-                      <div key={item.name}>
+                      <div key={item.labelKey}>
                         <button
-                          onClick={() => setMobileExpanded(isExpanded ? null : item.name)}
+                          onClick={() => setMobileExpanded(isExpanded ? null : item.labelKey)}
                           className={`${mobileClass} w-full flex items-center justify-between`}
                         >
-                          <span>{item.name}</span>
+                          <span>{label}</span>
                           <ChevronDown
                             className="w-4 h-4 transition-transform duration-200"
                             style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
@@ -234,12 +249,12 @@ export default function Navbar() {
                           <div className="pl-6 space-y-1 mt-1">
                             {item.children.map((child) => (
                               <Link
-                                key={child.name}
-                                href={child.href}
+                                key={child.labelKey}
+                                href={child.href as '/clientes'}
                                 onClick={() => { setMobileOpen(false); setMobileExpanded(null) }}
                                 className={mobileClass}
                               >
-                                {child.name}
+                                {t(child.labelKey)}
                               </Link>
                             ))}
                           </div>
@@ -251,21 +266,21 @@ export default function Navbar() {
                   const isPage = item.href.startsWith('/')
                   return isPage ? (
                     <Link
-                      key={item.name}
-                      href={item.href}
+                      key={item.labelKey}
+                      href={item.href as '/clientes'}
                       onClick={() => setMobileOpen(false)}
                       className={mobileClass}
                     >
-                      {item.name}
+                      {label}
                     </Link>
                   ) : (
                     <a
-                      key={item.name}
+                      key={item.labelKey}
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
                       className={mobileClass}
                     >
-                      {item.name}
+                      {label}
                     </a>
                   )
                 })}
@@ -276,7 +291,7 @@ export default function Navbar() {
                     className="btn-accent w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm"
                   >
                     <Mail className="w-4 h-4" />
-                    <span>Contacta a ventas</span>
+                    <span>{tc('contactSales')}</span>
                   </Link>
                 </div>
               </div>

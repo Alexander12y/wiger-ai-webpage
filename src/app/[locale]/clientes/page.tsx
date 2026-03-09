@@ -1,7 +1,8 @@
 'use client'
 
 import { useRef } from 'react'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 import { SmoothScrollProvider } from '@/components/SmoothScrollProvider'
 import { Footer } from '@/components/Footer'
 
@@ -13,7 +14,7 @@ interface Client {
   description: string
   videoPath: string | null
   embedUrl?: string
-  caseStudyHref?: string
+  caseStudyHref?: '/clientes/sercodam'
 }
 
 const clients: Client[] = [
@@ -63,6 +64,7 @@ const clients: Client[] = [
 ]
 
 function VideoPlaceholder({ videoPath, clientName, embedUrl }: { videoPath: string | null; clientName: string; embedUrl?: string }) {
+  const t = useTranslations('clientsPage')
   const videoRef = useRef<HTMLVideoElement>(null)
 
   if (embedUrl) {
@@ -101,13 +103,10 @@ function VideoPlaceholder({ videoPath, clientName, embedUrl }: { videoPath: stri
         border: '1px solid var(--color-border)',
       }}
     >
-      {/* Top accent bar */}
       <div
         className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
         style={{ background: 'linear-gradient(90deg, #E8650A, #C8520A)' }}
       />
-
-      {/* Play button */}
       <div
         className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-200 hover:scale-110"
         style={{ border: '2px solid rgba(232,101,10,0.5)', background: 'rgba(232,101,10,0.12)' }}
@@ -122,18 +121,14 @@ function VideoPlaceholder({ videoPath, clientName, embedUrl }: { videoPath: stri
           <path d="M8 5v14l11-7z" />
         </svg>
       </div>
-
-      {/* Label */}
       <div className="text-center px-6">
         <p className="text-sm font-semibold" style={{ color: 'var(--color-text-muted)' }}>
-          Video del caso
+          {t('videoLabel')}
         </p>
         <p className="text-xs mt-1" style={{ color: 'var(--color-text-faint)' }}>
           {clientName}
         </p>
       </div>
-
-      {/* Corner decoration */}
       <div
         className="absolute bottom-4 right-4 w-12 h-12 rounded-full opacity-10"
         style={{ background: 'radial-gradient(circle, #E8650A, transparent)' }}
@@ -143,22 +138,19 @@ function VideoPlaceholder({ videoPath, clientName, embedUrl }: { videoPath: stri
 }
 
 function ClientCard({ client, index }: { client: Client; index: number }) {
+  const t = useTranslations('clientsPage')
   return (
     <div
       className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center py-16 lg:py-20"
       style={{ borderBottom: '1px solid var(--color-border)' }}
     >
-      {/* Left: Text info (2/5) */}
       <div className="lg:col-span-2 flex flex-col gap-5">
-        {/* Index number */}
         <span
           className="text-xs font-bold tracking-widest uppercase"
           style={{ color: '#E8650A' }}
         >
           {String(index + 1).padStart(2, '0')}
         </span>
-
-        {/* Client logo (if available) */}
         {client.logo && (
           <div
             className="inline-flex items-center justify-center rounded-xl px-5 py-3 self-start"
@@ -176,16 +168,12 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
             />
           </div>
         )}
-
-        {/* Client name */}
         <h2
           className="text-2xl lg:text-3xl font-bold leading-tight"
           style={{ color: 'var(--color-text-primary)' }}
         >
           {client.name}
         </h2>
-
-        {/* Solution tag */}
         <div className="flex">
           <span
             className="inline-block text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full"
@@ -198,23 +186,19 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
             {client.solutionTag}
           </span>
         </div>
-
-        {/* Description */}
         <p
           className="text-sm leading-relaxed"
           style={{ color: 'var(--color-text-secondary)' }}
         >
           {client.description}
         </p>
-
-        {/* CTA link */}
         {client.caseStudyHref ? (
           <Link
             href={client.caseStudyHref}
             className="self-start flex items-center gap-2 text-sm font-semibold transition-all duration-200 hover:gap-3 group"
             style={{ color: '#E8650A' }}
           >
-            <span>Ver caso completo</span>
+            <span>{t('viewFullCase')}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
@@ -233,7 +217,7 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
             className="self-start flex items-center gap-2 text-sm font-semibold transition-all duration-200 hover:gap-3 group"
             style={{ color: '#E8650A' }}
           >
-            <span>[Ver caso completo]</span>
+            <span>{t('viewFullCasePlaceholder')}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
@@ -249,8 +233,6 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
           </button>
         )}
       </div>
-
-      {/* Right: Video (3/5) */}
       <div className="lg:col-span-3">
         <VideoPlaceholder videoPath={client.videoPath} clientName={client.name} embedUrl={client.embedUrl} />
       </div>
@@ -259,6 +241,8 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
 }
 
 export default function ClientesPage() {
+  const t = useTranslations('clientsPage')
+
   return (
     <SmoothScrollProvider>
       <main style={{ background: 'var(--color-surface-page)', minHeight: '100vh' }}>
@@ -271,30 +255,24 @@ export default function ClientesPage() {
           }}
         >
           <div className="max-w-5xl mx-auto text-center">
-            {/* Eyebrow */}
             <p
               className="text-xs font-bold tracking-widest uppercase mb-6"
               style={{ color: '#E8650A' }}
             >
-              Casos de éxito
+              {t('eyebrow')}
             </p>
-
-            {/* Main title */}
             <h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
               style={{ color: 'var(--color-text-primary)' }}
             >
-              Historias inspiradoras de{' '}
-              <span style={{ color: '#E8650A' }}>clientes inspiradores</span>
+              {t('heading')}{' '}
+              <span style={{ color: '#E8650A' }}>{t('headingAccent')}</span>
             </h1>
-
-            {/* Subtitle placeholder */}
             <p
               className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
               style={{ color: 'var(--color-text-secondary)' }}
             >
-              [Subtítulo: una línea que describe la propuesta de valor de los casos de éxito
-              y lo que el visitante va a descubrir en esta página.]
+              {t('subtitle')}
             </p>
           </div>
         </section>
@@ -313,16 +291,15 @@ export default function ClientesPage() {
         >
           <div className="max-w-2xl mx-auto">
             <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>
-              [¿Listo para ser la próxima historia?]
+              {t('ctaHeading')}
             </h2>
             <p className="text-base mb-8" style={{ color: 'var(--color-text-secondary)' }}>
-              [Texto de llamada a la acción para que el visitante contacte a ventas o
-              solicite una demo.]
+              {t('ctaText')}
             </p>
             <button
               className="btn-accent px-8 py-4 rounded-xl font-semibold text-base"
             >
-              [Agendar una demo]
+              {t('ctaButton')}
             </button>
           </div>
         </section>

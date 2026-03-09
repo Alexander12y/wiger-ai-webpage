@@ -1,8 +1,12 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 type Client = { name: string; logo?: string }
 
 export function TrustedByStrip() {
+  const t = useTranslations('trustedBy')
+
   const clients: Client[] = [
     { name: 'Sercodam', logo: '/LOGO SERCODAM.png' },
     { name: 'Cliente 2' },
@@ -12,7 +16,6 @@ export function TrustedByStrip() {
     { name: 'Cliente 6' },
   ]
 
-  // Duplicate for seamless loop
   const marqueeClients = [...clients, ...clients]
 
   return (
@@ -30,15 +33,13 @@ export function TrustedByStrip() {
             className="text-[11px] font-semibold tracking-[0.15em] uppercase"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            Respaldado por líderes industriales
+            {t('heading')}
           </span>
           <div className="flex-1 h-px" style={{ backgroundColor: 'var(--color-border)' }} />
         </div>
       </div>
 
-      {/* Marquee track */}
       <div className="relative">
-        {/* Fade edges */}
         <div
           className="absolute left-0 top-0 bottom-0 w-24 z-10"
           style={{ background: 'linear-gradient(90deg, var(--color-surface-page), transparent)' }}

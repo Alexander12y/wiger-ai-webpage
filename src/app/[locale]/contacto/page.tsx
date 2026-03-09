@@ -1,13 +1,23 @@
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { ContactPageForm } from '@/components/sections/ContactPageForm'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import { ArrowLeft } from 'lucide-react'
 
-export const metadata = {
-  title: 'Contacto | Wiger AI',
-  description: 'Ponte en contacto con el equipo de Wiger AI.',
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'contactPage' })
+  return {
+    title: t('title'),
+    description: t('description'),
+  }
 }
 
-export default function ContactoPage() {
+export default async function ContactoPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations({ locale, namespace: 'contactPage' })
+  const tc = await getTranslations({ locale, namespace: 'common' })
+
   return (
     <main
       className="min-h-screen relative"
@@ -30,7 +40,7 @@ export default function ContactoPage() {
           style={{ color: 'var(--color-text-muted)' }}
         >
           <ArrowLeft className="w-4 h-4" />
-          Volver al inicio
+          {tc('backToHome')}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
@@ -43,29 +53,29 @@ export default function ContactoPage() {
                 className="text-xs font-semibold tracking-[0.2em] uppercase"
                 style={{ color: '#E8650A', fontFamily: 'var(--font-geist-mono)' }}
               >
-                Habla con ventas
+                {t('eyebrow')}
               </span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[0.95] tracking-tight" style={{ color: 'var(--color-text-primary)' }}>
-              Empieza tu{' '}
+              {t('headingStart')}{' '}
               <span style={{ color: '#E8650A' }}>
-                transformación
+                {t('headingAccent')}
               </span>{' '}
-              hoy.
+              {t('headingEnd')}
             </h1>
 
             <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-              Completa el formulario y un especialista de Wiger AI se pondrá en contacto contigo en menos de 24 horas.
+              {t('subtitle')}
             </p>
 
             {/* Benefits list */}
             <ul className="space-y-4">
               {[
-                'Sistema personalizada para tu industria',
-                'Diagnóstico gratuito de tu operación',
-                'Plan de implementación en 4 semanas',
-                'Soporte dedicado 24/7',
+                t('benefit1'),
+                t('benefit2'),
+                t('benefit3'),
+                t('benefit4'),
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <span
@@ -96,8 +106,8 @@ export default function ContactoPage() {
                 ))}
               </div>
               <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-                <span className="font-semibold" style={{ color: 'var(--color-text-primary)' }}>Empresas líderes</span>
-                {' '}ya transforman su operación
+                <span className="font-semibold" style={{ color: 'var(--color-text-primary)' }}>{t('trustBold')}</span>
+                {' '}{t('trustText')}
               </p>
             </div>
           </div>
