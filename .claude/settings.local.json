@@ -11,7 +11,11 @@
       "WebFetch(domain:vercel.com)",
       "WebFetch(domain:www.hostinger.com)",
       "mcp__MCP_DOCKER__browser_navigate",
-      "Bash(xargs grep:*)"
+      "Bash(xargs grep:*)",
+      "Bash(curl -sI http://localhost:3100/)",
+      "Read(//tmp/**)",
+      "Bash(ls:*)",
+      "Bash(curl:*)"
     ]
   }
 }

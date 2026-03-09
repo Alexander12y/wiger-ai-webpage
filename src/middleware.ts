@@ -9,18 +9,22 @@ const intlMiddleware = createMiddleware(routing)
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
-
   // ─── 1. Generate a per-request cryptographic nonce ───────────────────────
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
 
   // ─── 2. Build a strict Content-Security-Policy ───────────────────────────
+  const isDev = process.env.NODE_ENV === 'development'
   const csp = [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://js.howdygo.com`,
+    isDev
+      ? `script-src 'self' 'unsafe-eval' 'nonce-${nonce}' https://js.howdygo.com`
+      : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://js.howdygo.com`,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob: https://*.howdygo.com",
     "media-src 'self' blob:",
-    "connect-src 'self' https://*.howdygo.com wss://*.howdygo.com",
+    isDev
+      ? "connect-src 'self' https://*.howdygo.com wss://*.howdygo.com ws://localhost:* ws://127.0.0.1:*"
+      : "connect-src 'self' https://*.howdygo.com wss://*.howdygo.com",
     "font-src 'self'",
     "frame-src https://app.howdygo.com",
     "frame-ancestors 'none'",
@@ -29,17 +33,15 @@ export async function middleware(req: NextRequest) {
     "form-action 'self' https://wiger.ai",
   ].join('; ')
 
-  // Expose nonce to the Next.js App Router (layouts read it via headers())
-  const requestHeaders = new Headers(req.headers)
-  requestHeaders.set('x-nonce', nonce)
-
   // ─── 3. Admin & API routes — skip i18n, apply auth ──────────────────────
   const isAdminPage = pathname.startsWith('/admin')
   const isAdminApi  = pathname.startsWith('/api/admin')
   const isApi       = pathname.startsWith('/api/')
 
   if (isAdminPage || isAdminApi || isApi) {
-    // Admin auth for protected routes
+    const requestHeaders = new Headers(req.headers)
+    requestHeaders.set('x-nonce', nonce)
+
     if (isAdminPage || isAdminApi) {
       const isPublic = PUBLIC_ADMIN_ROUTES.some(
         (p) => pathname === p || pathname.startsWith(p + '/')
@@ -67,7 +69,7 @@ export async function middleware(req: NextRequest) {
     return response
   }
 
-  // ─── 4. Public pages — run i18n middleware, then append CSP ──────────────
+  // ─── 4. Public pages — run i18n middleware, then append CSP + nonce ──────
   const response = intlMiddleware(req)
   response.headers.set('Content-Security-Policy', csp)
   response.headers.set('x-nonce', nonce)
@@ -88,5 +90,9 @@ function redirectOrUnauthorized(req: NextRequest, pathname: string): NextRespons
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|gif|svg|webp|mp4|ico|webm)).*)'],
+  matcher: [
+    '/',
+    '/(es|en)/:path*',
+    '/((?!_next|_vercel|.*\\..*).+)',
+  ],
 }
