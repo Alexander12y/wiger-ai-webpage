@@ -8,7 +8,7 @@ const routes = [
   { path: '/sobre-nosotros', priority: 0.7, enPath: '/en/about-us' },
   { path: '/clientes', priority: 0.7, enPath: '/en/clients' },
   { path: '/clientes/sercodam', priority: 0.6, enPath: '/en/clients/sercodam' },
-  { path: '/industrias/redes-fisicas', priority: 0.7, enPath: '/en/industries/physical-networks' },
+  { path: '/industrias/redes-fisicas', priority: 0.7, enPath: '/en/industries/physical-nets' },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

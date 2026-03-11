@@ -152,14 +152,6 @@ export default function Navbar() {
                                     }}
                                   >
                                     <span className="block text-sm font-medium">{t(child.labelKey)}</span>
-                                    {child.descriptionKey && (
-                                      <span
-                                        className="block text-xs mt-0.5"
-                                        style={{ color: 'var(--color-text-muted)' }}
-                                      >
-                                        {t(child.descriptionKey)}
-                                      </span>
-                                    )}
                                   </Link>
                                 ))}
                               </div>

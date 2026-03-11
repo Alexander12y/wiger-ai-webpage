@@ -26,6 +26,7 @@ const images = [
   { file: 'manufactura.jpg',            quality: 62, maxWidth: 1920 },
   { file: 'redes_fisicas.jpg',          quality: 62, maxWidth: 1920 },
   { file: 'construccion_industria.jpg', quality: 62, maxWidth: 1920 },
+  { file: 'physicalnet_industy_hero.jpg', quality: 62, maxWidth: 1920 },
 ]
 
 if (!existsSync(outputDir)) {

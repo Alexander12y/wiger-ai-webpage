@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { SmoothScrollProvider } from '@/components/SmoothScrollProvider'
 import { Footer } from '@/components/Footer'
@@ -65,54 +66,120 @@ function HeroSection({ data }: { data: IndustryPageData }) {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-24">
-        {/* Eyebrow */}
-        <div className="reveal flex items-center gap-3 mb-6">
-          <span
-            className="inline-block w-8 h-0.5 rounded-full"
-            style={{ background: 'var(--color-accent)' }}
-          />
-          <span
-            className="text-xs font-mono font-semibold uppercase tracking-widest"
-            style={{ color: 'var(--color-accent)' }}
-          >
-            {data.name}
-          </span>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
+          {/* Left — Text */}
+          <div>
+            {/* Eyebrow */}
+            <div className="reveal flex items-center gap-3 mb-6">
+              <span
+                className="inline-block w-8 h-0.5 rounded-full"
+                style={{ background: 'var(--color-accent)' }}
+              />
+              <span
+                className="text-xs font-mono font-semibold uppercase tracking-widest"
+                style={{ color: 'var(--color-accent)' }}
+              >
+                {data.name}
+              </span>
+            </div>
 
-        {/* Headline */}
-        <h1
-          className="reveal reveal-delay-1 font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] mb-6 max-w-4xl"
-          style={{ color: 'var(--color-text-on-dark)' }}
-        >
-          {data.hero.headline}
-        </h1>
+            {/* Headline */}
+            <h1
+              className="reveal reveal-delay-1 font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] mb-6"
+              style={{ color: 'var(--color-text-on-dark)' }}
+            >
+              {data.hero.headline}{' '}
+              {data.hero.headlineAccent && (
+                <span
+                  className="relative inline-block"
+                  style={{ color: 'var(--color-accent)' }}
+                >
+                  {data.hero.headlineAccent}
+                  <span
+                    className="absolute -bottom-2 left-0 w-full h-[3px] origin-left"
+                    style={{
+                      background: 'linear-gradient(90deg, var(--color-accent), transparent)',
+                      animation: 'lineGrow 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards',
+                      transform: 'scaleX(0)',
+                    }}
+                  />
+                </span>
+              )}
+            </h1>
 
-        {/* Subheadline */}
-        <p
-          className="reveal reveal-delay-2 text-xl sm:text-2xl leading-relaxed mb-10 max-w-2xl"
-          style={{ color: 'var(--color-text-on-dark-secondary)' }}
-        >
-          {data.hero.subheadline}
-        </p>
+            {/* Subheadline */}
+            <p
+              className="reveal reveal-delay-2 text-xl sm:text-2xl leading-relaxed mb-10"
+              style={{ color: 'var(--color-text-on-dark-secondary)' }}
+            >
+              {data.hero.subheadline}
+            </p>
 
-        {/* CTAs */}
-        <div className="reveal reveal-delay-3 flex flex-wrap gap-4 mb-20">
-          <Link
-            href="/contacto"
-            className="btn-accent inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-base"
-          >
-            {data.hero.ctaLabel}
-          </Link>
-          <a
-            href="#soluciones"
-            className="btn-outline-light inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-base"
-            style={{
-              border: '1.5px solid rgba(255,255,255,0.20)',
-              color: 'var(--color-text-on-dark)',
-            }}
-          >
-            {t('viewSolutions')}
-          </a>
+            {/* CTAs */}
+            <div className="reveal reveal-delay-3 flex flex-wrap gap-4">
+              <Link
+                href="/contacto"
+                className="btn-accent inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-base"
+              >
+                {data.hero.ctaLabel}
+              </Link>
+              <a
+                href="#soluciones"
+                className="btn-outline-light inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-base"
+                style={{
+                  border: '1.5px solid rgba(255,255,255,0.20)',
+                  color: 'var(--color-text-on-dark)',
+                }}
+              >
+                {t('viewSolutions')}
+              </a>
+            </div>
+          </div>
+
+          {/* Right — Hero image */}
+          <div className="reveal reveal-delay-2 flex items-center justify-center">
+            {data.heroImage ? (
+              <div className="w-full aspect-[4/3] relative rounded-2xl overflow-hidden">
+                <Image
+                  src={data.heroImage}
+                  alt={data.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
+                />
+              </div>
+            ) : (
+              <div
+                className="w-full aspect-[4/3] rounded-2xl flex flex-col items-center justify-center"
+                style={{
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '2px dashed rgba(255,255,255,0.15)',
+                }}
+              >
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.25)"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="M21 15l-5-5L5 21" />
+                </svg>
+                <span
+                  className="mt-3 text-xs font-mono uppercase tracking-wider"
+                  style={{ color: 'rgba(255,255,255,0.25)' }}
+                >
+                  Hero image
+                </span>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Metric strip */}
@@ -167,7 +234,7 @@ function ChallengesSection({ data }: { data: IndustryPageData }) {
             className="font-display text-4xl sm:text-5xl font-bold leading-tight max-w-2xl"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            Lorem ipsum dolor sit amet consectetur
+            {data.challengesHeading}
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -221,7 +288,7 @@ function SegmentsSection({ data }: { data: IndustryPageData }) {
             className="font-display text-4xl sm:text-5xl font-bold leading-tight max-w-2xl"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            Lorem ipsum dolor sit amet consectetur
+            {data.segmentsHeading}
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -297,7 +364,7 @@ function SolutionsSection({ data }: { data: IndustryPageData }) {
             className="font-display text-4xl sm:text-5xl font-bold leading-tight max-w-2xl"
             style={{ color: 'var(--color-text-on-dark)' }}
           >
-            Lorem ipsum dolor sit amet consectetur
+            {data.solutionsHeading}
           </h2>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -366,7 +433,7 @@ function IndustryMetricsSection({ data }: { data: IndustryPageData }) {
             className="font-display text-4xl sm:text-5xl font-bold leading-tight"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            Lorem ipsum dolor sit amet
+            {data.metricsHeading}
           </h2>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -412,7 +479,7 @@ function CaseStudiesSection({ data }: { data: IndustryPageData }) {
             className="font-display text-4xl sm:text-5xl font-bold leading-tight max-w-2xl"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            Lorem ipsum dolor sit amet consectetur
+            {data.caseStudiesHeading}
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -476,7 +543,7 @@ function FaqSection({ data }: { data: IndustryPageData }) {
             className="font-display text-4xl sm:text-5xl font-bold leading-tight"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            Lorem ipsum dolor sit amet
+            {data.faqHeading}
           </h2>
         </div>
         <div className="space-y-3">
@@ -567,14 +634,13 @@ function CtaBanner({ data }: { data: IndustryPageData }) {
             className="font-display text-4xl sm:text-5xl font-bold mb-6"
             style={{ color: 'var(--color-text-on-dark)' }}
           >
-            Lorem ipsum dolor sit amet consectetur
+            {data.ctaHeading}
           </h2>
           <p
             className="text-lg mb-10"
             style={{ color: 'var(--color-text-on-dark-secondary)' }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
+            {data.ctaText}
           </p>
           <Link
             href="/contacto"

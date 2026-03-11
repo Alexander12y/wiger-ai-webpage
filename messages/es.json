@@ -23,8 +23,7 @@
     "aboutUs": "Sobre nosotros",
     "industries": "Industrias",
     "contact": "Contacto",
-    "physicalNetworks": "Redes Físicas",
-    "physicalNetworksDesc": "Lorem ipsum dolor sit amet"
+    "physicalNetworks": "Redes Físicas"
   },
   "hero": {
     "eyebrow": "Digital Platform",
@@ -50,7 +49,7 @@
     "heading": "Mientras el mundo avanza sin parar,",
     "subheading": "¿puedes permitirte quedarte atrás?",
     "erp": {
-      "title": "ERP para Manufactura",
+      "title": "Enterprise Resource Planning (ERP)",
       "description": "Control total de tu operación productiva",
       "detailedDescription": "Gestiona inventarios, órdenes de producción, cadena de suministro y costos en tiempo real. Un sistema diseñado para la realidad de la manufactura: integrado, ágil y adaptable a tu proceso.",
       "cta": "Explorar ERP"
@@ -284,7 +283,61 @@
   },
   "industryRedesFisicas": {
     "title": "Redes Físicas — Wiger AI",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Soluciones de inteligencia artificial para fabricantes y distribuidores de redes físicas."
+    "description": "",
+    "name": "Redes Físicas",
+    "tagline": "[Tagline de redes físicas. Reemplaza este texto.]",
+    "heroHeadline": "Empresas de",
+    "heroHeadlineAccent": "Redes Físicas Autónomas",
+    "heroSubheadline": "Wiger AI ayuda a fabricantes y distribuidores de redes físicas a resolver sus problemas en la industria mediante un software personalizado que conecta inventarios, producción, ventas y clientes, impulsando disponibilidad, reduciendo trabajo manual y asegurando compliance. ",
+    "heroCtaLabel": "Solicitar demostración",
+    "challengesHeading": "[Título de la sección de retos de la industria. Reemplaza este texto.]",
+    "challenges": [
+      { "title": "[Reto 1 título]", "description": "[Reto 1 descripción detallada. Reemplaza este texto.]", "icon": "🏭" },
+      { "title": "[Reto 2 título]", "description": "[Reto 2 descripción detallada. Reemplaza este texto.]", "icon": "📦" },
+      { "title": "[Reto 3 título]", "description": "[Reto 3 descripción detallada. Reemplaza este texto.]", "icon": "🔗" },
+      { "title": "[Reto 4 título]", "description": "[Reto 4 descripción detallada. Reemplaza este texto.]", "icon": "⚙️" },
+      { "title": "[Reto 5 título]", "description": "[Reto 5 descripción detallada. Reemplaza este texto.]", "icon": "📊" },
+      { "title": "[Reto 6 título]", "description": "[Reto 6 descripción detallada. Reemplaza este texto.]", "icon": "🌐" }
+    ],
+    "segmentsHeading": "[Título de la sección de segmentos. Reemplaza este texto.]",
+    "segments": [
+      { "name": "[Segmento 1 nombre]", "description": "[Segmento 1 descripción. Reemplaza este texto.]" },
+      { "name": "[Segmento 2 nombre]", "description": "[Segmento 2 descripción. Reemplaza este texto.]" },
+      { "name": "[Segmento 3 nombre]", "description": "[Segmento 3 descripción. Reemplaza este texto.]" },
+      { "name": "[Segmento 4 nombre]", "description": "[Segmento 4 descripción. Reemplaza este texto.]" },
+      { "name": "[Segmento 5 nombre]", "description": "[Segmento 5 descripción. Reemplaza este texto.]" },
+      { "name": "[Segmento 6 nombre]", "description": "[Segmento 6 descripción. Reemplaza este texto.]" }
+    ],
+    "solutionsHeading": "[Título de la sección de soluciones. Reemplaza este texto.]",
+    "solutions": [
+      { "title": "[Solución 1 título]", "description": "[Solución 1 descripción detallada. Reemplaza este texto.]", "features": ["[Característica 1]", "[Característica 2]", "[Característica 3]", "[Característica 4]"] },
+      { "title": "[Solución 2 título]", "description": "[Solución 2 descripción detallada. Reemplaza este texto.]", "features": ["[Característica 1]", "[Característica 2]", "[Característica 3]", "[Característica 4]"] },
+      { "title": "[Solución 3 título]", "description": "[Solución 3 descripción detallada. Reemplaza este texto.]", "features": ["[Característica 1]", "[Característica 2]", "[Característica 3]", "[Característica 4]"] },
+      { "title": "[Solución 4 título]", "description": "[Solución 4 descripción detallada. Reemplaza este texto.]", "features": ["[Característica 1]", "[Característica 2]", "[Característica 3]", "[Característica 4]"] }
+    ],
+    "metricsHeading": "[Título de la sección de métricas. Reemplaza este texto.]",
+    "metrics": [
+      { "value": "XX%", "label": "[Métrica 1 etiqueta]" },
+      { "value": "XXx", "label": "[Métrica 2 etiqueta]" },
+      { "value": "XX%", "label": "[Métrica 3 etiqueta]" },
+      { "value": "XXk+", "label": "[Métrica 4 etiqueta]" }
+    ],
+    "caseStudiesHeading": "[Título de la sección de casos de éxito. Reemplaza este texto.]",
+    "caseStudies": [
+      { "company": "[Empresa 1 nombre]", "result": "[Resultado 1 destacado]", "quote": "[Cita o testimonio de la empresa 1. Reemplaza este texto.]" },
+      { "company": "[Empresa 2 nombre]", "result": "[Resultado 2 destacado]", "quote": "[Cita o testimonio de la empresa 2. Reemplaza este texto.]" },
+      { "company": "[Empresa 3 nombre]", "result": "[Resultado 3 destacado]", "quote": "[Cita o testimonio de la empresa 3. Reemplaza este texto.]" }
+    ],
+    "faqHeading": "[Título de la sección de preguntas frecuentes. Reemplaza este texto.]",
+    "faqs": [
+      { "question": "[Pregunta frecuente 1]", "answer": "[Respuesta detallada a la pregunta 1. Reemplaza este texto.]" },
+      { "question": "[Pregunta frecuente 2]", "answer": "[Respuesta detallada a la pregunta 2. Reemplaza este texto.]" },
+      { "question": "[Pregunta frecuente 3]", "answer": "[Respuesta detallada a la pregunta 3. Reemplaza este texto.]" },
+      { "question": "[Pregunta frecuente 4]", "answer": "[Respuesta detallada a la pregunta 4. Reemplaza este texto.]" },
+      { "question": "[Pregunta frecuente 5]", "answer": "[Respuesta detallada a la pregunta 5. Reemplaza este texto.]" }
+    ],
+    "ctaHeading": "[Título del CTA final. Reemplaza este texto.]",
+    "ctaText": "[Texto de apoyo del CTA final que motive al usuario a contactar. Reemplaza este texto.]"
   },
   "languageSwitcher": {
     "switchTo": "Cambiar a inglés"

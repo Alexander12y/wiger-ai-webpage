@@ -25,7 +25,7 @@ export const routing = defineRouting({
     },
     '/industrias/redes-fisicas': {
       es: '/industrias/redes-fisicas',
-      en: '/industries/physical-networks',
+      en: '/industries/physical-nets',
     },
   },
 })

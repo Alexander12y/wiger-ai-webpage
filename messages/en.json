@@ -23,8 +23,7 @@
     "aboutUs": "About us",
     "industries": "Industries",
     "contact": "Contact",
-    "physicalNetworks": "Physical Networks",
-    "physicalNetworksDesc": "Lorem ipsum dolor sit amet"
+    "physicalNetworks": "Physical Nets"
   },
   "hero": {
     "eyebrow": "Digital Platform",
@@ -50,7 +49,7 @@
     "heading": "While the world is forever moving forward,",
     "subheading": "can you afford to stand still?",
     "erp": {
-      "title": "Manufacturing ERP",
+      "title": "Enterprise Resource Planning (ERP)",
       "description": "Total control of your production operations",
       "detailedDescription": "Manage inventories, production orders, supply chain, and costs in real time. A system designed for the reality of manufacturing: integrated, agile, and adaptable to your process.",
       "cta": "Explore ERP"
@@ -81,7 +80,7 @@
     "heading": "Your current processes optimized",
     "headingAccent": "without having to adapt",
     "subtitle": "Every module was designed with the reality of Mexican manufacturers and distributors in mind. No generic templates.",
-    "physicalNetworks": "Physical networks",
+    "physicalNetworks": "Physical nets",
     "manufacturing": "Manufacturing",
     "distribution": "Distribution",
     "retail": "Retail",
@@ -283,8 +282,62 @@
     "viewSolutions": "View solutions"
   },
   "industryRedesFisicas": {
-    "title": "Physical Networks — Wiger AI",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. AI solutions for physical network manufacturers and distributors."
+    "title": "Physical Nets — Wiger AI",
+    "description": "[SEO description for the physical nets page. Replace this text.]",
+    "name": "Physical Nets",
+    "tagline": "[Physical nets tagline. Replace this text.]",
+    "heroHeadline": "Autonomous",
+    "heroHeadlineAccent": "Physical Net Enterprises",
+    "heroSubheadline": "Wiger AI helps physical net manufacturers and distributors solve their industry problems through custom software that connects inventory, production, sales, and customers, driving availability, reducing manual work, and ensuring compliance.",
+    "heroCtaLabel": "Request a demo",
+    "challengesHeading": "[Industry challenges section heading. Replace this text.]",
+    "challenges": [
+      { "title": "[Challenge 1 title]", "description": "[Challenge 1 detailed description. Replace this text.]", "icon": "🏭" },
+      { "title": "[Challenge 2 title]", "description": "[Challenge 2 detailed description. Replace this text.]", "icon": "📦" },
+      { "title": "[Challenge 3 title]", "description": "[Challenge 3 detailed description. Replace this text.]", "icon": "🔗" },
+      { "title": "[Challenge 4 title]", "description": "[Challenge 4 detailed description. Replace this text.]", "icon": "⚙️" },
+      { "title": "[Challenge 5 title]", "description": "[Challenge 5 detailed description. Replace this text.]", "icon": "📊" },
+      { "title": "[Challenge 6 title]", "description": "[Challenge 6 detailed description. Replace this text.]", "icon": "🌐" }
+    ],
+    "segmentsHeading": "[Segments section heading. Replace this text.]",
+    "segments": [
+      { "name": "[Segment 1 name]", "description": "[Segment 1 description. Replace this text.]" },
+      { "name": "[Segment 2 name]", "description": "[Segment 2 description. Replace this text.]" },
+      { "name": "[Segment 3 name]", "description": "[Segment 3 description. Replace this text.]" },
+      { "name": "[Segment 4 name]", "description": "[Segment 4 description. Replace this text.]" },
+      { "name": "[Segment 5 name]", "description": "[Segment 5 description. Replace this text.]" },
+      { "name": "[Segment 6 name]", "description": "[Segment 6 description. Replace this text.]" }
+    ],
+    "solutionsHeading": "[Solutions section heading. Replace this text.]",
+    "solutions": [
+      { "title": "[Solution 1 title]", "description": "[Solution 1 detailed description. Replace this text.]", "features": ["[Feature 1]", "[Feature 2]", "[Feature 3]", "[Feature 4]"] },
+      { "title": "[Solution 2 title]", "description": "[Solution 2 detailed description. Replace this text.]", "features": ["[Feature 1]", "[Feature 2]", "[Feature 3]", "[Feature 4]"] },
+      { "title": "[Solution 3 title]", "description": "[Solution 3 detailed description. Replace this text.]", "features": ["[Feature 1]", "[Feature 2]", "[Feature 3]", "[Feature 4]"] },
+      { "title": "[Solution 4 title]", "description": "[Solution 4 detailed description. Replace this text.]", "features": ["[Feature 1]", "[Feature 2]", "[Feature 3]", "[Feature 4]"] }
+    ],
+    "metricsHeading": "[Metrics section heading. Replace this text.]",
+    "metrics": [
+      { "value": "XX%", "label": "[Metric 1 label]" },
+      { "value": "XXx", "label": "[Metric 2 label]" },
+      { "value": "XX%", "label": "[Metric 3 label]" },
+      { "value": "XXk+", "label": "[Metric 4 label]" }
+    ],
+    "caseStudiesHeading": "[Case studies section heading. Replace this text.]",
+    "caseStudies": [
+      { "company": "[Company 1 name]", "result": "[Result 1 highlight]", "quote": "[Quote or testimonial from company 1. Replace this text.]" },
+      { "company": "[Company 2 name]", "result": "[Result 2 highlight]", "quote": "[Quote or testimonial from company 2. Replace this text.]" },
+      { "company": "[Company 3 name]", "result": "[Result 3 highlight]", "quote": "[Quote or testimonial from company 3. Replace this text.]" }
+    ],
+    "faqHeading": "[FAQ section heading. Replace this text.]",
+    "faqs": [
+      { "question": "[Frequently asked question 1]", "answer": "[Detailed answer to question 1. Replace this text.]" },
+      { "question": "[Frequently asked question 2]", "answer": "[Detailed answer to question 2. Replace this text.]" },
+      { "question": "[Frequently asked question 3]", "answer": "[Detailed answer to question 3. Replace this text.]" },
+      { "question": "[Frequently asked question 4]", "answer": "[Detailed answer to question 4. Replace this text.]" },
+      { "question": "[Frequently asked question 5]", "answer": "[Detailed answer to question 5. Replace this text.]" }
+    ],
+    "ctaHeading": "[Final CTA heading. Replace this text.]",
+    "ctaText": "[Final CTA supporting text that motivates the user to get in touch. Replace this text.]"
   },
   "languageSwitcher": {
     "switchTo": "Switch to Spanish"
