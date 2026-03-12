@@ -17,14 +17,14 @@ export async function middleware(req: NextRequest) {
   const csp = [
     "default-src 'self'",
     isDev
-      ? `script-src 'self' 'unsafe-eval' 'nonce-${nonce}' https://js.howdygo.com`
-      : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://js.howdygo.com`,
+      ? `script-src 'self' 'unsafe-eval' 'nonce-${nonce}' https://js.howdygo.com https://www.googletagmanager.com`
+      : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://js.howdygo.com https://www.googletagmanager.com`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob: https://*.howdygo.com",
+    "img-src 'self' data: blob: https://*.howdygo.com https://www.google-analytics.com https://www.googletagmanager.com",
     "media-src 'self' blob:",
     isDev
-      ? "connect-src 'self' https://*.howdygo.com wss://*.howdygo.com ws://localhost:* ws://127.0.0.1:*"
-      : "connect-src 'self' https://*.howdygo.com wss://*.howdygo.com",
+      ? "connect-src 'self' https://*.howdygo.com wss://*.howdygo.com ws://localhost:* ws://127.0.0.1:* https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com"
+      : "connect-src 'self' https://*.howdygo.com wss://*.howdygo.com https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com",
     "font-src 'self'",
     "frame-src https://app.howdygo.com",
     "frame-ancestors 'none'",
