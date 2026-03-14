@@ -37,7 +37,7 @@ export function VideoTextSection() {
           {/* Text — left side */}
           <div className="lg:col-span-2 space-y-8 animate-on-scroll">
             <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-normal text-white leading-[1.1]">
                 Desde administrativos hasta{' '}
                 <span className="text-[var(--color-accent)]">
                   piso de planta

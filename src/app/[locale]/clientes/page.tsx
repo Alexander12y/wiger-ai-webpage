@@ -169,7 +169,7 @@ function ClientCard({ client, index }: { client: Client; index: number }) {
           </div>
         )}
         <h2
-          className="text-2xl lg:text-3xl font-bold leading-tight"
+          className="font-display text-2xl lg:text-3xl font-normal leading-tight"
           style={{ color: 'var(--color-text-primary)' }}
         >
           {client.name}
@@ -262,7 +262,7 @@ export default function ClientesPage() {
               {t('eyebrow')}
             </p>
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+              className="font-display text-4xl md:text-5xl lg:text-6xl font-normal leading-[1.1] mb-6"
               style={{ color: 'var(--color-text-primary)' }}
             >
               {t('heading')}{' '}
@@ -290,7 +290,7 @@ export default function ClientesPage() {
           style={{ borderTop: '1px solid var(--color-border)' }}
         >
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>
+            <h2 className="font-display text-3xl font-normal mb-4" style={{ color: 'var(--color-text-primary)' }}>
               {t('ctaHeading')}
             </h2>
             <p className="text-base mb-8" style={{ color: 'var(--color-text-secondary)' }}>

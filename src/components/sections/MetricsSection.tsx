@@ -92,7 +92,7 @@ export function MetricsSection() {
               </span>
             </div>
             <h2
-              className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight"
+              className="font-display text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-[-0.01em]"
               style={{ color: 'var(--color-text-primary)' }}
             >
               {t('heading')}{' '}
@@ -125,7 +125,7 @@ export function MetricsSection() {
               }}
             >
               <p
-                className="font-display text-5xl lg:text-6xl font-extrabold mb-3 tabular-nums"
+                className="font-sans text-5xl lg:text-6xl font-bold mb-3 tabular-nums"
                 style={{ color: 'var(--color-text-primary)' }}
               >
                 <AnimatedNumber

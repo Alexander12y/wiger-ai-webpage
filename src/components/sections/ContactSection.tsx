@@ -81,7 +81,7 @@ export default function ContactSection() {
           >
             Contacto
           </span>
-          <h2 className="text-3xl font-bold mb-3" style={{ color: 'var(--color-text-on-dark)' }}>
+          <h2 className="font-display text-3xl font-normal mb-3" style={{ color: 'var(--color-text-on-dark)' }}>
             ¿Listo para comenzar?
           </h2>
           <p className="text-base" style={{ color: 'var(--color-text-on-dark-secondary)' }}>

@@ -85,7 +85,7 @@ function HeroSection({ data }: { data: IndustryPageData }) {
 
             {/* Headline */}
             <h1
-              className="reveal reveal-delay-1 font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] mb-6"
+              className="reveal reveal-delay-1 font-display text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.05] mb-6"
               style={{ color: 'var(--color-text-on-dark)' }}
             >
               {data.hero.headline}{' '}
@@ -198,7 +198,7 @@ function HeroSection({ data }: { data: IndustryPageData }) {
               style={{ background: 'rgba(255,255,255,0.03)' }}
             >
               <span
-                className="font-display text-4xl font-bold mb-1"
+                className="font-sans text-4xl font-bold mb-1"
                 style={{ color: 'var(--color-accent)' }}
               >
                 {m.value}
@@ -231,7 +231,7 @@ function ChallengesSection({ data }: { data: IndustryPageData }) {
         <div className="reveal mb-16">
           <Eyebrow>{t('challengesEyebrow')}</Eyebrow>
           <h2
-            className="font-display text-4xl sm:text-5xl font-bold leading-tight max-w-2xl"
+            className="font-display text-4xl sm:text-5xl font-normal leading-tight max-w-2xl"
             style={{ color: 'var(--color-text-primary)' }}
           >
             {data.challengesHeading}
@@ -255,7 +255,7 @@ function ChallengesSection({ data }: { data: IndustryPageData }) {
                 {c.icon}
               </div>
               <h3
-                className="font-display text-lg font-bold mb-3"
+                className="font-display text-lg font-normal mb-3"
                 style={{ color: 'var(--color-text-primary)' }}
               >
                 {c.title}
@@ -285,7 +285,7 @@ function SegmentsSection({ data }: { data: IndustryPageData }) {
         <div className="reveal mb-16">
           <Eyebrow>{t('segmentsEyebrow')}</Eyebrow>
           <h2
-            className="font-display text-4xl sm:text-5xl font-bold leading-tight max-w-2xl"
+            className="font-display text-4xl sm:text-5xl font-normal leading-tight max-w-2xl"
             style={{ color: 'var(--color-text-primary)' }}
           >
             {data.segmentsHeading}
@@ -361,7 +361,7 @@ function SolutionsSection({ data }: { data: IndustryPageData }) {
             </span>
           </div>
           <h2
-            className="font-display text-4xl sm:text-5xl font-bold leading-tight max-w-2xl"
+            className="font-display text-4xl sm:text-5xl font-normal leading-tight max-w-2xl"
             style={{ color: 'var(--color-text-on-dark)' }}
           >
             {data.solutionsHeading}
@@ -381,7 +381,7 @@ function SolutionsSection({ data }: { data: IndustryPageData }) {
               }}
             >
               <h3
-                className="font-display text-xl font-bold mb-3"
+                className="font-display text-xl font-normal mb-3"
                 style={{ color: 'var(--color-text-on-dark)' }}
               >
                 {sol.title}
@@ -430,7 +430,7 @@ function IndustryMetricsSection({ data }: { data: IndustryPageData }) {
         <div className="reveal mb-16 text-center">
           <Eyebrow>{t('metricsEyebrow')}</Eyebrow>
           <h2
-            className="font-display text-4xl sm:text-5xl font-bold leading-tight"
+            className="font-display text-4xl sm:text-5xl font-normal leading-tight"
             style={{ color: 'var(--color-text-primary)' }}
           >
             {data.metricsHeading}
@@ -443,7 +443,7 @@ function IndustryMetricsSection({ data }: { data: IndustryPageData }) {
               className={`reveal reveal-delay-${Math.min(i + 1, 6)} text-center`}
             >
               <div
-                className="font-display text-5xl sm:text-6xl font-bold mb-2"
+                className="font-sans text-5xl sm:text-6xl font-bold mb-2"
                 style={{ color: 'var(--color-accent)' }}
               >
                 {m.value}
@@ -476,7 +476,7 @@ function CaseStudiesSection({ data }: { data: IndustryPageData }) {
         <div className="reveal mb-16">
           <Eyebrow>{t('caseStudiesEyebrow')}</Eyebrow>
           <h2
-            className="font-display text-4xl sm:text-5xl font-bold leading-tight max-w-2xl"
+            className="font-display text-4xl sm:text-5xl font-normal leading-tight max-w-2xl"
             style={{ color: 'var(--color-text-primary)' }}
           >
             {data.caseStudiesHeading}
@@ -540,7 +540,7 @@ function FaqSection({ data }: { data: IndustryPageData }) {
         <div className="reveal mb-16 text-center">
           <Eyebrow>{t('faqEyebrow')}</Eyebrow>
           <h2
-            className="font-display text-4xl sm:text-5xl font-bold leading-tight"
+            className="font-display text-4xl sm:text-5xl font-normal leading-tight"
             style={{ color: 'var(--color-text-primary)' }}
           >
             {data.faqHeading}
@@ -631,7 +631,7 @@ function CtaBanner({ data }: { data: IndustryPageData }) {
             <Eyebrow>{t('ctaEyebrow')}</Eyebrow>
           </div>
           <h2
-            className="font-display text-4xl sm:text-5xl font-bold mb-6"
+            className="font-display text-4xl sm:text-5xl font-normal mb-6"
             style={{ color: 'var(--color-text-on-dark)' }}
           >
             {data.ctaHeading}

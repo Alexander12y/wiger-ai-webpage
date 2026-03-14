@@ -71,7 +71,7 @@ export function HeroSection() {
               </span>
             </div>
 
-            <h1 className="reveal reveal-delay-2 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[0.95] tracking-tight">
+            <h1 className="reveal reveal-delay-2 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.05] tracking-[-0.01em]">
               <span style={{ color: 'var(--color-text-on-dark)' }}>
                 {t('headingLine1')}
               </span>
@@ -185,7 +185,7 @@ export function HeroSection() {
                   { label: t('statSupport'), value: t('statSupportValue') },
                 ].map((stat) => (
                   <div key={stat.label} className="px-4 py-3 text-center" style={{ borderColor: 'var(--color-border-on-dark)' }}>
-                    <p className="text-sm font-bold font-display" style={{ color: 'var(--color-accent)' }}>
+                    <p className="text-sm font-bold font-sans" style={{ color: 'var(--color-accent)' }}>
                       {stat.value}
                     </p>
                     <p className="text-[10px] uppercase tracking-wider mt-0.5" style={{ color: 'var(--color-text-on-dark-muted)' }}>

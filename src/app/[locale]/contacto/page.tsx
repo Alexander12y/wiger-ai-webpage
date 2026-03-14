@@ -51,13 +51,13 @@ export default async function ContactoPage({ params }: { params: Promise<{ local
               <div className="h-[2px] w-8" style={{ backgroundColor: '#E8650A' }} />
               <span
                 className="text-xs font-semibold tracking-[0.2em] uppercase"
-                style={{ color: '#E8650A', fontFamily: 'var(--font-geist-mono)' }}
+                style={{ color: '#E8650A', fontFamily: 'var(--font-mono)' }}
               >
                 {t('eyebrow')}
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[0.95] tracking-tight" style={{ color: 'var(--color-text-primary)' }}>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.05] tracking-[-0.01em]" style={{ color: 'var(--color-text-primary)' }}>
               {t('headingStart')}{' '}
               <span style={{ color: '#E8650A' }}>
                 {t('headingAccent')}

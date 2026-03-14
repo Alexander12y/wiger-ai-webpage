@@ -126,7 +126,7 @@ export function CapabilitiesGrid() {
               {t('eyebrow')}
             </span>
           </div>
-          <h2 className="reveal reveal-delay-1 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight"
+          <h2 className="reveal reveal-delay-1 font-display text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-[-0.01em]"
             style={{ color: 'var(--color-text-primary)' }}
           >
             {t('heading')}{' '}
@@ -237,7 +237,7 @@ export function CapabilitiesGrid() {
                       </div>
 
                       <h3
-                        className={`font-display font-bold leading-snug mb-3 ${
+                        className={`font-display font-normal leading-snug mb-3 ${
                           isLarge ? 'text-2xl lg:text-3xl' : 'text-lg lg:text-xl'
                         }`}
                         style={{ color: 'var(--color-text-on-dark)' }}

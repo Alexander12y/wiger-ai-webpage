@@ -53,7 +53,7 @@ export function CTASection() {
         </div>
 
         <h2
-          className="reveal reveal-delay-1 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[0.95] tracking-tight max-w-4xl mx-auto"
+          className="reveal reveal-delay-1 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.05] tracking-[-0.01em] max-w-4xl mx-auto"
           style={{ color: 'var(--color-text-primary)' }}
         >
           {t('headingStart')}{' '}

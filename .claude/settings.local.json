@@ -15,7 +15,8 @@
       "Bash(curl -sI http://localhost:3100/)",
       "Read(//tmp/**)",
       "Bash(ls:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(cd \"/c/Alexander/Wiger/Wiger AI/Web Page\" && rm -rf .next && npm run build 2>&1 | tail -40)"
     ]
   }
 }

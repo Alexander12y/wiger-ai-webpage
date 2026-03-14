@@ -44,7 +44,7 @@ export default async function SobreNosotrosPage({ params }: { params: Promise<{ 
               {t('eyebrow')}
             </p>
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+              className="font-display text-4xl md:text-5xl lg:text-6xl font-normal leading-[1.1] mb-6"
               style={{ color: 'var(--color-text-primary)' }}
             >
               {t('heading')}{' '}
@@ -75,7 +75,7 @@ export default async function SobreNosotrosPage({ params }: { params: Promise<{ 
               >
                 {t('missionEyebrow')}
               </p>
-              <h2 className="text-xl font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>
+              <h2 className="font-display text-xl font-normal mb-4" style={{ color: 'var(--color-text-primary)' }}>
                 {t('missionTitle')}
               </h2>
               <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
@@ -96,7 +96,7 @@ export default async function SobreNosotrosPage({ params }: { params: Promise<{ 
               >
                 {t('visionEyebrow')}
               </p>
-              <h2 className="text-xl font-bold mb-4" style={{ color: 'var(--color-text-primary)' }}>
+              <h2 className="font-display text-xl font-normal mb-4" style={{ color: 'var(--color-text-primary)' }}>
                 {t('visionTitle')}
               </h2>
               <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
@@ -148,7 +148,7 @@ export default async function SobreNosotrosPage({ params }: { params: Promise<{ 
               >
                 {t('valuesEyebrow')}
               </p>
-              <h2 className="text-3xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
+              <h2 className="font-display text-3xl font-normal" style={{ color: 'var(--color-text-primary)' }}>
                 {t('valuesHeading')}
               </h2>
             </div>
@@ -190,7 +190,7 @@ export default async function SobreNosotrosPage({ params }: { params: Promise<{ 
             >
               {t('ctaEyebrow')}
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-5" style={{ color: 'var(--color-text-primary)' }}>
+            <h2 className="font-display text-3xl md:text-4xl font-normal mb-5" style={{ color: 'var(--color-text-primary)' }}>
               {t('ctaHeading')}
             </h2>
             <p className="text-base leading-relaxed mb-10" style={{ color: 'var(--color-text-secondary)' }}>

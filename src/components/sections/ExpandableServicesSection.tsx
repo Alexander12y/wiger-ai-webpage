@@ -94,11 +94,11 @@ export function ExpandableServicesSection() {
         {/* Sub-Hero */}
         <div className="text-center mb-16">
           <div className="relative">
-            <h2 className="reveal text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4" style={{ color: '#F1EEE9' }}>
+            <h2 className="reveal font-display text-4xl md:text-5xl lg:text-6xl font-normal tracking-[-0.01em] mb-4" style={{ color: '#F1EEE9' }}>
               {t('heading')}
             </h2>
             <div className="relative">
-              <h3 className="reveal reveal-delay-1 text-3xl md:text-4xl lg:text-5xl font-light italic" style={{ color: 'rgba(240,237,232,0.55)' }}>
+              <h3 className="reveal reveal-delay-1 font-display text-3xl md:text-4xl lg:text-5xl font-normal italic" style={{ color: 'rgba(240,237,232,0.55)' }}>
                 {t('subheading')}
               </h3>
               <div className="reveal reveal-delay-2 mt-6 w-12 h-[2px] bg-[var(--color-accent)] mx-auto" />
